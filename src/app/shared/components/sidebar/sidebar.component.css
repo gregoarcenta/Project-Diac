@@ -1,0 +1,21 @@
+.mat-nav-list {
+    background-color: #df4653;
+    color: white;
+}
+.mat-list-item{
+    color: aliceblue;
+}
+
+.profile-card{
+    text-align: center;
+    padding: 0 20px 20px 20px;
+    
+}
+
+img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  
