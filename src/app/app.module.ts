@@ -7,6 +7,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DefaultModule } from './layouts/default/default.module';
 import { LoginComponent } from './modules/login/login.component';
 
+import {MatSliderModule } from '@angular/material/slider';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import  { MatButtonModule } from '@angular/material/button';
+
+
 
 @NgModule({
   declarations: [
@@ -18,7 +25,12 @@ import { LoginComponent } from './modules/login/login.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    DefaultModule
+    DefaultModule,
+    MatSliderModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatButtonModule
 
   ],
   providers: [],

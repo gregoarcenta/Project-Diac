@@ -11,6 +11,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
 import {MatListModule} from '@angular/material/list';
+import {MatSliderModule } from '@angular/material/slider';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,11 @@ import {MatListModule} from '@angular/material/list';
     FlexLayoutModule,
     MatMenuModule,
     MatListModule,
-    RouterModule
+    RouterModule,
+    MatSliderModule,
+    MatFormFieldModule,
+    MatInputModule
+
   ],
   exports: [
     HeaderComponent,
