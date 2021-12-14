@@ -17,6 +17,7 @@ import {MatListModule} from '@angular/material/list';
     HeaderComponent,
     FooterComponent,
     SidebarComponent
+   
   ],
   imports: [
     CommonModule,
