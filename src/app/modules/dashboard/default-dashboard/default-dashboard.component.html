@@ -1,0 +1,45 @@
+<div class="container-fluid d-flex flex-column justify-content-between dashboard">
+
+  <section class="row justify-content-end ">
+    <div [ngClass]="!sidebarActived ? 'col-12': 'col-9'" class="col-content g-0">
+      <app-header (toggleSidebarEvent)="toggleSidebar()"></app-header>
+    </div>
+  </section>
+
+  <section class="row justify-content-end g-0 main">
+
+    <div [ngClass]="{'col-sidebar-active': sidebarActived}" class="col-3 col-sidebar">
+      <app-sidebar></app-sidebar>
+    </div>
+
+    <div [ngClass]="!sidebarActived ? 'col-12': 'col-9'" class="col-content">
+      <router-outlet></router-outlet>
+    </div>
+
+  </section>
+
+  <section class="row justify-content-end">
+    <div [ngClass]="!sidebarActived ? 'col-12': 'col-9'" class="col-content g-0">
+      <app-footer></app-footer>
+    </div>
+  </section>
+
+</div>
+
+
+
+<!--
+<mat-drawer-container fullscreen>
+  <mat-drawer #sidenav mode="side">
+    <app-sidebar mode="side"></app-sidebar>
+  </mat-drawer>
+  <mat-toolbar>
+
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+
+  </mat-toolbar>
+
+</mat-drawer-container> -->

@@ -1,28 +1,30 @@
-<mat-toolbar >
-    <mat-toolbar-row>
-        <button mat-icon-button >
-            <mat-icon>menu</mat-icon>
-        </button>
+<mat-toolbar>
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="toggleSidebar()">
+      <mat-icon>menu</mat-icon>
+    </button>
 
-        <span> APP LOGO </span>
+    <span> APP LOGO </span>
 
-        <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
-            <ul fxLayout="row" fxLayoutGap="20px">
-                
-                
-                <li>
-                    <button mat-button [matMenuTriggerFor]="menu">
-                        <mat-icon>person_outline</mat-icon>
-                    </button>
-                    <mat-menu #menu="matMenu">
-                        <button mat-menu-item>
-                            <a mat-list-item  href=''><mat-icon>exit_to_app</mat-icon>Sign out </a> 
-                        </button>
-                    </mat-menu>
+    <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
+      <ul fxLayout="row" fxLayoutGap="20px">
 
-                </li>
-                
-            </ul>
-        </div>
-    </mat-toolbar-row>
+
+        <li>
+          <button mat-button [matMenuTriggerFor]="menu">
+            <mat-icon>person_outline</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <a mat-list-item href=''>
+                <mat-icon>exit_to_app</mat-icon>Sign out
+              </a>
+            </button>
+          </mat-menu>
+
+        </li>
+
+      </ul>
+    </div>
+  </mat-toolbar-row>
 </mat-toolbar>

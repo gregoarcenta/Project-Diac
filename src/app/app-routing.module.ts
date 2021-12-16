@@ -1,38 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DefaultComponent } from './layouts/default/default.component';
-import { AsignaturaComponent } from './modules/asignatura/asignatura.component';
-import { DashboardComponent } from './modules/dashboard/dashboard.component';
-import { LoginComponent } from './modules/login/login.component';
-import { StudenComponent } from './modules/studen/studen.component';
+
+import { LoginComponent } from './modules/login/page/login/login.component';
+
 
 const routes: Routes = [
-  
-  { path: '',
-  component: LoginComponent},
-  
-  
+
   {
-   path: '',
-  component: DefaultComponent,
-  children: [{
+    path: 'login',
+    component: LoginComponent,
+    pathMatch: 'full'
+  },
+  {
     path: 'dashboard',
-    component: DashboardComponent
-  },
-  
-   {
-     path: 'asignatura',
-     component: AsignaturaComponent
+    //component: DefaultDashboardComponent
+    loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule)
   },
   {
-    path: 'studen',
-    component: StudenComponent
- }
-],
-
-},
-
-
+    path: '**',
+    redirectTo: 'login'
+  }
 ];
 
 @NgModule({
