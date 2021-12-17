@@ -15,8 +15,13 @@
             <mat-icon>person_outline</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item>
-              <a mat-list-item href=''>
+            <button mat-menu-item *ngIf="getAuthUser">
+              <a mat-list-item class="nav-link">
+                <mat-icon>account_circle</mat-icon>{{ getAuthUser.email}}
+              </a>
+            </button>
+            <button mat-menu-item (click)="logout()">
+              <a mat-list-item class="nav-link">
                 <mat-icon>exit_to_app</mat-icon>Sign out
               </a>
             </button>

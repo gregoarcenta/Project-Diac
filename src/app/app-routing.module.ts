@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './modules/login/guards/auth.guard';
+import { LoginGuard } from './modules/login/guards/login.guard';
 
 import { LoginComponent } from './modules/login/page/login/login.component';
 
@@ -9,12 +11,15 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    pathMatch: 'full'
+    pathMatch: 'full',
+    canActivate: [LoginGuard]
   },
   {
     path: 'dashboard',
     //component: DefaultDashboardComponent
-    loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule)
+    loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule),
+    canLoad: [AuthGuard],
+    canActivate: [AuthGuard]
   },
   {
     path: '**',
