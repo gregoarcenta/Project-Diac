@@ -23,8 +23,6 @@ export class LoginGuard implements CanActivate {
           }
         }),
         map(value => {
-          console.log('valores', value, !value);
-
           return !value
         })
 
