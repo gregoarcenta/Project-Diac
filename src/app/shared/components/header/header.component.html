@@ -17,7 +17,7 @@
           <mat-menu #menu="matMenu">
             <button mat-menu-item *ngIf="getAuthUser">
               <a mat-list-item class="nav-link">
-                <mat-icon>account_circle</mat-icon>{{ getAuthUser.email}}
+                <mat-icon>account_circle</mat-icon>{{ getAuthUser.username}}
               </a>
             </button>
             <button mat-menu-item (click)="logout()">

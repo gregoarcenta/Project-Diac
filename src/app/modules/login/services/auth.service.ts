@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, tap, } from 'rxjs';
+import { catchError, map, Observable, of, tap, } from 'rxjs';
 import { AuthUser } from '../interfaces/auth.interface';
 
 @Injectable({
@@ -9,8 +9,8 @@ import { AuthUser } from '../interfaces/auth.interface';
 export class AuthService {
 
   data: any = {
-    email: "gregoarcenta@gmail.com",
-    password: "12345"
+    username: "malcivar",
+    password: "abc123"
   }
 
   authUser: AuthUser | undefined
@@ -21,11 +21,21 @@ export class AuthService {
     return { ...this.authUser! }
   }
 
-  isAuthenticated(): Observable<boolean> {
-    if (!localStorage.getItem('token')) {
-      return of(false)
-    }
-    return of(true)
+  isAuthenticate(): Observable<boolean> {
+    const token: string = localStorage.getItem('token') || ''
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('authorization', `bearer ${token}`)
+
+    return this.http.get<AuthUser>('https://project-diac-uleam.herokuapp.com/login/renew',
+      { headers }).pipe(
+        map(resp => {
+          localStorage.setItem('token', resp.jwt)
+          this.authUser = resp
+          return true
+        }),
+        catchError(err => of(false))
+      )
   }
 
   login(): Observable<AuthUser> {
@@ -38,8 +48,7 @@ export class AuthService {
       { headers }
     ).pipe(
       tap(auth => this.authUser = auth),
-      tap(auth => localStorage.setItem('token', auth.jwt)
-      )
+      tap(auth => localStorage.setItem('token', auth.jwt))
     )
   }
 
