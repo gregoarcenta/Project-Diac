@@ -2,8 +2,8 @@
   <div class="profile-card">
 
     <img
-      src="https://cdn-icons.flaticon.com/png/512/560/premium/560260.png?token=exp=1639429483~hmac=1e0307eef5345e0ef27b941553f11fda"
-      width="150" height="150" alt="Soufiane FADIL">
+    [src]="user"
+      width="200" height="200" alt="Soufiane FADIL">
     <div class="header">
       <h2>Administrador</h2>
       <h4>Arturo Rodriguez</h4>
@@ -24,11 +24,13 @@
 
 
 
-  <!-- <mat-divider></mat-divider>
+  <mat-divider></mat-divider>
 
   <h2 matSubheader>Registro de Adaptación Curricular </h2>
 
-
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard/estudiante">
+    <mat-icon>create </mat-icon> 1. Datos de identificación del estudiante.
+  </a>
   <a mat-list-item routerLinkActive="list-item-active" routerLink="studen">
     <mat-icon>create </mat-icon> 2. Datos de identificación de la institución educativa.
   </a>
@@ -78,6 +80,6 @@
   </a>
   <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
     <mat-icon>create </mat-icon>17. Firmas
-  </a> -->
+  </a>
 
 </mat-nav-list>
