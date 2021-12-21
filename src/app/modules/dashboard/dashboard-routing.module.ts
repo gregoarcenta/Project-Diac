@@ -11,7 +11,7 @@ import { HistorialPersonalComponent } from '../historial-personal/page/historial
 import { InfContextoComponent } from '../inf-contexto/page/inf-contexto/inf-contexto.component';
 import { AdapCurriculoComponent } from '../adap-curriculo/page/adap-curriculo/adap-curriculo.component';
 import { MetodologiaComponent } from '../metodologia/page/metodologia/metodologia.component';
-
+import { AdaptacionComponent } from '../adaptacion/page/adaptacion/adaptacion.component';
 
 
 
@@ -65,12 +65,13 @@ const routes: Routes = [
         component: AdapCurriculoComponent
       },
 
-
-
-      
+      {
+        path: 'estudiante/institucion/fecha-elaboracion/docentes-imp/historial-personal/inf-contexto/adap-curriculo/adaptacion',
+        component: AdaptacionComponent
+      },
 
       {
-        path: 'estudiante/institucion/fecha-elaboracion/docentes-imp/historial-personal/inf-contexto/adap-curriculo/metodologia',
+        path: 'estudiante/institucion/fecha-elaboracion/docentes-imp/historial-personal/inf-contexto/adap-curriculo/adaptacion/metodologia',
         component: MetodologiaComponent
       }
 
