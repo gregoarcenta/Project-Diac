@@ -12,6 +12,7 @@ import { InfContextoComponent } from '../inf-contexto/page/inf-contexto/inf-cont
 import { AdapCurriculoComponent } from '../adap-curriculo/page/adap-curriculo/adap-curriculo.component';
 import { MetodologiaComponent } from '../metodologia/page/metodologia/metodologia.component';
 import { AdaptacionComponent } from '../adaptacion/page/adaptacion/adaptacion.component';
+import { LoginComponent } from '../login/page/login/login.component';
 
 
 
@@ -20,6 +21,7 @@ const routes: Routes = [
     path: '',
     component: DefaultDashboardComponent,
     children: [
+      
       {
         path: 'destreza',
         component: DestrezaComponent
