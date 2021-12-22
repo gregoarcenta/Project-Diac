@@ -1,0 +1,48 @@
+.bi-caret-down-fill::before {
+  transition: transform .2s ease-in;
+}
+
+.animate-arrow.bi-caret-down-fill::before {
+  transform: rotate(180deg);
+}
+
+.bi-box-arrow-in-up-right, .bi-x-square {
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: rgb(0, 136, 255);
+}
+
+
+/*Boton de agregar*/
+.bi-plus-circle-fill {
+  font-size: 3rem;
+  color: rgb(0, 136, 255);
+
+}
+
+.bi-plus-circle-fill::before {
+  transition: transform .2s ease-in;
+}
+
+.bi-plus-circle-fill:hover::before {
+  transform: scale(1.1)
+}
+
+.iconplus {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+.list-group-plus {
+  transition: all .2s ease;
+  opacity: 0;
+}
+
+.list-group-plus.show {
+  opacity: 1;
+}
+
+.list-group-item {
+  cursor: pointer;
+}

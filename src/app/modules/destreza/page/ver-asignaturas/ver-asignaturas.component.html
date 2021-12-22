@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="row justify-content-center mt-4">
+    <div class="col-sm-8 col-md-6 col-lg-4">
+      <form>
+        <select (change)="validarAsignatura()" [(ngModel)]="asiganturaSelect" name="asiganturaSelect"
+          class="form-select">
+          <option *ngFor="let asignatura of asignaturas.courses" [value]="asignatura.nameCourse">
+            {{asignatura.nameCourse}}
+          </option>
+        </select>
+      </form>
+    </div>
+  </div>
+  <div *ngIf="asignaturaSeleccionada else alertSinSeleccionar" class="row justify-content-center mt-4">
+    <div class="col-10">
+      <p>
+        <button (click)="rotateArrowObj()" class="btn btn-outline-primary" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapseObjectives" aria-expanded="false" aria-controls="collapseExample">
+          Objetivos
+          <i class="bi bi-caret-down-fill" [ngClass]="{'animate-arrow':activateAnimationArrowObj}"></i>
+        </button>
+      </p>
+      <div class="collapse show" id="collapseObjectives">
+        <ul class="list-group list-group-flush">
+          <li *ngFor="let objective of asignaturaSeleccionada?.Objectives"
+            class="list-group-item d-flex justify-content-between" [id]="objective.id">
+            {{objective.nameObjective}}
+            <div>
+              <i (click)="getObjective(objective)" data-bs-toggle="modal" data-bs-target="#modalUpdate"
+                class="bi bi-box-arrow-in-up-right me-2"></i>
+              <i class="bi bi-x-square"></i>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-10 mt-3">
+      <p>
+        <button (click)="rotateArrowDes()" class="btn btn-outline-primary" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapseDestrezas" aria-expanded="false" aria-controls="collapseExample">
+          Destrezas
+          <i class="bi bi-caret-down-fill" [ngClass]="{'animate-arrow':activateAnimationArrowDes}"></i>
+        </button>
+      </p>
+      <div class="collapse" id="collapseDestrezas">
+        <ul class="list-group list-group-flush">
+          <li *ngFor="let destreza of asignaturaSeleccionada?.Destrezas"
+            class="list-group-item d-flex justify-content-between" [id]="destreza.id">
+            {{destreza.nameDestreza}}
+            <div>
+              <i (click)="getDestreza(destreza)" class="bi bi-box-arrow-in-up-right me-2" data-bs-toggle="modal"
+                data-bs-target="#modalUpdate"></i>
+              <i class="bi bi-x-square"></i>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Updae-->
+<div class="modal fade" id="modalUpdate" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">Actualizar {{isDestreza?'Destreza':'Objetivo'}}</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="text" [(ngModel)]="valueInputUpdate" class="form-control">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button (click)="updateDestrezaObjetivo()" type="button" data-bs-dismiss="modal" class="btn btn-primary">
+          Guardar Cambios
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #alertSinSeleccionar>
+  <div class="alert alert-info px-5 mx-5 text-center mt-3">
+    Seleccione una asignatura para ver sus destrezas y objetivos
+  </div>
+</ng-template>
+
+<div class="iconplus d-flex flex-column justify-content-end align-items-end">
+  <ul class="list-group list-group-plus">
+    <li class="list-group-item list-group-item-action" routerLink="/dashboard/asignatura/agregar">Agregar nueva
+      asignatura</li>
+    <li class="list-group-item">Agregar Objetivos y/o destrezas en {{asignaturaSeleccionada?.nameCourse}}</li>
+  </ul>
+  <i (click)="showMenu()" class="bi bi-plus-circle-fill mt-2"></i>
+</div>
+
+
+<app-alert *ngIf="alertActive" [message]="messageError" [typeAlert]="typeAlert" (hiddenAlertEvent)="showAlert($event)">
+</app-alert>

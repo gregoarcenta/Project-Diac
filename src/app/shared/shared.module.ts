@@ -7,13 +7,15 @@ import { MaterialModule } from '../material/material.module';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { AlertComponent } from './components/alert/alert.component';
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
     FooterComponent,
-    SidebarComponent
+    SidebarComponent,
+    AlertComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +25,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
   exports: [
     HeaderComponent,
     FooterComponent,
-    SidebarComponent
+    SidebarComponent,
+    AlertComponent
   ]
 })
 export class SharedModule { }
