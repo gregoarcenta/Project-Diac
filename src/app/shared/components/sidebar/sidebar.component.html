@@ -6,7 +6,7 @@
       width="150" height="150" alt="Soufiane FADIL">
     <div class="header">
       <h2>Administrador</h2>
-      <h4>Arturo Rodriguez</h4>
+      <h4>{{getAuthUser.Teacher.nameTeacher}} {{getAuthUser.Teacher.lastNameTeacher}}</h4>
     </div>
   </div>
 
@@ -17,7 +17,7 @@
   <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard/estudiante">
     <mat-icon>assignment </mat-icon> Documentación Individual
   </a>
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard/destreza">
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard/asignatura">
     <mat-icon>library_add </mat-icon>Ingreso de Destrezas
   </a>
 
