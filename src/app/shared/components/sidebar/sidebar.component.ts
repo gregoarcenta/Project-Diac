@@ -8,10 +8,11 @@ import { AuthService } from 'src/app/modules/login/services/auth.service';
 })
 export class SidebarComponent implements OnInit {
 
+  user = 'assets/imagenes/user.png';
+
   constructor(private authService: AuthService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   get getAuthUser() {
     return this.authService.getAuthUser.user
