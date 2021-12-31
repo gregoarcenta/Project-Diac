@@ -91,7 +91,7 @@ export class DestrezaComponent implements OnInit {
 
   deleteObjective(name: string) {
     this.messageError = 'Objetivo eliminado!'
-    this.typeAlert = 'dabger'
+    this.typeAlert = 'success'
     this.showAlert(true)
     this.objectives = this.objectives.filter(objective => {
       return objective.nameObjective !== name.toLowerCase()
@@ -100,7 +100,7 @@ export class DestrezaComponent implements OnInit {
 
   deleteDestreza(name: string) {
     this.messageError = 'Destreza eliminada!!'
-    this.typeAlert = 'danger'
+    this.typeAlert = 'success'
     this.showAlert(true)
     this.destrezas = this.destrezas.filter(destreza => {
       return destreza.nameDestreza !== name.toLowerCase()

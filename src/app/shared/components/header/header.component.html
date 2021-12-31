@@ -1,6 +1,6 @@
 <mat-toolbar>
   <mat-toolbar-row>
-    <button mat-icon-button (click)="toggleSidebar()">
+    <button mat-icon-button data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas">
       <mat-icon>menu</mat-icon>
     </button>
 
@@ -33,3 +33,7 @@
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
+  <app-sidebar></app-sidebar>
+</div>

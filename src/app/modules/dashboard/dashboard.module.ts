@@ -7,8 +7,6 @@ import { DefaultDashboardComponent } from './default-dashboard/default-dashboard
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MaterialModule } from 'src/app/material/material.module';
 
-import { EstudianteModule } from '../estudiante/estudiante.module';
-
 @NgModule({
   declarations: [
     DefaultDashboardComponent,
@@ -17,8 +15,7 @@ import { EstudianteModule } from '../estudiante/estudiante.module';
     CommonModule,
     DashboardRoutingModule,
     MaterialModule,
-    SharedModule,
-    EstudianteModule
+    SharedModule
   ]
 })
 export class DashboardModule { }
