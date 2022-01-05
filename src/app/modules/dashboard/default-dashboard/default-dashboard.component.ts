@@ -7,15 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DefaultDashboardComponent implements OnInit {
 
-  sidebarActived: boolean = true
-
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  toggleSidebar() {
-    this.sidebarActived = !this.sidebarActived
   }
 
 }

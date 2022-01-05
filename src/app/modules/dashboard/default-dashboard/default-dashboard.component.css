@@ -6,37 +6,3 @@
 .main {
   position: relative;
 }
-
-.col-sidebar {
-  background-color: #df4653;
-  position: fixed;
-  height: 100%;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  overflow-y: auto;
-  transition: all 0.5s;
-  transform: translateX(-400px);
-}
-
-.col-sidebar::-webkit-scrollbar {
-  width: 10px;
-  /* width of the entire scrollbar */
-}
-
-.col-sidebar::-webkit-scrollbar-track {
-  background: rgb(230, 230, 230);
-  /* color of the tracking area */
-}
-
-.col-sidebar::-webkit-scrollbar-thumb {
-  background-color: #cc3b47;
-}
-
-.col-sidebar-active {
-  transform: translateX(0px);
-}
-
-.col-content {
-  transition: all 0.5s;
-}

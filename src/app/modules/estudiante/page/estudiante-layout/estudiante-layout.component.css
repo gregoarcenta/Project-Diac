@@ -1,0 +1,69 @@
+.container-items {
+  position: relative;
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+
+.container-items .item-badge {
+  max-height: 8rem;
+}
+
+.container-items .item-badge .badge {
+  padding: .9rem;
+  cursor: pointer;
+  margin-right: 1rem;
+  margin-bottom: 0;
+}
+
+.container-items .item-badge .badge-text {
+  cursor: pointer;
+  margin-bottom: 0;
+  width: 0;
+  transform: translateX(-400px);
+  overflow: hidden;
+}
+
+.container-items .item-badge .badge-text.active {
+  transform: translateX(0px);
+  width: 100%;
+}
+
+.container-items .item-badge .badge::after {
+  content: '';
+  position: absolute;
+  top: 45%;
+  height: 4px;
+  width: 1rem;
+  margin-left: .9rem;
+  background-color: inherit;
+}
+
+.container-items .item-badge:last-child .badge {
+  content: '';
+  margin-right: 0;
+}
+
+.container-items .item-badge:last-child .badge::after {
+  content: '';
+  height: 0px;
+}
+
+@media only screen and (min-width: 768px) {
+  .container-items .item-badge {
+    max-height: 6rem;
+  }
+}
+
+.container-items::-webkit-scrollbar {
+  height: 6px;
+  /* width of the entire scrollbar */
+}
+
+.container-items::-webkit-scrollbar-track {
+  background: rgb(230, 230, 230);
+  /* color of the tracking area */
+}
+
+.container-items::-webkit-scrollbar-thumb {
+  background-color: #cc3b47;
+}

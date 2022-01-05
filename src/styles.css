@@ -11,9 +11,3 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
   background-color: #df4653;
 }
-
-.alert-globals {
-  position: absolute;
-  top: .5rem;
-  right: .5rem;
-}
