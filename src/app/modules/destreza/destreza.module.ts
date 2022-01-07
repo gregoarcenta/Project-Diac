@@ -6,11 +6,13 @@ import { FormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { VerAsignaturasComponent } from './page/ver-asignaturas/ver-asignaturas.component';
 import { DestrezaRoutingModule } from './destreza-routing.module';
+import { AgregarDestrezaComponent } from './page/agregar-destreza/agregar-destreza.component';
 
 @NgModule({
   declarations: [
+    VerAsignaturasComponent,
     DestrezaComponent,
-    VerAsignaturasComponent
+    AgregarDestrezaComponent
   ],
   exports: [
     DestrezaComponent,

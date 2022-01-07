@@ -31,7 +31,7 @@
 .container-items .item-badge .badge::after {
   content: '';
   position: absolute;
-  top: 45%;
+  top: 48%;
   height: 4px;
   width: 1rem;
   margin-left: .9rem;
@@ -48,12 +48,6 @@
   height: 0px;
 }
 
-@media only screen and (min-width: 768px) {
-  .container-items .item-badge {
-    max-height: 6rem;
-  }
-}
-
 .container-items::-webkit-scrollbar {
   height: 6px;
   /* width of the entire scrollbar */
@@ -66,4 +60,10 @@
 
 .container-items::-webkit-scrollbar-thumb {
   background-color: #cc3b47;
+}
+
+@media only screen and (min-width: 768px) {
+  .container-items .item-badge {
+    max-height: 6rem;
+  }
 }

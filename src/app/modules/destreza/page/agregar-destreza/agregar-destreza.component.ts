@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Asignatura, DestrezaElement, Objective } from '../../interfaces/destreza.interface';
 import { DestrezaService } from '../../service/destreza.service';
 
 @Component({
-  selector: 'app-destreza',
-  templateUrl: './destreza.component.html',
-  styleUrls: ['./destreza.component.css']
+  selector: 'app-agregar-asignatura',
+  templateUrl: './agregar-destreza.component.html',
+  styleUrls: ['./agregar-destreza.component.css']
 })
-export class DestrezaComponent implements OnInit {
+export class AgregarDestrezaComponent implements OnInit {
 
   messageError: string = ''
   typeAlert: string = ''
@@ -18,13 +18,19 @@ export class DestrezaComponent implements OnInit {
   objectives: Objective[] = []
   destrezas: DestrezaElement[] = []
 
+  idAsignatura!: number
   nombreAsignatura: string = ''
   valorActual: string = ''
   seleccionado: string = 'objetivo'
 
-  constructor(private destrezaService: DestrezaService, private router: Router) { }
+  constructor(private activateRoute: ActivatedRoute, private destrezaService: DestrezaService, private router: Router) { }
 
   ngOnInit(): void {
+    this.activateRoute.params.subscribe(param => {
+      this.nombreAsignatura = param['name']
+      this.idAsignatura = param['idCourse']
+      console.log(param);
+    })
   }
 
   showAlert(value: boolean) {
@@ -112,32 +118,48 @@ export class DestrezaComponent implements OnInit {
   }
 
   addAsignatura() {
-    if (this.nombreAsignatura.trim().toLowerCase().length === 0) {
-      this.messageError = 'El nombre de la asignatura no puede quedar vacio'
+    if (this.destrezas.length === 0 && this.objectives.length === 0) {
+      this.messageError = `Tiene que añadir alguna detreza u objetivo a la asignatura ${this.nombreAsignatura}`
       this.typeAlert = 'danger'
       this.showAlert(true)
       return
     }
-    this.asignatura = {
-      nameCourse: this.nombreAsignatura.toLowerCase(),
-      destrezas: this.destrezas,
-      objectives: this.objectives
+    if (this.destrezas.length > 0) {
+      this.destrezaService.addDestreza(this.idAsignatura, this.destrezas)
+        .subscribe({
+          next: (resp) => { },
+          error: ({ error }) => {
+            this.messageError = `${error.message}`
+            this.typeAlert = 'danger'
+            this.showAlert(true)
+          },
+          complete: () => {
+            this.messageError = `Se agregaron las destrezas a la asignatura ${this.nombreAsignatura}`
+            this.typeAlert = 'success'
+            this.showAlert(true)
+            this.router.navigateByUrl('/dashboard/asignatura')
+          }
+        })
     }
-    this.destrezaService.addAsignatura(this.asignatura)
-      .subscribe({
-        next: (resp) => { },
-        error: ({ error }) => {
-          this.messageError = `${error.message}`
-          this.typeAlert = 'danger'
-          this.showAlert(true)
-        },
-        complete: () => {
-          this.messageError = `Se a agregado la asignatura ${this.nombreAsignatura}`
-          this.typeAlert = 'success'
-          this.showAlert(true)
-          this.router.navigateByUrl('/dashboard/asignatura')
-        }
-      })
+
+    if (this.objectives.length > 0) {
+      this.destrezaService.addObjective(this.idAsignatura, this.objectives)
+        .subscribe({
+          next: (resp) => { },
+          error: ({ error }) => {
+            this.messageError = `${error.message}`
+            this.typeAlert = 'danger'
+            this.showAlert(true)
+          },
+          complete: () => {
+            this.messageError = `Se agregaron los objetivos a la asignatura ${this.nombreAsignatura}`
+            this.typeAlert = 'success'
+            this.showAlert(true)
+            this.router.navigateByUrl('/dashboard/asignatura')
+          }
+        })
+    }
+
   }
 
 }

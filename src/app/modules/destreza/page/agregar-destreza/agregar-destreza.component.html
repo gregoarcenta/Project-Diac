@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="row justify-content-center mt-4">
+
+    <div class="col-12 text-center">
+      <h1>
+        Registro de objetivos y destrezas a {{nombreAsignatura}}
+      </h1>
+    </div>
+
+    <div class="col-11">
+      <form class="rounded bg-light p-4">
+        <div class="mb-3 col-4">
+          <label for="asignatura" class="form-label">Asignatura:</label>
+          <input [(ngModel)]="nombreAsignatura" type="text" class="form-control" id="asignatura" name="asignatura"
+            placeholder="Matemáticas" disabled>
+        </div>
+        <label for="asignatura" class="form-label">Añada objetivos y/o destrezas:</label>
+        <div class="input-group mb-3 col-4">
+          <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+            aria-expanded="false">{{seleccionado | titlecase}}</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" id="objetivo" (click)="cambioObjetivo($event)">Objetivo</a></li>
+            <li><a class="dropdown-item" id="destreza" (click)="cambioObjetivo($event)">Destreza</a></li>
+          </ul>
+          <input [(ngModel)]="valorActual" name="value" type="text" class="form-control">
+          <button (click)="seleccionado==='destreza'? addDestreza(): addObjective()" class="btn btn-outline-primary"
+            type="button" id="inputGroupFileAddon04">+
+            Agregar</button>
+        </div>
+
+
+        <div class="mb-3 mt-4">
+          <h4 class="">Objetivos Educativos Individuales:</h4>
+          <div class="list-group">
+            <button *ngFor="let objetivo of objectives" type="button"
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
+              {{objetivo.nameObjective | titlecase}}
+              <span (click)="deleteObjective(objetivo.nameObjective)" class="badge bg-danger rounded-pill">x</span>
+            </button>
+
+          </div>
+          <div *ngIf="objectives.length === 0" class="alert alert-info">
+            Aun no se han añadido objetivos
+          </div>
+        </div>
+        <div class="mb-3">
+          <h4 class="">Destrezas con criterios de desempeño:</h4>
+          <div class="list-group">
+            <button *ngFor="let destreza of destrezas" type="button"
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
+              {{destreza.nameDestreza | titlecase}}
+              <span (click)="deleteDestreza(destreza.nameDestreza)" class="badge bg-danger rounded-pill">x</span>
+            </button>
+
+          </div>
+          <div *ngIf="destrezas.length === 0" class="alert alert-info">
+            Aun no se han añadido destrezas
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-10 text-end mt-2 py-2">
+      <button (click)="cancelarAsignatura()" class="btn btn-danger">Atras</button>
+      <button (click)="addAsignatura()" class="btn btn-primary ms-3">Guardar</button>
+    </div>
+
+  </div>
+</div>
+
+<app-alert *ngIf="alertActive" [message]="messageError" [typeAlert]="typeAlert" (hiddenAlertEvent)="showAlert($event)">
+</app-alert>
