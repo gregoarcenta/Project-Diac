@@ -1,9 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { DocenteList, TeacherBodyCreate } from '../interfaces/docente.interface';
+import { DocenteList, TeacherBodyCreate, TeacherResponseAfterCreate } from '../interfaces/docente.interface';
+import { UserBodyCreate } from '../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class DocenteService {
     return this.http.get<DocenteList>(`${baseURL}/teacher`, { headers })
   }
 
-  addDocente(docente: TeacherBodyCreate): Observable<TeacherBodyCreate> {
+  addDocente(docente: TeacherBodyCreate): Observable<TeacherResponseAfterCreate> {
     const token: string = localStorage.getItem('token') || ''
     const baseURL = environment.baseURL
     const body = docente
@@ -30,7 +31,18 @@ export class DocenteService {
       .set('Content-Type', 'application/json')
       .set('authorization', `bearer ${token}`)
 
-    return this.http.post<TeacherBodyCreate>(`${baseURL}/teacher`, body, { headers })
+    return this.http.post<TeacherResponseAfterCreate>(`${baseURL}/teacher`, body, { headers })
+  }
+
+  addUser(user: UserBodyCreate): Observable<UserBodyCreate> {
+    const token: string = localStorage.getItem('token') || ''
+    const baseURL = environment.baseURL
+    const body = user
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('authorization', `bearer ${token}`)
+
+    return this.http.post<UserBodyCreate>(`${baseURL}/user`, body, { headers })
   }
 
 }

@@ -20,6 +20,15 @@ export interface TeacherBodyCreate {
   courseId: number
 }
 
+export interface TeacherResponseAfterCreate {
+  id: number,
+  nameTeacher: string,
+  lastNameTeacher: string,
+  edad: number,
+  email: string,
+  courseId: number
+}
+
 export interface Course {
   id: number;
   nameCourse: string;

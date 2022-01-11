@@ -9,8 +9,8 @@ import { AuthUser } from '../interfaces/auth.interface';
 export class AuthService {
 
   data: any = {
-    username: "malcivar",
-    password: "abc123"
+    username: "asierra",
+    password: "123456"
   }
 
   authUser: AuthUser | undefined
