@@ -29,7 +29,7 @@ addEstudiante(estudiante: StudentBodyCreate): Observable<StudentBodyCreate> {
     .set('Content-Type', 'application/json')
     .set('authorization', `bearer ${token}`)
 
-  return this.http.post<StudentBodyCreate>(`${baseURL}/teacher`, body, { headers })
+  return this.http.post<StudentBodyCreate>(`${baseURL}/student`, body, { headers })
 
 }
 
