@@ -21,6 +21,11 @@ const routes: Routes = [
       },
 
       {
+        path: 'docente',
+        loadChildren: () => import('../docente/docente.module').then(m => m.DocenteModule)
+      },
+
+      {
         path: 'adaptacion-curricular',
         loadChildren: () => import('../estudiante/estudiante.module').then(m => m.EstudianteModule)
       }

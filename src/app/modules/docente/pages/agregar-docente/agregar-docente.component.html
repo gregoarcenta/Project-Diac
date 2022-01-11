@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="row justify-content-center mt-4">
+
+    <div class="col-12 text-center">
+      <h1>
+        Registro de objetivos y destrezas
+      </h1>
+    </div>
+
+    <div class="col-11">
+      <form class="rounded bg-light p-4" [formGroup]="docenteForm" (ngSubmit)="guardarDocente()" autocomplete="off">
+        <div class="row">
+          <div class="mb-3 col-12 col-md-6">
+            <label for="name" class="form-label">Nombres:</label>
+            <input formControlName="nombre" type="text" class="form-control mb-2" id="name" name="name"
+              placeholder="Ingresar nombres">
+            <span *ngIf="!(validCampo('nombre').valid)" class="text-danger">
+              {{(validCampo('nombre').messagge)}}
+            </span>
+          </div>
+          <div class="mb-3 col-12 col-md-6">
+            <label for="lastName" class="form-label">Apellidos:</label>
+            <input formControlName="apellido" type="text" class="form-control mb-2" id="lastName" name="lastName"
+              placeholder="Ingresar apellidos">
+            <span *ngIf="!(validCampo('apellido').valid)" class="text-danger">
+              {{(validCampo('apellido').messagge)}}
+            </span>
+          </div>
+          <div class="mb-3 col-12 col-md-2 col-lg-1">
+            <label for="age" class="form-label">Edad:</label>
+            <input formControlName="edad" type="number" class="form-control mb-2" id="age" name="age" placeholder="30">
+            <span *ngIf="!(validCampo('edad').valid)" class="text-danger">
+              {{(validCampo('edad').messagge)}}
+            </span>
+          </div>
+          <div class="mb-3 col-12 col-md-4 col-lg-5">
+            <label for="email" class="form-label">Correo electrónico:</label>
+            <input formControlName="email" type="email" class="form-control mb-2" id="email" name="email"
+              placeholder="Ingresar correo electrónico">
+            <span *ngIf="!(validCampo('email').valid)" class="text-danger">
+              {{(validCampo('email').messagge)}}
+            </span>
+          </div>
+          <div class="mb-3 col-12 col-md-6">
+            <label for="email" class="form-label">Seleccionar asignatura impartida por el docente:</label>
+            <select formControlName="asignatura" class="form-select" aria-label="Default select example">
+              <option value="0" selected>seleccionar asignatura</option>
+              <option [value]="asignatura.id" *ngFor="let asignatura of asignaturas">
+                {{asignatura.nameCourse}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-12 text-end mt-2">
+          <button class="btn btn-danger">Atras</button>
+          <button class="btn btn-primary ms-3" type="submit">Guardar</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+<app-alert *ngIf="alertActive" [message]="messageError" [typeAlert]="typeAlert" (hiddenAlertEvent)="showAlert($event)">
+</app-alert>
