@@ -5,7 +5,7 @@ export interface EstudianteList{
 
 export interface RegistroStudent {
   
-    id: number;
+    
     nameStudent:     string;
     lastNameStudent: string;
     edad:            number;
@@ -19,7 +19,7 @@ export interface RegistroStudent {
     town:            string;
     province:        string;
     postalCode:      number;
-    phone:           number;
+    phone:           string;
     course:          string;
     parallel:        string;
     schoolYear:      string;

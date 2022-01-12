@@ -66,6 +66,21 @@ studianteFrom: FormGroup = this.fb.group({
       nameFather: this.studianteFrom.value.nombrePadre, 
     }
     this.registroStudentService.addEstudiante(estudiante)
+    .subscribe({
+      next: (resp) => console.log(resp),
+      error: (err) => {
+        this.messageError = 'Hubo un error al realizar el registro de un usuario'
+        this.typeAlert = 'danger'
+        this.alertActive = true
+        console.log(err)
+      },
+      complete: () => {
+        this.messageError = 'Estudiante registrado con exito'
+        this.typeAlert = 'success'
+        this.alertActive = true
+        this.studianteFrom.reset()
+      }
+    })
   }
 
 

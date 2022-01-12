@@ -113,7 +113,7 @@
           </div>
             <div class="mb-3 col-12 col-md-2 col-lg-3">
                 <label for="lastName" class="form-label">Telefono:</label>
-                <input formControlName="telefono" type="number" class="form-control mb-2" id="telefono" name="telefono"
+                <input formControlName="telefono" type="text" class="form-control mb-2" id="telefono" name="telefono"
                   placeholder="0988826457">
                 <span *ngIf="!(validCampo('telefono').valid)" class="text-danger">
                   {{(validCampo('telefono').messagge)}}
