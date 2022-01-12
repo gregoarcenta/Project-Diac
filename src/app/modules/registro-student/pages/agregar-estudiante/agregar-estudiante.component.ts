@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
+import { StudentBodyCreate, EstudianteList } from '../../interfaces/registro-student.interface';
+import { RegistroStudentService } from '../../service/registro-student.service';
 
 @Component({
   selector: 'app-agregar-estudiante',
@@ -7,6 +9,9 @@ import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
   styleUrls: ['./agregar-estudiante.component.css']
 })
 export class AgregarEstudianteComponent implements OnInit {
+
+
+  
 
   messageError: string = ''
   typeAlert: string = ''
@@ -33,7 +38,7 @@ studianteFrom: FormGroup = this.fb.group({
   
 })
 
-  constructor( private fb: FormBuilder) { }
+  constructor( private registroStudentService:RegistroStudentService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
   }
@@ -52,6 +57,19 @@ studianteFrom: FormGroup = this.fb.group({
   }
 
   guardarEstudiante(){
+    const estudiante: StudentBodyCreate = {
+      nameStudent: this.studianteFrom.value.nombre,
+      lastNameStudent: this.studianteFrom.value.apellido,
+      tutor: this.studianteFrom.value.tutor,
+      course: this.studianteFrom.value.course,
+      parallel: this.studianteFrom.value.paralelo,
+      nameFather: this.studianteFrom.value.nombrePadre, 
+    }
+    this.registroStudentService.addEstudiante(estudiante)
+  }
+
+
+ /* guardarEstudiante(){
     if(this.studianteFrom.invalid) {
       this.studianteFrom.markAllAsTouched()
       return
@@ -73,5 +91,5 @@ studianteFrom: FormGroup = this.fb.group({
       this.studianteFrom.reset()
     }
   }
-
+*/
 }
