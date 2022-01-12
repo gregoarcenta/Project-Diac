@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row justify-content-center">
   
-      <h1 class="text-center mt-3 mb-2">Lista de documento individual de Adaptación Curricular </h1>
+      <h1 class="text-center mt-3 mb-2">Lista de estudiantes  </h1>
   
       <section class="my-3 col-12 col-md-4">
         <div class="">
@@ -27,7 +27,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let estudiante of estudianteList">
-              
+              <td>{{estudiante.id}}</td>
               <td>{{estudiante.nameStudent}}</td>
               <td>{{estudiante.lastNameStudent}}</td>
               <td>{{estudiante.tutor}}</td>

@@ -31,7 +31,7 @@ studianteFrom: FormGroup = this.fb.group({
   ciudad: ['0', Validators.required],
   Provincia: ['0', Validators.required],
   codigoPostal: ['', [Validators.required, Validators.min(1)]],
-  telefono: ['', [Validators.required, Validators.min(1)]],
+  telefono: ['', [Validators.required]],
   course: ['', Validators.required],
   paralelo: ['', Validators.required],
   añolectivo: ['', Validators.required],
@@ -58,12 +58,26 @@ studianteFrom: FormGroup = this.fb.group({
 
   guardarEstudiante(){
     const estudiante: StudentBodyCreate = {
-      nameStudent: this.studianteFrom.value.nombre,
-      lastNameStudent: this.studianteFrom.value.apellido,
-      tutor: this.studianteFrom.value.tutor,
-      course: this.studianteFrom.value.course,
-      parallel: this.studianteFrom.value.paralelo,
-      nameFather: this.studianteFrom.value.nombrePadre, 
+ 
+    nameStudent: this.studianteFrom.value.nombre,
+    lastNameStudent: this.studianteFrom.value.apellido,
+    edad: this.studianteFrom.value.edad,
+    dateOfBirth: this.studianteFrom.value.fechaNacimiento,
+    numBrothers: this.studianteFrom.value.NHermanos,
+    placeOccupies: this.studianteFrom.value.LOcupa,
+    tutor: this.studianteFrom.value.tutor,
+    nameFather: this.studianteFrom.value.nombreMadre,
+    nameMother: this.studianteFrom.value.nombrePadre,
+    address: this.studianteFrom.value.domicilio,
+    town: this.studianteFrom.value.ciudad,
+    province: this.studianteFrom.value.Provincia,
+    postalCode: this.studianteFrom.value.codigoPostal,
+    phone: this.studianteFrom.value.telefono,
+    course: this.studianteFrom.value.course,
+    parallel: this.studianteFrom.value.paralelo,
+    schoolYear: this.studianteFrom.value.añolectivo,
+
+
     }
     this.registroStudentService.addEstudiante(estudiante)
     .subscribe({
