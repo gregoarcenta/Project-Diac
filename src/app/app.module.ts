@@ -8,9 +8,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginModule } from './modules/login/login.module';
 import { HttpClientModule } from '@angular/common/http';
 
+
 @NgModule({
   declarations: [
     AppComponent,
+    
  
   ],
   imports: [

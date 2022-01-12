@@ -11,6 +11,11 @@ export class StudentListComponent implements OnInit {
   estudianteList: RegistroStudent[] =[]
 
   constructor(private registroStudenService: RegistroStudentService) { }
+  // -------filtro de pipe 
+  
+  filterEstudiante = '';
+
+
 
   ngOnInit(): void {
     this.registroStudenService.getStudent()

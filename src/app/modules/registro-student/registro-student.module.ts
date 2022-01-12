@@ -5,17 +5,23 @@ import { StudentListComponent } from './pages/student-list/student-list.componen
 import { RegistroStudentRoutingModule } from './registro-student-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FilterPipe } from './pipes/filter.pipe';
+import { FormsModule } from '@angular/forms';
+ 
 
 @NgModule({
   declarations: [
     AgregarEstudianteComponent,
-    StudentListComponent
+    StudentListComponent,
+    FilterPipe
   ],
   imports: [
     CommonModule,
     RegistroStudentRoutingModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
+    
   ]
 })
 export class RegistroStudentModule { }

@@ -6,7 +6,7 @@
       <section class="my-3 col-12 col-md-4">
         <div class="">
           <form class="">
-            <input class="form-control me-4 center" type="text" name="filterEstudiante" placeholder="Buscar estudiante...">
+            <input class="form-control me-4 center" type="text" name="filterEstudiante" placeholder="Buscar estudiante..." [(ngModel)]= "filterEstudiante">
           </form>
         </div>
       </section>
@@ -26,7 +26,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let estudiante of estudianteList">
+            <tr *ngFor="let estudiante of estudianteList | filter:filterEstudiante">
               <td>{{estudiante.id}}</td>
               <td>{{estudiante.nameStudent}}</td>
               <td>{{estudiante.lastNameStudent}}</td>
@@ -47,7 +47,7 @@
             </tr>
           </tbody>
         </table>
-  
+        
       </div>
     </div>
   
