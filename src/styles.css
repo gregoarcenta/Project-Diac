@@ -13,28 +13,17 @@ body::-webkit-scrollbar-thumb {
   background-color: #df4653;
 }
 
-
-/*Barra de scroll del sidebar*/
-app-sidebar {
-  overflow-y: auto;
-}
-
-app-sidebar::-webkit-scrollbar {
-  width: 5px;
-  /* width of the entire scrollbar */
-}
-
-app-sidebar::-webkit-scrollbar-track {
-  background: rgb(230, 230, 230);
-  /* color of the tracking area */
-}
-
-app-sidebar::-webkit-scrollbar-thumb {
-  background-color: #df313f;
-}
-
-
 /*coursos pointer para el boton redondo del menu*/
 .bi-plus-circle-fill {
   cursor: pointer;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
 }

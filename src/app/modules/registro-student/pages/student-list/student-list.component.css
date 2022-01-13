@@ -1,0 +1,45 @@
+/*Boton de agregar*/
+.bi-plus-circle-fill {
+  font-size: 3rem;
+  color: rgb(0, 136, 255);
+
+}
+
+.bi-plus-circle-fill::before {
+  transition: transform .2s ease-in;
+}
+
+.bi-plus-circle-fill:hover::before {
+  transform: scale(1.1)
+}
+
+.iconplus {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+.section-destreza {
+  z-index: 1000;
+}
+
+.section-objectives {
+  z-index: 1000;
+}
+
+.list-group-plus {
+  transition: all .2s ease;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 999;
+}
+
+.list-group-plus.show {
+  opacity: 1;
+  visibility: visible;
+  z-index: 1001;
+}
+
+.list-group-item {
+  cursor: pointer;
+}

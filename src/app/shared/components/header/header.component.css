@@ -1,8 +1,40 @@
 ul li {
-    list-style: none;
-  }
-.mat-toolbar{
+  list-style: none;
+}
+
+.mat-toolbar {
   background-color: #df4653;
   color: white;
 }
-  
+
+.offcanvas-body {
+  background-color: #df4653;
+}
+
+.profile-card {
+  text-align: center;
+  padding: 40px 20px 20px 20px;
+
+}
+
+img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/*estilo barra de scroll del sidebar*/
+.offcanvas-body::-webkit-scrollbar {
+  width: 5px;
+  /* width of the entire scrollbar */
+}
+
+.offcanvas-body::-webkit-scrollbar-track {
+  background: rgb(230, 230, 230);
+  /* color of the tracking area */
+}
+
+.offcanvas-body::-webkit-scrollbar-thumb {
+  background-color: #df313f;
+}

@@ -3,15 +3,26 @@
   <div class="login">
 
     <h1 class="h3 mb-3 fw-normal">Iniciar de Sesión </h1>
-    <mat-form-field class="ancho" appearance="fill">
-      <mat-label>Usuario</mat-label>
-      <input matInput>
-    </mat-form-field>
-    <mat-form-field class="ancho" appearance="fill">
-      <mat-label>Contraseña</mat-label>
-      <input matInput>
-    </mat-form-field>
-    <br>
-    <button (click)="ingresar()" class="ancho" mat-raised-button mat-button color="primary">Primary</button>
+    <form [formGroup]="loginForm">
+      <mat-form-field class="ancho" appearance="fill">
+        <mat-label>Usuario</mat-label>
+        <input formControlName="usuario" matInput>
+        <span *ngIf="!(validCampo('usuario').valid)" class="text-danger">
+          {{(validCampo('usuario').messagge)}}
+        </span>
+      </mat-form-field>
+      <mat-form-field class="ancho" appearance="fill">
+        <mat-label>Contraseña</mat-label>
+        <input formControlName="contraseña" matInput type="password">
+        <span *ngIf="!(validCampo('contraseña').valid)" class="text-danger">
+          {{(validCampo('contraseña').messagge)}}
+        </span>
+      </mat-form-field>
+      <br>
+      <button (click)="ingresar()" class="ancho" mat-raised-button mat-button color="primary">Ingresar</button>
+    </form>
   </div>
 </div>
+
+<app-alert *ngIf="alertActive" [message]="messageError" [typeAlert]="typeAlert" (hiddenAlertEvent)="showAlert($event)">
+</app-alert>

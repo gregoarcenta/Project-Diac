@@ -6,8 +6,6 @@ import { RegistroStudentRoutingModule } from './registro-student-routing.module'
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FilterPipe } from './pipes/filter.pipe';
-import { FormsModule } from '@angular/forms';
- 
 
 @NgModule({
   declarations: [
@@ -19,9 +17,7 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     RegistroStudentRoutingModule,
     SharedModule,
-    ReactiveFormsModule,
-    FormsModule
-    
+    ReactiveFormsModule
   ]
 })
 export class RegistroStudentModule { }
