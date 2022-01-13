@@ -26,6 +26,11 @@ const routes: Routes = [
       },
 
       {
+        path: 'institucion',
+        loadChildren: () => import('../institucion/institucion.module').then(m => m.InstitucionModule)
+      },
+
+      {
         path: 'adaptacion-curricular',
         loadChildren: () => import('../estudiante/estudiante.module').then(m => m.EstudianteModule)
       }

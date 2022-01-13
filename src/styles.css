@@ -1,3 +1,4 @@
+/*Barra de scroll de la ventana*/
 body::-webkit-scrollbar {
   width: 10px;
   /* width of the entire scrollbar */
@@ -10,4 +11,30 @@ body::-webkit-scrollbar-track {
 
 body::-webkit-scrollbar-thumb {
   background-color: #df4653;
+}
+
+
+/*Barra de scroll del sidebar*/
+app-sidebar {
+  overflow-y: auto;
+}
+
+app-sidebar::-webkit-scrollbar {
+  width: 5px;
+  /* width of the entire scrollbar */
+}
+
+app-sidebar::-webkit-scrollbar-track {
+  background: rgb(230, 230, 230);
+  /* color of the tracking area */
+}
+
+app-sidebar::-webkit-scrollbar-thumb {
+  background-color: #df313f;
+}
+
+
+/*coursos pointer para el boton redondo del menu*/
+.bi-plus-circle-fill {
+  cursor: pointer;
 }

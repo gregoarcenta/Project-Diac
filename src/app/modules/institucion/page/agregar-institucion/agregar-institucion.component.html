@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="row justify-content-center mt-4">
+
+    <div class="col-12 text-center">
+      <h1>
+        Registro de instituciones
+      </h1>
+    </div>
+
+    <div class="col-11">
+      <form class="rounded bg-light p-4" [formGroup]="institucionForm" (ngSubmit)="guardarInstitucion()"
+        autocomplete="off">
+        <div class="row">
+          <div class="mb-3 col-12 col-md-6">
+            <label for="name" class="form-label">Nombres:</label>
+            <input formControlName="nombre" type="text" class="form-control mb-2" id="name" name="name"
+              placeholder="Ingresar nombre">
+            <span *ngIf="!(validCampo('nombre').valid)" class="text-danger">
+              {{(validCampo('nombre').messagge)}}
+            </span>
+          </div>
+
+          <div class="mb-3 col-12 col-md-6">
+            <label for="direccion" class="form-label">Dirección:</label>
+            <input formControlName="direccion" type="text" class="form-control mb-2" id="direccion" name="direccion"
+              placeholder="Ingresar dirección">
+            <span *ngIf="!(validCampo('direccion').valid)" class="text-danger">
+              {{(validCampo('direccion').messagge)}}
+            </span>
+          </div>
+
+          <div class="mb-3 col-12 col-md-2">
+            <label for="distrito" class="form-label">Distrito:</label>
+            <input formControlName="distrito" type="text" class="form-control mb-2" id="distrito" name="distrito"
+              placeholder="Ingresar distrito">
+            <span *ngIf="!(validCampo('distrito').valid)" class="text-danger">
+              {{(validCampo('distrito').messagge)}}
+            </span>
+          </div>
+
+          <div class="mb-3 col-12 col-md-4">
+            <label for="localizacion" class="form-label">Localización:</label>
+            <input formControlName="localizacion" type="text" class="form-control mb-2" id="localizacion"
+              name="localizacion" placeholder="Ingresar localización">
+            <span *ngIf="!(validCampo('localizacion').valid)" class="text-danger">
+              {{(validCampo('localizacion').messagge)}}
+            </span>
+          </div>
+
+          <div class="mb-3 col-12 col-md-3">
+            <label for="codigoPostal" class="form-label">Código Postal:</label>
+            <input formControlName="codigoPostal" type="number" class="form-control mb-2" id="codigoPostal"
+              name="codigoPostal" placeholder="Ingresar código postal">
+            <span *ngIf="!(validCampo('codigoPostal').valid)" class="text-danger">
+              {{(validCampo('codigoPostal').messagge)}}
+            </span>
+          </div>
+
+          <div class="mb-3 col-12 col-md-3">
+            <label for="telefono" class="form-label">Teléfono:</label>
+            <input formControlName="telefono" type="number" class="form-control mb-2" id="telefono" name="telefono"
+              placeholder="Ingresar numero telefónico">
+            <span *ngIf="!(validCampo('telefono').valid)" class="text-danger">
+              {{(validCampo('telefono').messagge)}}
+            </span>
+          </div>
+
+          <div class="mb-3 col-md-3">
+            <label class="form-label">Tipo:</label>
+            <select formControlName="modalidad" class="form-select" aria-label="Default select example">
+              <option value="0" selected>seleccionar modalidad</option>
+              <option value="matutina">Matutina</option>
+              <option value="vespertina">Vespertina</option>
+              <option value="nocturna">Nocturna</option>
+            </select>
+          </div>
+
+          <div class="mb-3 col-md-3">
+            <label class="form-label">Tipo:</label>
+            <select formControlName="tipo" class="form-select" aria-label="Default select example">
+              <option value="0" selected>seleccionar tipo</option>
+              <option value="particular">Particular</option>
+              <option value="fiscal">Fiscal</option>
+            </select>
+          </div>
+
+          <div class="col-12 text-end mt-2">
+            <button class="btn btn-danger" [routerLink]="['/dashboard/institucion']">Atras</button>
+            <button class="btn btn-primary ms-3" type="submit">Guardar</button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+</div>
+
+<app-alert *ngIf="alertActive" [message]="messageError" [typeAlert]="typeAlert" (hiddenAlertEvent)="showAlert($event)">
+</app-alert>
