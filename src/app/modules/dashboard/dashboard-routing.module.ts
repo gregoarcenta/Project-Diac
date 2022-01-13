@@ -21,6 +21,20 @@ const routes: Routes = [
       },
 
       {
+        path: 'docente',
+        loadChildren: () => import('../docente/docente.module').then(m => m.DocenteModule)
+      },
+      {
+        path: 'estudiante',
+        loadChildren: () => import('../registro-student/registro-student.module').then(m => m.RegistroStudentModule)
+      },
+
+      {
+        path: 'institucion',
+        loadChildren: () => import('../institucion/institucion.module').then(m => m.InstitucionModule)
+      },
+
+      {
         path: 'adaptacion-curricular',
         loadChildren: () => import('../estudiante/estudiante.module').then(m => m.EstudianteModule)
       }

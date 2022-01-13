@@ -135,7 +135,7 @@ export class DestrezaComponent implements OnInit {
           this.messageError = `Se a agregado la asignatura ${this.nombreAsignatura}`
           this.typeAlert = 'success'
           this.showAlert(true)
-          this.router.navigateByUrl('/dashboard/asignatura/agregar')
+          this.router.navigateByUrl('/dashboard/asignatura')
         }
       })
   }

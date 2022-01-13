@@ -1,0 +1,101 @@
+<div class="container">
+  <div class="row justify-content-center mt-4">
+
+    <div class="col-12 text-center">
+      <h1>
+        Registro de docentes
+      </h1>
+    </div>
+
+    <div class="col-11">
+      <form class="rounded bg-light p-4" [formGroup]="docenteForm" (ngSubmit)="guardarDocenteUser()" autocomplete="off">
+        <div class="row">
+          <div class="mb-3 col-12 col-md-6">
+            <label for="name" class="form-label">Nombres:</label>
+            <input formControlName="nombre" type="text" class="form-control mb-2" id="name" name="name"
+              placeholder="Ingresar nombres">
+            <span *ngIf="!(validCampo('nombre').valid)" class="text-danger">
+              {{(validCampo('nombre').messagge)}}
+            </span>
+          </div>
+          <div class="mb-3 col-12 col-md-6">
+            <label for="lastName" class="form-label">Apellidos:</label>
+            <input formControlName="apellido" type="text" class="form-control mb-2" id="lastName" name="lastName"
+              placeholder="Ingresar apellidos">
+            <span *ngIf="!(validCampo('apellido').valid)" class="text-danger">
+              {{(validCampo('apellido').messagge)}}
+            </span>
+          </div>
+          <div class="mb-3 col-12 col-md-2 col-lg-1">
+            <label for="age" class="form-label">Edad:</label>
+            <input formControlName="edad" type="number" class="form-control mb-2" id="age" name="age" placeholder="30">
+            <span *ngIf="!(validCampo('edad').valid)" class="text-danger">
+              {{(validCampo('edad').messagge)}}
+            </span>
+          </div>
+          <div class="mb-3 col-12 col-md-4 col-lg-5">
+            <label for="email" class="form-label">Correo electrónico:</label>
+            <input formControlName="email" type="email" class="form-control mb-2" id="email" name="email"
+              placeholder="Ingresar correo electrónico">
+            <span *ngIf="!(validCampo('email').valid)" class="text-danger">
+              {{(validCampo('email').messagge)}}
+            </span>
+          </div>
+          <div class="mb-3 col-12 col-md-6">
+            <label class="form-label">Seleccionar asignatura impartida por el docente:</label>
+            <select formControlName="asignatura" class="form-select" aria-label="Default select example">
+              <option value="0" selected>seleccionar asignatura</option>
+              <option [value]="asignatura.id" *ngFor="let asignatura of asignaturas">
+                {{asignatura.nameCourse}}
+              </option>
+            </select>
+          </div>
+          <div class="col-12">
+            <div class="form-check form-switch">
+              <input [formControl]="createUserSession" class="form-check-input" type="checkbox" role="switch"
+                id="flexSwitchCheckChecked" checked>
+              <label class="form-check-label" for="flexSwitchCheckChecked">
+                Crear Usuario de inicio de sesión
+              </label>
+            </div>
+          </div>
+
+          <div *ngIf="createUserSession.value" class="col-4 mt-4">
+            <label for="usuario" class="form-label">Usuario:</label>
+            <input formControlName="usuario" type="text" class="form-control mb-2" id="usuario" name="usuario"
+              placeholder="Ingresar nombre de usuario">
+            <span *ngIf="!(validCampo('usuario').valid)" class="text-danger">
+              {{(validCampo('usuario').messagge)}}
+            </span>
+          </div>
+          <div *ngIf="createUserSession.value" class="col-4 mt-4">
+            <label for="password" class="form-label">Contraseña:</label>
+            <input formControlName="contraseña" type="password" class="form-control mb-2" id="password" name="password"
+              placeholder="Ingresar contraseña">
+            <span *ngIf="!(validCampo('contraseña').valid)" class="text-danger">
+              {{(validCampo('contraseña').messagge)}}
+            </span>
+          </div>
+          <div *ngIf="createUserSession.value" class="col-4 mt-4">
+            <label class="form-label">Seleccionar rol de usuario:</label>
+            <select formControlName="rol" class="form-select" aria-label="Default select example">
+              <option value="0" selected>seleccionar rol</option>
+              <option value="1">Administrador</option>
+              <option value="2">Docente</option>
+            </select>
+          </div>
+
+          <div class="col-12 text-end mt-2">
+            <button class="btn btn-danger" [routerLink]="['/dashboard/docente']">Atras</button>
+            <button class="btn btn-primary ms-3" type="submit">Guardar</button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+</div>
+
+<app-alert *ngIf="alertActive" [message]="messageError" [typeAlert]="typeAlert" (hiddenAlertEvent)="showAlert($event)">
+</app-alert>

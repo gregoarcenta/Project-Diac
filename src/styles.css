@@ -1,3 +1,4 @@
+/*Barra de scroll de la ventana*/
 body::-webkit-scrollbar {
   width: 10px;
   /* width of the entire scrollbar */
@@ -10,4 +11,19 @@ body::-webkit-scrollbar-track {
 
 body::-webkit-scrollbar-thumb {
   background-color: #df4653;
+}
+
+/*coursos pointer para el boton redondo del menu*/
+.bi-plus-circle-fill {
+  cursor: pointer;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
 }

@@ -8,11 +8,6 @@ import { AuthUser } from '../interfaces/auth.interface';
 })
 export class AuthService {
 
-  data: any = {
-    username: "malcivar",
-    password: "abc123"
-  }
-
   authUser: AuthUser | undefined
 
   constructor(private http: HttpClient) { }
@@ -38,13 +33,14 @@ export class AuthService {
       )
   }
 
-  login(): Observable<AuthUser> {
+  login(data: any): Observable<AuthUser> {
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
 
+    const body = data
     return this.http.post<AuthUser>(
       'https://project-diac-uleam.herokuapp.com/login',
-      this.data,
+      body,
       { headers }
     ).pipe(
       tap(auth => this.authUser = auth),

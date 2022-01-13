@@ -9,6 +9,8 @@ import { AuthService } from 'src/app/modules/login/services/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
+  user = 'assets/imagenes/user.png';
+
   constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
