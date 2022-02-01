@@ -5,13 +5,15 @@ import { AgregarDocenteComponent } from './pages/agregar-docente/agregar-docente
 import { DocenteRoutingModule } from './estudiante-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ModalSaveComponent } from './components/modal-save/modal-save.component';
 
 
 
 @NgModule({
   declarations: [
     DocenteListComponent,
-    AgregarDocenteComponent
+    AgregarDocenteComponent,
+    ModalSaveComponent
   ],
   imports: [
     CommonModule,
