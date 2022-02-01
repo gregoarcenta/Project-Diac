@@ -6,18 +6,23 @@ import { AgregarInstitucionComponent } from './page/agregar-institucion/agregar-
 import { InstitucionListComponent } from './page/institucion-list/institucion-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
-
+import { FilterPipe } from './pipes/filter.pipe';
+import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
     AgregarInstitucionComponent,
-    InstitucionListComponent
+    InstitucionListComponent,
+    FilterPipe
   ],
   imports: [
     CommonModule,
     InstitucionRoutingModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
+    NgxPaginationModule
   ]
 })
 export class InstitucionModule { }

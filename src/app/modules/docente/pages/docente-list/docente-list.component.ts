@@ -10,7 +10,13 @@ import { DocenteService } from '../../services/docente.service';
 export class DocenteListComponent implements OnInit {
   docenteList: Teacher[] = []
 
+//------paginacion----
+  pageActual:number=1;
+  
   constructor(private docenteService: DocenteService) { }
+
+// -------filtro de pipe 
+filterDocente = '';
 
   ngOnInit(): void {
     this.docenteService.getDocentes()

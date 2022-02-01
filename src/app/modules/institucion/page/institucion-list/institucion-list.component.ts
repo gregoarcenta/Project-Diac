@@ -10,8 +10,13 @@ import { InstitucionService } from '../../services/institucion.service';
 export class InstitucionListComponent implements OnInit {
 
   institucionList: Institution[] = []
+//------paginacion----
+pageActual:number=1;
 
   constructor(private institucionService: InstitucionService) { }
+
+// -------filtro de pipe 
+filterInstitucion = '';
 
   ngOnInit(): void {
     this.institucionService.getInstitutions()

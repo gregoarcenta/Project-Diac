@@ -9,10 +9,12 @@ import { RegistroStudentService } from '../../service/registro-student.service';
 })
 export class StudentListComponent implements OnInit {
   estudianteList: RegistroStudent[] =[]
+  //----paginacion
+  pageActual:number=1;
 
   constructor(private registroStudenService: RegistroStudentService) { }
-  // -------filtro de pipe 
   
+  // -------filtro de pipe 
   filterEstudiante = '';
 
 
