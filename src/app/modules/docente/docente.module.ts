@@ -7,19 +7,25 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModalSaveComponent } from './components/modal-save/modal-save.component';
 
+import { FilterPipe } from './pipes/filter.pipe';
+import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
   declarations: [
     DocenteListComponent,
     AgregarDocenteComponent,
-    ModalSaveComponent
+    ModalSaveComponent,
+    FilterPipe
   ],
   imports: [
     CommonModule,
     DocenteRoutingModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    NgxPaginationModule
   ]
 })
 export class DocenteModule { }

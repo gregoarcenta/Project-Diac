@@ -6,6 +6,9 @@ import { RegistroStudentRoutingModule } from './registro-student-routing.module'
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FilterPipe } from './pipes/filter.pipe';
+import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 
 @NgModule({
   declarations: [
@@ -17,7 +20,9 @@ import { FilterPipe } from './pipes/filter.pipe';
     CommonModule,
     RegistroStudentRoutingModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    NgxPaginationModule
   ]
 })
 export class RegistroStudentModule { }
