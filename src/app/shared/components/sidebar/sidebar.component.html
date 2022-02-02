@@ -17,7 +17,7 @@
   <h2 matSubheader>Servicios</h2>
 
   <a *ngIf="(getAuthUser).Role.id === 1 || 2" mat-list-item routerLinkActive="list-item-active"
-    routerLink="/dashboard/estudiante-list">
+    routerLink="/dashboard/adaptacion-curricular/lista">
     <mat-icon>assignment </mat-icon> Documentación Individual
   </a>
   <a *ngIf="(getAuthUser).Role.id === 1" mat-list-item routerLinkActive="list-item-active"
@@ -42,7 +42,7 @@
   <h2 matSubheader>Registro de Adaptación Curricular </h2>
 
   <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard/adaptacion-curricular/estudiante">
-    <mat-icon>create </mat-icon> 1. Datos de identificación del estudiante.
+    <mat-icon>create </mat-icon> Ingresar registro de Adaptación Curricular
   </a>
 
 </mat-nav-list>

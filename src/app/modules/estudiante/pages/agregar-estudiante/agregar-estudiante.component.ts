@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StudentBodyCreate, EstudianteList } from '../../interfaces/registro-student.interface';
-import { RegistroStudentService } from '../../service/registro-student.service';
+import { EstudianteService } from '../../service/estudiante.service';
 
 @Component({
   selector: 'app-agregar-estudiante',
@@ -35,7 +35,7 @@ export class AgregarEstudianteComponent implements OnInit {
 
   })
 
-  constructor(private registroStudentService: RegistroStudentService, private fb: FormBuilder) { }
+  constructor(private estudianteService: EstudianteService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
   }
@@ -92,7 +92,7 @@ export class AgregarEstudianteComponent implements OnInit {
 
 
     }
-    this.registroStudentService.addEstudiante(estudiante)
+    this.estudianteService.addEstudiante(estudiante)
       .subscribe({
         next: (resp) => console.log(resp),
         error: (err) => {

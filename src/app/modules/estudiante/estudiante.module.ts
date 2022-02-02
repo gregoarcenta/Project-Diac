@@ -1,21 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EstudianteComponent } from './page/estudiante/estudiante.component';
-import { FormsModule } from '@angular/forms';
+import { AgregarEstudianteComponent } from './pages/agregar-estudiante/agregar-estudiante.component';
+import { StudentListComponent } from './pages/student-list/student-list.component';
 import { EstudianteRoutingModule } from './estudiante-routing.module';
-import { EstudianteLayoutComponent } from './page/estudiante-layout/estudiante-layout.component';
-
+import { SharedModule } from 'src/app/shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FilterPipe } from './pipes/filter.pipe';
+import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
   declarations: [
-    EstudianteComponent,
-    EstudianteLayoutComponent
+    AgregarEstudianteComponent,
+    StudentListComponent,
+    FilterPipe
   ],
   imports: [
     CommonModule,
+    EstudianteRoutingModule,
+    SharedModule,
+    ReactiveFormsModule,
     FormsModule,
-    EstudianteRoutingModule
+    NgxPaginationModule
   ]
 })
 export class EstudianteModule { }
