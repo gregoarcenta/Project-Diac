@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { AsignaturaList, Course, Destreza, Objective } from '../../interfaces/asignatura.interface';
 import { DestrezaService } from '../../service/destreza.service';
 
@@ -16,7 +17,6 @@ export class VerAsignaturasComponent implements OnInit {
   typeAlert: string = ''
   alertActive: boolean = false
 
-  asiganturaSelect: string = ''
   asignaturaSeleccionada: Course | undefined
   asignaturas: AsignaturaList = {
     courses: []
@@ -27,7 +27,11 @@ export class VerAsignaturasComponent implements OnInit {
   valueInputUpdate: string = ''
   isDestreza: boolean = false
 
-  constructor(private destrezaService: DestrezaService) { }
+  asiganturaSelectForm: FormGroup = this.fb.group({
+    asignatura: ['0'],
+  })
+
+  constructor(private destrezaService: DestrezaService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.destrezaService.allAsignaturas()
@@ -53,10 +57,16 @@ export class VerAsignaturasComponent implements OnInit {
   }
 
   llenarObjetivosDestrezas() {
-    const asignatura = this.asignaturas.courses.filter(asignatura => {
-      return asignatura.nameCourse === this.asiganturaSelect
-    })
-    this.asignaturaSeleccionada = asignatura[0]
+    let asignaturaSeleccionada = this.asiganturaSelectForm.value.asignatura
+    if (asignaturaSeleccionada !== "0") {
+      const asignatura = this.asignaturas.courses.filter(asignatura => {
+        return asignatura.nameCourse === this.asiganturaSelectForm.value.asignatura
+      })
+      this.asignaturaSeleccionada = asignatura[0]
+    } else {
+      this.asignaturaSeleccionada = undefined
+    }
+
   }
 
   validarAsignatura() {

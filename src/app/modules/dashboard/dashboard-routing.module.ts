@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { EstudianteListComponent } from '../estudiante-list/page/estudiante-list/estudiante-list.component';
 import { DefaultDashboardComponent } from './default-dashboard/default-dashboard.component';
 
 const routes: Routes = [
@@ -16,8 +15,8 @@ const routes: Routes = [
       },
 
       {
-        path: 'estudiante-list',
-        component: EstudianteListComponent
+        path: 'adaptacion-curricular/lista',
+        loadChildren: () => import('../documento-curricular-list/documento-curricular-list.module').then(m => m.DocumentoCurricularListModule)
       },
 
       {
@@ -26,7 +25,7 @@ const routes: Routes = [
       },
       {
         path: 'estudiante',
-        loadChildren: () => import('../registro-student/registro-student.module').then(m => m.RegistroStudentModule)
+        loadChildren: () => import('../estudiante/estudiante.module').then(m => m.EstudianteModule)
       },
 
       {
@@ -36,7 +35,7 @@ const routes: Routes = [
 
       {
         path: 'adaptacion-curricular',
-        loadChildren: () => import('../estudiante/estudiante.module').then(m => m.EstudianteModule)
+        loadChildren: () => import('../documento-curricular/documento-curricular.module').then(m => m.DocumentoCurricularModule)
       }
     ],
   },

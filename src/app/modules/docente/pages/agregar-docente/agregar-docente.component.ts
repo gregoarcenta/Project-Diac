@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Course } from 'src/app/modules/destreza/interfaces/asignatura.interface';
 import { DestrezaService } from 'src/app/modules/destreza/service/destreza.service';
 import { TeacherBodyCreate } from '../../interfaces/docente.interface';
@@ -17,9 +18,12 @@ export class AgregarDocenteComponent implements OnInit {
   typeAlert: string = ''
   alertActive: boolean = false
 
-  asignaturas: Course[] = []
-  newDocenteId?: number
+  //variables para el modal
+  showModal: boolean = false
 
+  asignaturas: Course[] = []
+
+  nameUser: string = ''
 
   docenteForm: FormGroup = this.fb.group({
     nombre: ['', Validators.required],
@@ -27,13 +31,13 @@ export class AgregarDocenteComponent implements OnInit {
     edad: ['', [Validators.required, Validators.min(1)]],
     email: ['', Validators.required],
     asignatura: ['0', Validators.required],
-    usuario: [''],
-    contraseña: ['', Validators.minLength(6)],
+    usuario: ['', Validators.required],
+    contraseña: ['', [Validators.minLength(6), Validators.required]],
     rol: ['0']
   })
-  createUserSession: FormControl = this.fb.control(true)
 
   constructor(
+    private router: Router,
     private courseService: DestrezaService,
     private docenteService: DocenteService,
     private fb: FormBuilder
@@ -59,6 +63,15 @@ export class AgregarDocenteComponent implements OnInit {
     }
   }
 
+  changeUser() {
+    const emailValue = this.docenteForm.value.email
+    if (emailValue) {
+      const indexEmail = emailValue.indexOf('@')
+      this.nameUser = emailValue.substring(0, indexEmail)
+      this.docenteForm.controls['usuario'].setValue(this.nameUser)
+    }
+  }
+
   guardarDocente() {
     const docente: TeacherBodyCreate = {
       nameTeacher: this.docenteForm.value.nombre,
@@ -70,38 +83,38 @@ export class AgregarDocenteComponent implements OnInit {
     this.docenteService.addDocente(docente)
       .subscribe({
         next: (resp) => {
-          if (this.createUserSession.value) {
-            const user: UserBodyCreate = {
-              username: this.docenteForm.value.usuario,
-              password: this.docenteForm.value.contraseña,
-              idRole: this.docenteForm.value.rol,
-              idTeacher: resp.id
-            }
-            this.docenteService.addUser(user)
-              .subscribe({
-                next: (resp) => console.log(resp),
-                error: (err) => {
-                  this.messageError = 'Hubo un error al realizar el registro del usuario'
-                  this.typeAlert = 'danger'
-                  this.alertActive = true
-                  console.log(err)
-                },
-                complete: () => {
-                  this.messageError = 'Usuario registrado con exito'
-                  this.typeAlert = 'success'
-                  this.alertActive = true
-                  this.docenteForm.reset()
-                }
-              })
+          const user: UserBodyCreate = {
+            username: this.docenteForm.value.usuario,
+            password: this.docenteForm.value.contraseña,
+            idRole: this.docenteForm.value.rol,
+            idTeacher: resp.id
           }
+          this.docenteService.addUser(user)
+            .subscribe({
+              next: (resp) => { },
+              error: (err) => {
+                this.closeModal()
+                this.messageError = 'Hubo un error al realizar el registro del usuario'
+                this.typeAlert = 'danger'
+                this.alertActive = true
+              },
+              complete: () => {
+                this.closeModal()
+                this.messageError = 'Usuario registrado con exito'
+                this.typeAlert = 'success'
+                this.alertActive = true
+                this.docenteForm.reset()
+              }
+            })
         },
         error: (err) => {
-          this.messageError = 'Hubo un error al realizar el registro'
+          this.closeModal()
+          this.messageError = err.error.message
           this.typeAlert = 'danger'
           this.alertActive = true
-          console.log(err)
         },
         complete: () => {
+          this.closeModal()
           this.messageError = 'Docente registrado con exito'
           this.typeAlert = 'success'
           this.alertActive = true
@@ -115,31 +128,31 @@ export class AgregarDocenteComponent implements OnInit {
       this.docenteForm.markAllAsTouched()
       return
     }
-    if (this.docenteForm.value.asignatura === '0') {
+    if (!this.docenteForm.value.asignatura || this.docenteForm.value.asignatura === '0') {
       this.messageError = 'Tiene que seleccionar una asignatura'
       this.typeAlert = 'danger'
       this.alertActive = true
       return
     }
-    if (this.createUserSession.value) {
-      if (this.docenteForm.value.usuario === '') {
-        this.docenteForm.controls['usuario'].setErrors(Validators.required)
-        return
-      }
-      if (this.docenteForm.value.contraseña === '') {
-        this.docenteForm.controls['contraseña'].setErrors(Validators.required)
-        return
-      }
-      if (this.docenteForm.value.rol === '0') {
-        this.messageError = 'Tiene que seleccionar un rol para el usuario'
-        this.typeAlert = 'danger'
-        this.alertActive = true
-        return
-      }
-    } else {
-      this.guardarDocente()
+    if (!this.docenteForm.value.rol || this.docenteForm.value.rol === '0') {
+      this.messageError = 'Tiene que seleccionar un rol para el usuario'
+      this.typeAlert = 'danger'
+      this.alertActive = true
+      return
     }
-    this.guardarDocente()
+    this.openModal()
+  }
+
+  openModal() {
+    this.showModal = true
+  }
+
+  closeModal() {
+    this.showModal = false
+  }
+
+  cancelarDocente() {
+    this.router.navigateByUrl('/dashboard/docente')
   }
 
 }

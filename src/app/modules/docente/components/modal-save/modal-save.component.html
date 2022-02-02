@@ -1,0 +1,22 @@
+<!-- Modal-->
+<div class="modal" [ngClass]="{'show-modal': showModal}" id="modalSaveRegister" data-bs-backdrop="static"
+  data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="staticBackdropLabel">Agregar Docente</h4>
+        <button type="button" class="btn-close" (click)="hiddenModal()" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-3">
+        <p>'¿Esta seguro que desea agregar a <strong>{{nombre}} {{apellido}}</strong>?'</p>
+        <p>Su usuario de inicio de sesión será <strong>"{{usuario}}"</strong></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="hiddenModal()">Cancelar</button>
+        <button type="button" data-bs-dismiss="modal" (click)="guardarDocente()" class="btn btn-primary">
+          Guardar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -6,7 +6,8 @@
     <section class="my-3 col-12 col-md-4">
       <div class="">
         <form class="">
-          <input class="form-control me-4 center" type="text" name="filterEstudiante" placeholder="Buscar Docente...">
+          <input class="form-control me-4 center" type="text" name="filterDocente " 
+          placeholder="Buscar Docente..." [(ngModel)]= "filterDocente " >
         </form>
       </div>
     </section>
@@ -24,7 +25,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let docente of docenteList">
+          <tr *ngFor="let docente of docenteList | filter:filterDocente | paginate: {itemsPerPage: 4, currentPage:pageActual}">
             <td>{{docente.id}}</td>
             <td>{{docente.nameTeacher}}</td>
             <td>{{docente.lastNameTeacher}}</td>
@@ -43,6 +44,7 @@
           </tr>
         </tbody>
       </table>
+      <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
 
     </div>
   </div>

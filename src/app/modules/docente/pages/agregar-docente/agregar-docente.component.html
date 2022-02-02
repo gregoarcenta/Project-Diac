@@ -35,8 +35,8 @@
           </div>
           <div class="mb-3 col-12 col-md-4 col-lg-5">
             <label for="email" class="form-label">Correo electrónico:</label>
-            <input formControlName="email" type="email" class="form-control mb-2" id="email" name="email"
-              placeholder="Ingresar correo electrónico">
+            <input (blur)="changeUser()" formControlName="email" type="email" name="email" id="email"
+              class="form-control mb-2" placeholder="Ingresar correo electrónico">
             <span *ngIf="!(validCampo('email').valid)" class="text-danger">
               {{(validCampo('email').messagge)}}
             </span>
@@ -50,25 +50,16 @@
               </option>
             </select>
           </div>
-          <div class="col-12">
-            <div class="form-check form-switch">
-              <input [formControl]="createUserSession" class="form-check-input" type="checkbox" role="switch"
-                id="flexSwitchCheckChecked" checked>
-              <label class="form-check-label" for="flexSwitchCheckChecked">
-                Crear Usuario de inicio de sesión
-              </label>
-            </div>
-          </div>
 
-          <div *ngIf="createUserSession.value" class="col-4 mt-4">
-            <label for="usuario" class="form-label">Usuario:</label>
+          <div class="col-4 mt-4">
+            <label for="usuario" class="form-label">Usuario de inicio de sesión:</label>
             <input formControlName="usuario" type="text" class="form-control mb-2" id="usuario" name="usuario"
               placeholder="Ingresar nombre de usuario">
             <span *ngIf="!(validCampo('usuario').valid)" class="text-danger">
               {{(validCampo('usuario').messagge)}}
             </span>
           </div>
-          <div *ngIf="createUserSession.value" class="col-4 mt-4">
+          <div class="col-4 mt-4">
             <label for="password" class="form-label">Contraseña:</label>
             <input formControlName="contraseña" type="password" class="form-control mb-2" id="password" name="password"
               placeholder="Ingresar contraseña">
@@ -76,7 +67,7 @@
               {{(validCampo('contraseña').messagge)}}
             </span>
           </div>
-          <div *ngIf="createUserSession.value" class="col-4 mt-4">
+          <div class="col-4 mt-4">
             <label class="form-label">Seleccionar rol de usuario:</label>
             <select formControlName="rol" class="form-select" aria-label="Default select example">
               <option value="0" selected>seleccionar rol</option>
@@ -86,8 +77,8 @@
           </div>
 
           <div class="col-12 text-end mt-2">
-            <button class="btn btn-danger" [routerLink]="['/dashboard/docente']">Atras</button>
-            <button class="btn btn-primary ms-3" type="submit">Guardar</button>
+            <button class="btn btn-danger" type="button" (click)="cancelarDocente()">Atras</button>
+            <button class="btn btn-primary ms-3" id="btnAbrirModal" type="submit">Guardar</button>
           </div>
         </div>
 
@@ -96,6 +87,10 @@
 
   </div>
 </div>
+
+<app-modal-save [nombre]="docenteForm.value.nombre" [apellido]="docenteForm.value.apellido" [usuario]="nameUser"
+  [showModal]="showModal" (hiddenModalEvent)="closeModal()" (submitDocenteFormEvent)="guardarDocente()">
+</app-modal-save>
 
 <app-alert *ngIf="alertActive" [message]="messageError" [typeAlert]="typeAlert" (hiddenAlertEvent)="showAlert($event)">
 </app-alert>
