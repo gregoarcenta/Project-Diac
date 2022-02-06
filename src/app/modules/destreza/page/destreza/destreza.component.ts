@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { Asignatura, DestrezaElement, Objective } from '../../interfaces/destreza.interface';
 import { DestrezaService } from '../../service/destreza.service';
 
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-destreza',
   templateUrl: './destreza.component.html',
@@ -37,7 +39,7 @@ export class DestrezaComponent implements OnInit {
 
   addObjective() {
     let repetido: boolean = false
-    if (this.valorActual.trim().length === 0) {
+    if (!this.valorActual || this.valorActual.trim().length === 0) {
       this.messageError = 'La Objetivo no puede quedar vacio'
       this.typeAlert = 'danger'
       this.showAlert(true)
@@ -64,7 +66,7 @@ export class DestrezaComponent implements OnInit {
 
   addDestreza() {
     let repetido: boolean = false
-    if (this.valorActual.trim().length === 0) {
+    if (!this.valorActual || this.valorActual.trim().length === 0) {
       this.messageError = 'La destreza no puede quedar vacia'
       this.typeAlert = 'danger'
       this.showAlert(true)
@@ -107,10 +109,6 @@ export class DestrezaComponent implements OnInit {
     })
   }
 
-  cancelarAsignatura() {
-    this.router.navigateByUrl('/dashboard/asignatura')
-  }
-
   addAsignatura() {
     if (this.nombreAsignatura.trim().toLowerCase().length === 0) {
       this.messageError = 'El nombre de la asignatura no puede quedar vacio'
@@ -123,21 +121,29 @@ export class DestrezaComponent implements OnInit {
       destrezas: this.destrezas,
       objectives: this.objectives
     }
-    this.destrezaService.addAsignatura(this.asignatura)
-      .subscribe({
-        next: (resp) => { },
-        error: ({ error }) => {
-          this.messageError = `${error.message}`
-          this.typeAlert = 'danger'
-          this.showAlert(true)
-        },
-        complete: () => {
-          this.messageError = `Se a agregado la asignatura ${this.nombreAsignatura}`
-          this.typeAlert = 'success'
-          this.showAlert(true)
-          this.router.navigateByUrl('/dashboard/asignatura')
-        }
-      })
+    Swal.fire({
+      title: '¿Guardar Asignatura?',
+      text: `Se guardará la asignatura ${this.nombreAsignatura} con los objetivos y destrezas agregadas`,
+      icon: 'info',
+      showDenyButton: true,
+      confirmButtonText: 'Guardar',
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.destrezaService.addAsignatura(this.asignatura)
+          .subscribe({
+            next: (resp) => { },
+            error: ({ error }) => {
+              Swal.fire('Hubo un error al guardar las destrezas', '', 'error')
+            },
+            complete: () => {
+              Swal.fire(`Se agregó la asignatura ${this.nombreAsignatura}`, '', 'success')
+              this.router.navigateByUrl('/dashboard/asignatura')
+            }
+          })
+      }
+    })
+
   }
 
 }

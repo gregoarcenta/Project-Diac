@@ -8,7 +8,7 @@
     </div>
 
     <div class="col-10">
-      <form class="rounded bg-light p-4" [formGroup]="studianteFrom" (ngSubmit)="guardarEstudiante()"
+      <form class="rounded bg-light p-4" [formGroup]="estudianteFrom" (ngSubmit)="guardarEstudianteConfirm()"
         autocomplete="off">
         <div class="row">
           <div class="mb-3 col-12 col-md-6">
@@ -86,6 +86,9 @@
               <option value="quito">Quito</option>
               <option value="otra">Otra..</option>
             </select>
+            <span *ngIf="!(validSelect('ciudad').valid)" class="text-danger d-block mt-2">
+              {{(validSelect('ciudad').messagge)}}
+            </span>
           </div>
           <div class="mb-4 col-3">
             <label for="estudiante" class="form-label center"><b>Provincia:</b></label>
@@ -97,6 +100,9 @@
               <option value="los rios">Los Rios</option>
               <option value="otra">Otra..</option>
             </select>
+            <span *ngIf="!(validSelect('Provincia').valid)" class="text-danger d-block mt-2">
+              {{(validSelect('Provincia').messagge)}}
+            </span>
           </div>
           <div class="mb-3 col-12 col-md-2 col-lg-2">
             <label for="codigo" class="form-label">Codigo Postal :</label>
@@ -165,6 +171,3 @@
 
   </div>
 </div>
-
-<app-alert *ngIf="alertActive" [message]="messageError" [typeAlert]="typeAlert" (hiddenAlertEvent)="showAlert($event)">
-</app-alert>

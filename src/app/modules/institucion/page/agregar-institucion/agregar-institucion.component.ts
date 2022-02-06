@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InstitutionBodyCreate } from '../../interfaces/institution.interface';
 import { InstitucionService } from '../../services/institucion.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-agregar-institucion',
@@ -9,10 +10,6 @@ import { InstitucionService } from '../../services/institucion.service';
   styleUrls: ['./agregar-institucion.component.css']
 })
 export class AgregarInstitucionComponent implements OnInit {
-
-  messageError: string = ''
-  typeAlert: string = ''
-  alertActive: boolean = false
 
   institucionForm: FormGroup = this.formBuilder.group({
     nombre: ['', Validators.required],
@@ -32,10 +29,6 @@ export class AgregarInstitucionComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  showAlert(value: boolean) {
-    this.alertActive = value
-  }
-
   validCampo(campo: string) {
     if (this.institucionForm.controls[campo].errors && this.institucionForm.controls[campo].touched) {
       return { messagge: `El campo ${campo} es obligatorio`, valid: false }
@@ -44,23 +37,39 @@ export class AgregarInstitucionComponent implements OnInit {
     }
   }
 
-  guardarInstitucion() {
+  validSelect(campo: string) {
+    if ((!this.institucionForm.controls[campo].value || this.institucionForm.controls[campo].value === '0') && this.institucionForm.controls[campo].touched) {
+      return { messagge: `El campo ${campo} es obligatorio`, valid: false }
+    } else {
+      return { messagge: null, valid: true }
+    }
+  }
+
+  guardarInstitucionConfirm() {
+    const nombreIntitucion = this.institucionForm.value.nombre
     if (this.institucionForm.invalid) {
       this.institucionForm.markAllAsTouched()
       return
     }
-    if (this.institucionForm.value.modalidad === '0') {
-      this.messageError = 'Tiene que seleccionar una modalidad'
-      this.typeAlert = 'danger'
-      this.alertActive = true
+    if (!(this.validSelect('tipo').valid) || !(this.validSelect('modalidad').valid)) {
       return
     }
-    if (this.institucionForm.value.tipo === '0') {
-      this.messageError = 'Tiene que seleccionar un tipo'
-      this.typeAlert = 'danger'
-      this.alertActive = true
-      return
-    }
+    Swal.fire({
+      title: '¿Guardar Registro?',
+      text: `Se guardará la institución ${nombreIntitucion}`,
+      icon: 'info',
+      showDenyButton: true,
+      confirmButtonText: 'Guardar',
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.guardarInstitucion()
+      }
+    })
+
+  }
+
+  guardarInstitucion() {
     const institucion: InstitutionBodyCreate = {
       nameInstitution: this.institucionForm.value.nombre,
       district: this.institucionForm.value.distrito,
@@ -73,17 +82,12 @@ export class AgregarInstitucionComponent implements OnInit {
     }
     this.institucionService.addInstitution(institucion)
       .subscribe({
-        next: (resp) => console.log(resp),
+        next: (resp) => { },
         error: (err) => {
-          this.messageError = 'Hubo un error al realizar el registro'
-          this.typeAlert = 'danger'
-          this.alertActive = true
-          console.log(err)
+          Swal.fire('Hubo un error al realizar el registro', '', 'error')
         },
         complete: () => {
-          this.messageError = 'Institucion registrada con exito'
-          this.typeAlert = 'success'
-          this.alertActive = true
+          Swal.fire('Institución Guardada', '', 'success')
           this.institucionForm.reset()
         }
       })

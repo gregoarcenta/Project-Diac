@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { DocenteListComponent } from './pages/docente-list/docente-list.component';
 import { AgregarDocenteComponent } from './pages/agregar-docente/agregar-docente.component';
 import { DocenteRoutingModule } from './docente-routing.module';
-import { SharedModule } from 'src/app/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModalSaveComponent } from './components/modal-save/modal-save.component';
 
@@ -22,7 +21,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
   imports: [
     CommonModule,
     DocenteRoutingModule,
-    SharedModule,
     ReactiveFormsModule,
     FormsModule,
     NgxPaginationModule

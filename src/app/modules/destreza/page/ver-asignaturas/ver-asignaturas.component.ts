@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { AsignaturaList, Course, Destreza, Objective } from '../../interfaces/asignatura.interface';
 import { DestrezaService } from '../../service/destreza.service';
 
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-ver-asignaturas',
   templateUrl: './ver-asignaturas.component.html',
@@ -39,7 +41,9 @@ export class VerAsignaturasComponent implements OnInit {
         next: ({ courses }) => {
           this.asignaturas.courses = courses
         },
-        error: (error) => console.log(error)
+        error: (error) => {
+          Swal.fire('Hubo un error al cargar las asignaturas', '', 'error')
+        }
       })
 
   }
@@ -73,26 +77,78 @@ export class VerAsignaturasComponent implements OnInit {
     this.llenarObjetivosDestrezas()
   }
 
-  getDestreza(obj: Destreza) {
+  async getDestreza(obj: Destreza) {
     this.isDestreza = true
-    this.valueInputUpdate = obj.nameDestreza
     this.valueUpdate = obj
+    const { value: Destreza, isConfirmed } = await Swal.fire({
+      title: 'Actualizar Destreza',
+      input: 'text',
+      inputLabel: 'Destreza',
+      inputValue: obj.nameDestreza,
+      confirmButtonText: 'Guardar Cambios',
+      showCancelButton: true
+    })
+    if (isConfirmed) {
+      if (Destreza !== '') {
+        this.valueInputUpdate = Destreza
+        this.updateDestrezaObjetivo()
+      } else {
+        Swal.fire('La destreza no puede quedar vacio', '', 'error')
+      }
+    }
   }
 
-  getObjective(obj: Objective) {
+  async getObjective(obj: Objective) {
     this.isDestreza = false
-    this.valueInputUpdate = obj.nameObjective
     this.valueUpdate = obj
+    const { value: Objetivo, isConfirmed } = await Swal.fire({
+      title: 'Actualizar Objetivo',
+      input: 'text',
+      inputLabel: 'Objetivo',
+      inputValue: obj.nameObjective,
+      confirmButtonText: 'Guardar Cambios',
+      showCancelButton: true
+    })
+    if (isConfirmed) {
+      if (Objetivo !== '') {
+        this.valueInputUpdate = Objetivo
+        this.updateDestrezaObjetivo()
+      } else {
+        Swal.fire('El objetivo no puede quedar vacio', '', 'error')
+      }
+    }
   }
 
   deleteDestreza(id: number) {
     this.isDestreza = true
     this.valueDelete = id
+    Swal.fire({
+      title: '¿Esta seguro que desea eliminar esta destreza?',
+      icon: 'info',
+      showDenyButton: true,
+      confirmButtonText: 'Eliminar',
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.deleteDestrezaObjetivo()
+      }
+    })
   }
 
   deleteObjetivo(id: number) {
     this.isDestreza = false
     this.valueDelete = id
+    Swal.fire({
+      title: '¿Esta seguro que desea eliminar este objetivo?',
+      icon: 'info',
+      showDenyButton: true,
+      confirmButtonText: 'Eliminar',
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.deleteDestrezaObjetivo()
+      }
+    })
   }
 
   updateDestrezaObjetivo() {
@@ -107,11 +163,11 @@ export class VerAsignaturasComponent implements OnInit {
               return destreza
             })
             this.asignaturaSeleccionada!.Destrezas = newArrDestrezas
-            this.messageError = 'Destreza Actualizada'
-            this.typeAlert = 'success'
-            this.showAlert(true)
+            Swal.fire('Destreza actualizada', '', 'success')
           },
-          error: (error) => console.log(error)
+          error: (error) => {
+            Swal.fire('Hubo un error al actualizar la destreza', '', 'error')
+          }
         })
     } else {
       this.destrezaService.updateObjective(this.valueUpdate.id, { nameObjective: this.valueInputUpdate })
@@ -124,11 +180,11 @@ export class VerAsignaturasComponent implements OnInit {
               return objective
             })
             this.asignaturaSeleccionada!.Objectives = newArrObjectives
-            this.messageError = 'Objetivo Actualizado'
-            this.typeAlert = 'success'
-            this.showAlert(true)
+            Swal.fire('Objetivo actualizado', '', 'success')
           },
-          error: (error) => console.log(error)
+          error: (error) => {
+            Swal.fire('Hubo un error al actualizar el objetivo', '', 'error')
+          }
 
         })
     }
@@ -143,14 +199,10 @@ export class VerAsignaturasComponent implements OnInit {
               return destreza.id !== destrezaResponse.id
             })
             this.asignaturaSeleccionada!.Destrezas = newArrDestrezas
-            this.messageError = 'Destreza Eliminada'
-            this.typeAlert = 'success'
-            this.showAlert(true)
+            Swal.fire('Destreza eliminada', '', 'success')
           },
           error: () => {
-            this.messageError = 'Hubo un error al eliminar la destreza'
-            this.typeAlert = 'danger'
-            this.showAlert(true)
+            Swal.fire('Hubo un error al eliminar la destreza', '', 'error')
           }
         })
     } else {
@@ -161,14 +213,10 @@ export class VerAsignaturasComponent implements OnInit {
               return objective.id !== objectiveResponse.id
             })
             this.asignaturaSeleccionada!.Objectives = newArrObjectives
-            this.messageError = 'Objetivo Eliminado'
-            this.typeAlert = 'success'
-            this.showAlert(true)
+            Swal.fire('Objetivo eliminado', '', 'success')
           },
           error: () => {
-            this.messageError = 'Hubo un error al eliminar el objetivo'
-            this.typeAlert = 'danger'
-            this.showAlert(true)
+            Swal.fire('Hubo un error al eliminar el objetivo', '', 'error')
           }
         })
     }
