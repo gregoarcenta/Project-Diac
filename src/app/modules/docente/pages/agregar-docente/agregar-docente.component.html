@@ -8,7 +8,8 @@
     </div>
 
     <div class="col-11">
-      <form class="rounded bg-light p-4" [formGroup]="docenteForm" (ngSubmit)="guardarDocenteUser()" autocomplete="off">
+      <form class="rounded bg-light p-4" [formGroup]="docenteForm" (ngSubmit)="guardarDocenteConfirm()"
+        autocomplete="off">
         <div class="row">
           <div class="mb-3 col-12 col-md-6">
             <label for="name" class="form-label">Nombres:</label>
@@ -49,6 +50,9 @@
                 {{asignatura.nameCourse}}
               </option>
             </select>
+            <span *ngIf="!(validSelect('asignatura').valid)" class="text-danger d-block mt-2">
+              {{(validSelect('asignatura').messagge)}}
+            </span>
           </div>
 
           <div class="col-4 mt-4">
@@ -74,11 +78,14 @@
               <option value="1">Administrador</option>
               <option value="2">Docente</option>
             </select>
+            <span *ngIf="!(validSelect('rol').valid)" class="text-danger d-block mt-2">
+              {{(validSelect('rol').messagge)}}
+            </span>
           </div>
 
           <div class="col-12 text-end mt-2">
-            <button class="btn btn-danger" type="button" (click)="cancelarDocente()">Atras</button>
-            <button class="btn btn-primary ms-3" id="btnAbrirModal" type="submit">Guardar</button>
+            <button class="btn btn-danger" type="button" [routerLink]="['/dashboard/docente']">Atras</button>
+            <button class="btn btn-primary ms-3" type="submit">Guardar</button>
           </div>
         </div>
 
@@ -87,10 +94,3 @@
 
   </div>
 </div>
-
-<app-modal-save [nombre]="docenteForm.value.nombre" [apellido]="docenteForm.value.apellido" [usuario]="nameUser"
-  [showModal]="showModal" (hiddenModalEvent)="closeModal()" (submitDocenteFormEvent)="guardarDocente()">
-</app-modal-save>
-
-<app-alert *ngIf="alertActive" [message]="messageError" [typeAlert]="typeAlert" (hiddenAlertEvent)="showAlert($event)">
-</app-alert>

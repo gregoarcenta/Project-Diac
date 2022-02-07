@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { Course } from 'src/app/modules/destreza/interfaces/asignatura.interface';
-import { DestrezaService } from 'src/app/modules/destreza/service/destreza.service';
 import { TeacherBodyCreate } from '../../interfaces/docente.interface';
 import { UserBodyCreate } from '../../interfaces/user.interface';
+
+import { DestrezaService } from 'src/app/modules/destreza/service/destreza.service';
 import { DocenteService } from '../../services/docente.service';
+
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-agregar-docente',
@@ -13,13 +16,6 @@ import { DocenteService } from '../../services/docente.service';
   styleUrls: ['./agregar-docente.component.css']
 })
 export class AgregarDocenteComponent implements OnInit {
-
-  messageError: string = ''
-  typeAlert: string = ''
-  alertActive: boolean = false
-
-  //variables para el modal
-  showModal: boolean = false
 
   asignaturas: Course[] = []
 
@@ -30,14 +26,13 @@ export class AgregarDocenteComponent implements OnInit {
     apellido: ['', Validators.required],
     edad: ['', [Validators.required, Validators.min(1)]],
     email: ['', Validators.required],
-    asignatura: ['0', Validators.required],
+    asignatura: ['0'],
     usuario: ['', Validators.required],
     contraseña: ['', [Validators.minLength(6), Validators.required]],
     rol: ['0']
   })
 
   constructor(
-    private router: Router,
     private courseService: DestrezaService,
     private docenteService: DocenteService,
     private fb: FormBuilder
@@ -46,10 +41,6 @@ export class AgregarDocenteComponent implements OnInit {
   ngOnInit(): void {
     this.courseService.allAsignaturas()
       .subscribe(asignaturas => this.asignaturas = asignaturas.courses)
-  }
-
-  showAlert(value: boolean) {
-    this.alertActive = value
   }
 
   validCampo(campo: string) {
@@ -63,6 +54,14 @@ export class AgregarDocenteComponent implements OnInit {
     }
   }
 
+  validSelect(campo: string) {
+    if ((!this.docenteForm.controls[campo].value || this.docenteForm.controls[campo].value === '0') && this.docenteForm.controls[campo].touched) {
+      return { messagge: `El campo ${campo} es obligatorio`, valid: false }
+    } else {
+      return { messagge: null, valid: true }
+    }
+  }
+
   changeUser() {
     const emailValue = this.docenteForm.value.email
     if (emailValue) {
@@ -70,6 +69,34 @@ export class AgregarDocenteComponent implements OnInit {
       this.nameUser = emailValue.substring(0, indexEmail)
       this.docenteForm.controls['usuario'].setValue(this.nameUser)
     }
+  }
+
+  guardarDocenteConfirm() {
+    const nombreDocente = this.docenteForm.value.nombre
+    const apellidoDocente = this.docenteForm.value.apellido
+    const usuario = this.docenteForm.value.usuario
+
+    if (this.docenteForm.invalid) {
+      this.docenteForm.markAllAsTouched()
+      return
+    }
+    if (!(this.validSelect('rol').valid) || !(this.validSelect('asignatura').valid)) {
+      return
+    }
+
+    Swal.fire({
+      title: '¿Guardar Registro?',
+      text: `Se guardará el docente ${nombreDocente} ${apellidoDocente} con el usuario ${usuario}`,
+      icon: 'info',
+      showDenyButton: true,
+      confirmButtonText: 'Guardar',
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.guardarDocente()
+      }
+    })
+
   }
 
   guardarDocente() {
@@ -93,66 +120,23 @@ export class AgregarDocenteComponent implements OnInit {
             .subscribe({
               next: (resp) => { },
               error: (err) => {
-                this.closeModal()
-                this.messageError = 'Hubo un error al realizar el registro del usuario'
-                this.typeAlert = 'danger'
-                this.alertActive = true
+                Swal.fire('Hubo un error al realizar el registro', '', 'error')
               },
               complete: () => {
-                this.closeModal()
-                this.messageError = 'Usuario registrado con exito'
-                this.typeAlert = 'success'
-                this.alertActive = true
+                Swal.fire('Docente Guardado', '', 'success')
                 this.docenteForm.reset()
               }
             })
         },
         error: (err) => {
-          this.closeModal()
-          this.messageError = err.error.message
-          this.typeAlert = 'danger'
-          this.alertActive = true
+          Swal.fire(err.error.message, '', 'error')
         },
         complete: () => {
-          this.closeModal()
-          this.messageError = 'Docente registrado con exito'
-          this.typeAlert = 'success'
-          this.alertActive = true
+          Swal.fire('Docente Guardado', '', 'success')
           this.docenteForm.reset()
         }
       })
   }
 
-  guardarDocenteUser() {
-    if (this.docenteForm.invalid) {
-      this.docenteForm.markAllAsTouched()
-      return
-    }
-    if (!this.docenteForm.value.asignatura || this.docenteForm.value.asignatura === '0') {
-      this.messageError = 'Tiene que seleccionar una asignatura'
-      this.typeAlert = 'danger'
-      this.alertActive = true
-      return
-    }
-    if (!this.docenteForm.value.rol || this.docenteForm.value.rol === '0') {
-      this.messageError = 'Tiene que seleccionar un rol para el usuario'
-      this.typeAlert = 'danger'
-      this.alertActive = true
-      return
-    }
-    this.openModal()
-  }
-
-  openModal() {
-    this.showModal = true
-  }
-
-  closeModal() {
-    this.showModal = false
-  }
-
-  cancelarDocente() {
-    this.router.navigateByUrl('/dashboard/docente')
-  }
 
 }

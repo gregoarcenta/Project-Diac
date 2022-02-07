@@ -26,10 +26,8 @@
             class="list-group-item d-flex justify-content-between" [id]="objective.id">
             {{objective.nameObjective}}
             <div>
-              <i (click)="getObjective(objective)" class="bi bi-box-arrow-in-up-right me-2" data-bs-toggle="modal"
-                data-bs-target="#modalUpdate"></i>
-              <i (click)="deleteObjetivo(objective.id)" class="bi bi-x-square" data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop"></i>
+              <i (click)="getObjective(objective)" class="bi bi-box-arrow-in-up-right me-2"></i>
+              <i (click)="deleteObjetivo(objective.id)" class="bi bi-x-square"></i>
             </div>
           </li>
         </ul>
@@ -49,10 +47,8 @@
             class="list-group-item d-flex justify-content-between" [id]="destreza.id">
             {{destreza.nameDestreza}}
             <div>
-              <i (click)="getDestreza(destreza)" class="bi bi-box-arrow-in-up-right me-2" data-bs-toggle="modal"
-                data-bs-target="#modalUpdate"></i>
-              <i (click)="deleteDestreza(destreza.id)" class="bi bi-x-square" data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop"></i>
+              <i (click)="getDestreza(destreza)" class="bi bi-box-arrow-in-up-right me-2"></i>
+              <i (click)="deleteDestreza(destreza.id)" class="bi bi-x-square"></i>
             </div>
           </li>
         </ul>
@@ -62,7 +58,7 @@
 </div>
 
 <!-- Modal Updae-->
-<div class="modal fade" id="modalUpdate" tabindex="-1" aria-hidden="true">
+<!-- <div class="modal fade" id="modalUpdate" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -80,10 +76,10 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <!-- Modal Delete-->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+<!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
   aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -103,7 +99,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <ng-template #alertSinSeleccionar>
   <div class="alert alert-info px-5 mx-5 text-center mt-3">

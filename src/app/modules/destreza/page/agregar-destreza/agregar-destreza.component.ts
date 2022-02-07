@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Asignatura, DestrezaElement, Objective } from '../../interfaces/destreza.interface';
 import { DestrezaService } from '../../service/destreza.service';
 
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-agregar-asignatura',
   templateUrl: './agregar-destreza.component.html',
@@ -29,7 +31,6 @@ export class AgregarDestrezaComponent implements OnInit {
     this.activateRoute.params.subscribe(param => {
       this.nombreAsignatura = param['name']
       this.idAsignatura = param['idCourse']
-      console.log(param);
     })
   }
 
@@ -43,7 +44,7 @@ export class AgregarDestrezaComponent implements OnInit {
 
   addObjective() {
     let repetido: boolean = false
-    if (this.valorActual.trim().length === 0) {
+    if (!this.valorActual || this.valorActual.trim().length === 0) {
       this.messageError = 'La Objetivo no puede quedar vacio'
       this.typeAlert = 'danger'
       this.showAlert(true)
@@ -70,7 +71,7 @@ export class AgregarDestrezaComponent implements OnInit {
 
   addDestreza() {
     let repetido: boolean = false
-    if (this.valorActual.trim().length === 0) {
+    if (!this.valorActual || this.valorActual.trim().length === 0) {
       this.messageError = 'La destreza no puede quedar vacia'
       this.typeAlert = 'danger'
       this.showAlert(true)
@@ -113,52 +114,53 @@ export class AgregarDestrezaComponent implements OnInit {
     })
   }
 
-  cancelarAsignatura() {
-    this.router.navigateByUrl('/dashboard/asignatura')
-  }
-
   addAsignatura() {
     if (this.destrezas.length === 0 && this.objectives.length === 0) {
-      this.messageError = `Tiene que añadir alguna detreza u objetivo a la asignatura ${this.nombreAsignatura}`
+      this.messageError = `Tiene que añadir alguna destreza u objetivo a la asignatura ${this.nombreAsignatura}`
       this.typeAlert = 'danger'
       this.showAlert(true)
       return
     }
-    if (this.destrezas.length > 0) {
-      this.destrezaService.addDestreza(this.idAsignatura, this.destrezas)
-        .subscribe({
-          next: (resp) => { },
-          error: ({ error }) => {
-            this.messageError = `${error.message}`
-            this.typeAlert = 'danger'
-            this.showAlert(true)
-          },
-          complete: () => {
-            this.messageError = `Se agregaron las destrezas a la asignatura ${this.nombreAsignatura}`
-            this.typeAlert = 'success'
-            this.showAlert(true)
-            this.router.navigateByUrl('/dashboard/asignatura')
-          }
-        })
-    }
 
-    if (this.objectives.length > 0) {
-      this.destrezaService.addObjective(this.idAsignatura, this.objectives)
-        .subscribe({
-          next: (resp) => { },
-          error: ({ error }) => {
-            this.messageError = `${error.message}`
-            this.typeAlert = 'danger'
-            this.showAlert(true)
-          },
-          complete: () => {
-            this.messageError = `Se agregaron los objetivos a la asignatura ${this.nombreAsignatura}`
-            this.typeAlert = 'success'
-            this.showAlert(true)
-            this.router.navigateByUrl('/dashboard/asignatura')
-          }
-        })
-    }
+    Swal.fire({
+      title: '¿Guardar destrezas y objetivos?',
+      text: `Se guardarán las destrezas y objetivos agregados a la asignatura ${this.nombreAsignatura}`,
+      icon: 'info',
+      showDenyButton: true,
+      confirmButtonText: 'Guardar',
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if (this.destrezas.length > 0) {
+          this.destrezaService.addDestreza(this.idAsignatura, this.destrezas)
+            .subscribe({
+              next: (resp) => { },
+              error: ({ error }) => {
+                Swal.fire('Hubo un error al guardar las destrezas', '', 'error')
+              },
+              complete: () => {
+                Swal.fire(`Destrezas agregadas a la asignatura ${this.nombreAsignatura}`, '', 'success')
+                this.router.navigateByUrl('/dashboard/asignatura')
+              }
+            })
+        }
+
+        if (this.objectives.length > 0) {
+          this.destrezaService.addObjective(this.idAsignatura, this.objectives)
+            .subscribe({
+              next: (resp) => { },
+              error: ({ error }) => {
+                Swal.fire('Hubo un error al guardar los objetivos', '', 'error')
+              },
+              complete: () => {
+                Swal.fire(`Objetivos agregados a la asignatura ${this.nombreAsignatura}`, '', 'success')
+                this.router.navigateByUrl('/dashboard/asignatura')
+              }
+            })
+        }
+
+      }
+    })
 
   }
 

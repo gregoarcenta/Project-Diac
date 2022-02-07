@@ -61,8 +61,10 @@
     </div>
 
     <div class="col-10 text-end mt-2 py-2">
-      <button (click)="cancelarAsignatura()" class="btn btn-danger">Atras</button>
-      <button (click)="addAsignatura()" class="btn btn-primary ms-3">Guardar</button>
+      <button type="button" class="btn btn-danger" [routerLink]="['/dashboard/asignatura']">
+        Atras
+      </button>
+      <button (click)="addAsignatura()" type="submit" class="btn btn-primary ms-3">Guardar</button>
     </div>
 
   </div>

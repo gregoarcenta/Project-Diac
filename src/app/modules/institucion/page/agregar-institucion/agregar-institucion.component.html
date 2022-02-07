@@ -8,7 +8,7 @@
     </div>
 
     <div class="col-11">
-      <form class="rounded bg-light p-4" [formGroup]="institucionForm" (ngSubmit)="guardarInstitucion()"
+      <form class="rounded bg-light p-4" [formGroup]="institucionForm" (ngSubmit)="guardarInstitucionConfirm()"
         autocomplete="off">
         <div class="row">
           <div class="mb-3 col-12 col-md-6">
@@ -67,21 +67,27 @@
 
           <div class="mb-3 col-md-3">
             <label class="form-label">Tipo:</label>
-            <select formControlName="modalidad" class="form-select" aria-label="Default select example">
+            <select formControlName="modalidad" class="form-select" aria-label="Default select">
               <option value="0" selected>seleccionar modalidad</option>
               <option value="matutina">Matutina</option>
               <option value="vespertina">Vespertina</option>
               <option value="nocturna">Nocturna</option>
             </select>
+            <span *ngIf="!(validSelect('modalidad').valid)" class="text-danger d-block mt-2">
+              {{(validSelect('modalidad').messagge)}}
+            </span>
           </div>
 
           <div class="mb-3 col-md-3">
             <label class="form-label">Tipo:</label>
-            <select formControlName="tipo" class="form-select" aria-label="Default select example">
+            <select formControlName="tipo" class="form-select" aria-label="Default select">
               <option value="0" selected>seleccionar tipo</option>
               <option value="particular">Particular</option>
               <option value="fiscal">Fiscal</option>
             </select>
+            <span *ngIf="!(validSelect('tipo').valid)" class="text-danger d-block mt-2">
+              {{(validSelect('tipo').messagge)}}
+            </span>
           </div>
 
           <div class="col-12 text-end mt-2">
@@ -95,6 +101,3 @@
 
   </div>
 </div>
-
-<app-alert *ngIf="alertActive" [message]="messageError" [typeAlert]="typeAlert" (hiddenAlertEvent)="showAlert($event)">
-</app-alert>
