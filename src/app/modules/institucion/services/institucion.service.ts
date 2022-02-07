@@ -32,4 +32,15 @@ export class InstitucionService {
     return this.http.post<Institution>(`${baseURL}/institution`, body, { headers })
   }
 
+  updateInstitution(id: number, institucion: InstitutionBodyCreate): Observable<Institution> {
+    const token: string = localStorage.getItem('token') || ''
+    const baseURL = environment.baseURL
+    const body = institucion
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('authorization', `bearer ${token}`)
+
+    return this.http.put<Institution>(`${baseURL}/institution/${id}`, body, { headers })
+  }
+
 }

@@ -45,4 +45,15 @@ export class DocenteService {
     return this.http.post<UserBodyCreate>(`${baseURL}/user`, body, { headers })
   }
 
+  updateDocente(id: number, docente: TeacherBodyCreate): Observable<TeacherResponseAfterCreate> {
+    const token: string = localStorage.getItem('token') || ''
+    const baseURL = environment.baseURL
+    const body = docente
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('authorization', `bearer ${token}`)
+
+    return this.http.put<TeacherResponseAfterCreate>(`${baseURL}/teacher/${id}`, body, { headers })
+  }
+
 }

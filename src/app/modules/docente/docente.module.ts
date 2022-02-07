@@ -4,7 +4,6 @@ import { DocenteListComponent } from './pages/docente-list/docente-list.componen
 import { AgregarDocenteComponent } from './pages/agregar-docente/agregar-docente.component';
 import { DocenteRoutingModule } from './docente-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ModalSaveComponent } from './components/modal-save/modal-save.component';
 
 import { FilterPipe } from './pipes/filter.pipe';
 import { FormsModule } from '@angular/forms';
@@ -15,7 +14,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
   declarations: [
     DocenteListComponent,
     AgregarDocenteComponent,
-    ModalSaveComponent,
     FilterPipe
   ],
   imports: [

@@ -109,7 +109,7 @@ export class AgregarEstudianteComponent implements OnInit {
       .subscribe({
         next: (resp) => console.log(resp),
         error: (err) => {
-          Swal.fire('Hubo un error al realizar el registro', '', 'error')
+          Swal.fire('Error al realizar el registro', '', 'error')
         },
         complete: () => {
           Swal.fire('Estudiante Guardado', '', 'success')

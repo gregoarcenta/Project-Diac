@@ -6,8 +6,8 @@
     <section class="my-3 col-12 col-md-4">
       <div class="">
         <form class="">
-          <input class="form-control me-4 center" type="text" name="filterDocente " 
-          placeholder="Buscar Docente..." [(ngModel)]= "filterDocente " >
+          <input class="form-control me-4 center" type="text" name="filterDocente " placeholder="Buscar Docente..."
+            [(ngModel)]="filterDocente ">
         </form>
       </div>
     </section>
@@ -25,7 +25,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let docente of docenteList | filter:filterDocente | paginate: {itemsPerPage: 4, currentPage:pageActual}">
+          <tr
+            *ngFor="let docente of docenteList | filter:filterDocente | paginate: {itemsPerPage: 4, currentPage:pageActual}">
             <td>{{docente.id}}</td>
             <td>{{docente.nameTeacher}}</td>
             <td>{{docente.lastNameTeacher}}</td>
@@ -33,7 +34,8 @@
             <td>{{docente.email}}</td>
 
             <td>
-              <button class="btn btn-primary">
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalUpdate"
+                (click)="openModalUpdate(docente)">
                 <i class="bi bi-pencil-square"></i>
               </button>
               <button class="btn btn-danger" style="margin-left: 10px;">
@@ -51,6 +53,73 @@
 
 </div>
 
+<!-- Modal Update -->
+<div class="modal fade" id="modalUpdate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="modalUpdate" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalUpdate">Actualización de docente</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="" [formGroup]="docenteForm" autocomplete="off">
+          <div class="row">
+            <div class="mb-3 col-12 col-md-6">
+              <label for="name" class="form-label">Nombres:</label>
+              <input formControlName="nombre" type="text" class="form-control mb-2" id="name" name="name"
+                placeholder="Ingresar nombres">
+              <span *ngIf="!(validCampo('nombre').valid)" class="text-danger">
+                {{(validCampo('nombre').messagge)}}
+              </span>
+            </div>
+            <div class="mb-3 col-12 col-md-6">
+              <label for="lastName" class="form-label">Apellidos:</label>
+              <input formControlName="apellido" type="text" class="form-control mb-2" id="lastName" name="lastName"
+                placeholder="Ingresar apellidos">
+              <span *ngIf="!(validCampo('apellido').valid)" class="text-danger">
+                {{(validCampo('apellido').messagge)}}
+              </span>
+            </div>
+            <div class="mb-3 col-12 col-md-2">
+              <label for="age" class="form-label">Edad:</label>
+              <input formControlName="edad" type="number" class="form-control mb-2" id="age" name="age"
+                placeholder="30">
+              <span *ngIf="!(validCampo('edad').valid)" class="text-danger">
+                {{(validCampo('edad').messagge)}}
+              </span>
+            </div>
+            <div class="mb-3 col-12 col-md-4">
+              <label for="email" class="form-label">Correo electrónico:</label>
+              <input formControlName="email" type="email" name="email" id="email" class="form-control mb-2"
+                placeholder="Ingresar correo electrónico">
+              <span *ngIf="!(validCampo('email').valid)" class="text-danger">
+                {{(validCampo('email').messagge)}}
+              </span>
+            </div>
+            <div class="mb-3 col-12 col-md-6">
+              <label class="form-label">Seleccionar asignatura impartida por el docente:</label>
+              <select formControlName="asignatura" class="form-select" aria-label="Default select example">
+                <option value="0" selected>seleccionar asignatura</option>
+                <option [value]="asignatura.id" *ngFor="let asignatura of asignaturas">
+                  {{asignatura.nameCourse}}
+                </option>
+              </select>
+              <span *ngIf="!(validSelect('asignatura').valid)" class="text-danger d-block mt-2">
+                {{(validSelect('asignatura').messagge)}}
+              </span>
+            </div>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeModal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="updateDocenteConfirm()">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- Button circle-->
 <div class="iconplus d-flex flex-column justify-content-end align-items-end">
   <ul class="list-group list-group-plus">
