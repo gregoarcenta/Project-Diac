@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { RegistroStudent } from 'src/app/modules/estudiante/interfaces/registro-student.interface';
 import { EstudianteService } from 'src/app/modules/estudiante/service/estudiante.service';
+import { NavigationService } from '../../services/navigation.service';
 
 @Component({
   selector: 'app-estudiante',
@@ -17,7 +19,11 @@ export class EstudianteComponent implements OnInit {
   lastName: string = ''
   existsSudent: boolean = true
 
-  constructor(private estudianteService: EstudianteService, private fb: FormBuilder) { }
+  constructor(
+    private estudianteService: EstudianteService,
+    private navigationService: NavigationService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void { }
 
@@ -36,6 +42,11 @@ export class EstudianteComponent implements OnInit {
     this.estudianteList = []
     this.estudianteSeleccionado = estudiante
     document.getElementById('btnCloseModal')?.click()
+  }
+
+  nextPage() {
+    this.navigationService.toggleItemActivated(2)
+    this.router.navigateByUrl("/dashboard/adaptacion-curricular/institucion")
   }
 
 }
