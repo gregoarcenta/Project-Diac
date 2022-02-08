@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EstudianteComponent } from './page/estudiante/estudiante.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DocumentoCurricularRoutingModule } from './documento-curricular-routing.module';
 import { EstudianteLayoutComponent } from './page/estudiante-layout/estudiante-layout.component';
 
@@ -15,6 +15,7 @@ import { EstudianteLayoutComponent } from './page/estudiante-layout/estudiante-l
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     DocumentoCurricularRoutingModule
   ]
 })

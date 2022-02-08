@@ -1,102 +1,155 @@
-<div class="container">
-  <div class="row justify-content-center mt-4">
+<div class="container-fluid">
+  <div class="row px-4 flex-column h-100">
 
-    <div class="col-12 text-center">
+    <!--  <div class="col-12 text-center">
       <h1>
-        DOCUMENTO INDIVIDUAL DE ADAPTACIÓN CURRICULAR
+        DATOS DE IDENTIFICACIÓN DEL ESTUDIANTE
       </h1>
-    </div>
+    </div> -->
 
-    <div class="col-10">
+    <div class="col-10 mt-2">
 
-      <form class=" row  rounded bg-light p-2  ">
-        <h3><b> 1. DATOS DE IDENTIFICACIÓN DEL ESTUDIANTE </b></h3>
-
-        <div class="mb-4 col-6 ">
-          <label for="exampleInputEmail1" class="form-label center"><b>Nombres:</b></label>
-          <input type="text" class="form-control" id="exampleInputNombre" aria-describedby="textHelp" required>
+      <form class="row justify-content-center align-items-center">
+        <div class="mb-3 col-12 col-md-4 col-lg-5">
+          <label for="nombre" class="form-label">Nombres:</label>
+          <input [(ngModel)]="name" type="text" class="form-control form-control-sm mb-2" id="nombre" name="nombre"
+            placeholder="Ingrese nombre del estudiante">
         </div>
-        <div class="mb-4 col-6 ">
-          <label for="exampleInputEmail1" class="form-label center"><b>Apellidos:</b></label>
-          <input type="text" class="form-control" id="exampleInputApellido" aria-describedby="textHelp" required>
+        <div class="mb-3 col-12 col-md-4 col-lg-5">
+          <label for="apellido" class="form-label">Apellidos:</label>
+          <input [(ngModel)]="lastName" type="text" class="form-control form-control-sm mb-2" id="apellido"
+            name="apellido" placeholder="Ingrese apellido del estudiante">
         </div>
-
-        <div class="mb-4 col-3 ">
-          <label for="exampleInputEmail1" class="form-label center"><b>Edad:</b></label>
-          <input type="number" class="form-control" id="exampleInputEdad" aria-describedby="textHelp" required>
+        <div class="col-12 col-md-4 col-lg-2">
+          <button class="btn btn-primary btn-sm" type="submit" data-bs-toggle="modal"
+            data-bs-target="#modalStudentSelection" (click)="fillSelectStudents()">
+            Buscar
+          </button>
         </div>
-        <div class="mb-4 col-3 ">
-          <label for="exampleInputEmail1" class="form-label center"><b>Fecha de Nacimiento:</b></label>
-          <input type="date" class="form-control" id="nacimiento" aria-describedby="textHelp" required>
-        </div>
-        <div class="mb-4 col-3 ">
-          <label for="exampleInputEmail1" class="form-label center"><b>N. de hermanos:</b></label>
-          <input type="number" class="form-control" id="nHermanos" aria-describedby="textHelp" required>
-        </div>
-        <div class="mb-4 col-3 ">
-          <label for="exampleInputEmail1" class="form-label center"><b>Lugar que ocupa:</b></label>
-          <input type="number" class="form-control" id="lugarOcupa" aria-describedby="textHelp" required>
-        </div>
-
-        <div class="mb-4 col-6 ">
-          <label for="exampleInputEmail1" class="form-label center"><b>Nombre de la madre:</b></label>
-          <input type="text" class="form-control" id="madres" aria-describedby="textHelp" required>
-        </div>
-        <div class="mb-4 col-6">
-          <label for="exampleInputEmail1" class="form-label center"><b>Nombre del padre:</b></label>
-          <input type="text" class="form-control" id="padre" aria-describedby="textHelp" required>
-        </div>
-
-        <div class="mb-4 col-3 ">
-          <label for="exampleInputEmail1" class="form-label center"><b>Domicilio:</b></label>
-          <input type="text" class="form-control" id="domicio" aria-describedby="textHelp" required>
-        </div>
-        <div class="mb-4 col-3">
-          <label for="exampleInputEmail1" class="form-label center"><b>Ciudad:</b></label>
-          <select type="text" class="form-control" id="ciudad" aria-describedby="textHelp" required>
-            <option selected>Manta</option>
-            <option value="1">Guayaquil</option>
-            <option value="2">Quito</option>
-            <option value="3">Otra..</option>
-          </select>
-        </div>
-        <div class="mb-4 col-3">
-          <label for="exampleInputEmail1" class="form-label center"><b>Provincia:</b></label>
-          <select type="text" class="form-control" id="provincia" aria-describedby="textHelp" required>
-            <option selected>Manabí</option>
-            <option value="1">Guayas</option>
-            <option value="2">Los Rios</option>
-            <option value="3">Otra..</option>
-          </select>
-        </div>
-        <div class="mb-4 col-3 ">
-          <label for="exampleInputEmail1" class="form-label center"><b>Teléfono:</b></label>
-          <input type="text" class="form-control" id="telefono" aria-describedby="textHelp" required>
-        </div>
-
-        <div class="mb-4 col-3 ">
-          <label for="exampleInputEmail1" class="form-label center"><b>Código postal:</b></label>
-          <input type="text" class="form-control" id="codigoPostal" aria-describedby="textHelp" required>
-        </div>
-        <div class="mb-4 col-3 ">
-          <label for="exampleInputEmail1" class="form-label center"><b>Año lectivo:</b></label>
-          <input type="text" class="form-control" id="añoLectivo" aria-describedby="textHelp" required>
-        </div>
-        <div class="mb-4 col-3 ">
-          <label for="exampleInputEmail1" class="form-label center"><b>Grado:</b></label>
-          <input type="text" class="form-control" id="grado" aria-describedby="textHelp" required>
-        </div>
-        <div class="mb-4 col-3 ">
-          <label for="exampleInputEmail1" class="form-label center"><b>Paralelo:</b></label>
-          <input type="text" class="form-control" id="paralelo" aria-describedby="textHelp" required>
-        </div>
-
       </form>
     </div>
-    <div class="col-10 text-end mt-3 py-3">
-      <button class="btn btn-danger">Cancelar</button>
-      <a href="/dashboard/estudiante/institucion"><button class="btn btn-danger ms-3">siguiente</button></a>
+
+    <hr>
+    <div class="col-10 mx-auto flex-grow-1">
+
+      <div *ngIf="estudianteSeleccionado">
+        <div class="row">
+          <h2 class="text-center fw-bold">Datos del estudiante Seleccionado</h2>
+          <div class="col-12 col-md-6 col-lg-4">
+            <span class="fw-bold m-0">Nombres:</span>
+            <p class="d-inline-block ps-2">{{estudianteSeleccionado?.nameStudent}}</p>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <span class="fw-bold m-0">Apellidos:</span>
+            <p class="d-inline-block ps-2">{{estudianteSeleccionado?.lastNameStudent}}</p>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <span class="fw-bold m-0">Fecha de Nacimiento:</span>
+            <p class="d-inline-block ps-2">{{estudianteSeleccionado?.dateOfBirth}}</p>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <span class="fw-bold m-0">Edad:</span>
+            <p class="d-inline-block ps-2">{{estudianteSeleccionado?.edad}}</p>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <span class="fw-bold m-0">N° de Hermanos:</span>
+            <p class="d-inline-block ps-2">{{estudianteSeleccionado?.numBrothers}}</p>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <span class="fw-bold m-0">Lugar que ocupa:</span>
+            <p class="d-inline-block ps-2">{{estudianteSeleccionado?.placeOccupies}}</p>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <span class="fw-bold m-0">Padre / Tutor Legal: :</span>
+            <p class="d-inline-block ps-2">{{estudianteSeleccionado?.tutor}}</p>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <span class="fw-bold m-0">Nombre del padre:</span>
+            <p class="d-inline-block ps-2">{{estudianteSeleccionado?.nameFather}}</p>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <span class="fw-bold m-0">Nombre de la madre:</span>
+            <p class="d-inline-block ps-2">{{estudianteSeleccionado?.nameMother}}</p>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <span class="fw-bold m-0">Dirección:</span>
+            <p class="d-inline-block ps-2">{{estudianteSeleccionado?.address}}</p>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <span class="fw-bold m-0">Ciudad:</span>
+            <p class="d-inline-block ps-2">{{estudianteSeleccionado?.town}}</p>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <span class="fw-bold m-0">Provincia:</span>
+            <p class="d-inline-block ps-2">{{estudianteSeleccionado?.province}}</p>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <span class="fw-bold m-0">Código Postal:</span>
+            <p class="d-inline-block ps-2">{{estudianteSeleccionado?.postalCode}}</p>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <span class="fw-bold m-0">Teléfono:</span>
+            <p class="d-inline-block ps-2">{{estudianteSeleccionado?.phone}}</p>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <span class="fw-bold m-0">Curso:</span>
+            <p class="d-inline-block ps-2">{{estudianteSeleccionado?.course}}</p>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <span class="fw-bold m-0">Paralelo:</span>
+            <p class="d-inline-block ps-2">{{estudianteSeleccionado?.parallel}}</p>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <span class="fw-bold m-0">Año Lectivo:</span>
+            <p class="d-inline-block ps-2">{{estudianteSeleccionado?.schoolYear}}</p>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="!estudianteSeleccionado" class="alert alert-info text-center">
+        No ha seleccionado ningun estudiante
+      </div>
+
     </div>
 
+    <div class="col-10 text-end my-3 py-3">
+      <button class="btn btn-danger">Cancelar</button>
+      <button class="btn btn-danger ms-3"
+        [routerLink]="['/dashboard/adaptacion-curricular/institucion']">siguiente</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalStudentSelection" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="modalStudentSelection" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title m-0" id="modalStudentSelection">Seleccionar estudiante</h3>
+        <button type="button" class="btn-close" id="btnCloseModal" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-0">
+
+        <div class="text-center">
+          <div class="spinner-border mt-3" role="status" id="spinner">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+
+        <ul *ngIf="estudianteList.length > 0" class="list-group">
+          <li class="list-group-item list-group-item-action" *ngFor="let estudiante of estudianteList"
+            (click)="SelectionStudentInfo(estudiante)">
+            {{estudiante.nameStudent}} {{estudiante.lastNameStudent}}
+          </li>
+        </ul>
+
+        <div *ngIf="estudianteList.length === 0 && !existsSudent" class="alert alert-info px-2 mx-4 text-center mt-3">
+          No existen estudiantes con ese nombre o apellido
+        </div>
+
+      </div>
+    </div>
   </div>
 </div>
