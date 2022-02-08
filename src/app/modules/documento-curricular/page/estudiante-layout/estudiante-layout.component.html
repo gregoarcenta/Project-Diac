@@ -1,7 +1,7 @@
 <div class="container-items d-flex flex-grow-1 bg-light text-center my-2 px-2">
   <div *ngFor="let item of navigationService.items" class="item-badge d-flex align-items-center">
     <p (click)="navigationService.toggleItemActivated(item.id)" [ngClass]="item.activated? 'bg-primary':'bg-secondary'"
-      class="badge rounded-circle" [routerLink]="['/dashboard/adaptacion-curricular/'+item.link]">{{item.id}}</p>
+      class="badge rounded-circle">{{item.id}}</p>
     <p [ngClass]="{'active mx-2 text-primary': item.activated}" class="badge-text">{{item.description}}</p>
   </div>
 </div>

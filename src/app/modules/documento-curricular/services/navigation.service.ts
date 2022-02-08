@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ItemPage } from '../interfaces/Items-estudiante.interface';
+import { RegisterDocumentCurricularService } from './register-document-curricular.service';
+
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -123,15 +127,70 @@ export class NavigationService {
     }
   ]
 
-  constructor() { }
+  constructor(
+    private registerDocumentCurricular: RegisterDocumentCurricularService,
+    private router: Router
+  ) { }
 
   toggleItemActivated(idItem: number) {
-    let itemsCopy = [...this.items]
-    this.items = itemsCopy.map(item => {
-      if (item.activated) item.activated = false
-      if (item.id === idItem) item.activated = true
-      return item
-    })
-
+    if (!this.validateNextUrl(idItem)) {
+      this.showErrorNextPage(idItem);
+    } else {
+      let itemsCopy = [...this.items]
+      this.items = itemsCopy.map(item => {
+        if (item.activated) item.activated = false
+        if (item.id === idItem) item.activated = true
+        return item
+      })
+      this.nextPage(idItem)
+    }
   }
+
+  nextPage(id: number) {
+    this.items.forEach(rute => {
+      if (rute.id === id) {
+        this.router.navigateByUrl(`/dashboard/adaptacion-curricular/${rute.link}`)
+      }
+    })
+  }
+
+  validateNextUrl(id: number) {
+    switch (id) {
+      case 1:
+        return true
+      case 2:
+        return this.registerDocumentCurricular.validateStudent()
+      case 3:
+        return true
+      case 4:
+        return true
+      case 5:
+        return true
+      case 6:
+        return true
+      case 7:
+        return true
+      case 8:
+        return true
+      case 9:
+        return true
+      case 10:
+        return true
+
+      default:
+        return null
+    }
+  }
+
+  showErrorNextPage(id: number) {
+    switch (id) {
+      case 2:
+        Swal.fire('Tiene que seleccionar un estudiante para el registro del documento!', '', 'error')
+        break;
+
+      default:
+        break;
+    }
+  }
+
 }

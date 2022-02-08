@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RegistroStudent } from 'src/app/modules/estudiante/interfaces/registro-student.interface';
 import { EstudianteService } from 'src/app/modules/estudiante/service/estudiante.service';
 import { NavigationService } from '../../services/navigation.service';
+
+import { RegisterDocumentCurricularService } from '../../services/register-document-curricular.service';
 
 @Component({
   selector: 'app-estudiante',
@@ -22,10 +23,12 @@ export class EstudianteComponent implements OnInit {
   constructor(
     private estudianteService: EstudianteService,
     private navigationService: NavigationService,
-    private router: Router
+    private registerDocumentCurricular: RegisterDocumentCurricularService,
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.estudianteSeleccionado = this.registerDocumentCurricular.estudianteSeleccionado
+  }
 
   fillSelectStudents() {
     const spinner = document.getElementById('spinner')
@@ -41,12 +44,13 @@ export class EstudianteComponent implements OnInit {
   SelectionStudentInfo(estudiante: RegistroStudent) {
     this.estudianteList = []
     this.estudianteSeleccionado = estudiante
+    this.registerDocumentCurricular.docCurricularForm.controls['idStudent'].setValue(estudiante.id)
+    this.registerDocumentCurricular.estudianteSeleccionado = estudiante
     document.getElementById('btnCloseModal')?.click()
   }
 
   nextPage() {
     this.navigationService.toggleItemActivated(2)
-    this.router.navigateByUrl("/dashboard/adaptacion-curricular/institucion")
   }
 
 }
