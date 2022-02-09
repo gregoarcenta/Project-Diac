@@ -135,6 +135,34 @@ export class InstitucionListComponent implements OnInit {
       })
   }
 
+  eliminarInstitucion(id: number) {
+    Swal.fire({
+      title: '¿Estas seguro de eliminar la institución?',
+      text: "La institución será eliminado permanentemente!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Eliminar Institución!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        this.institucionService.eliminarInstitucion(id)
+          .subscribe({
+            next: () => { },
+            error: () => {
+              Swal.fire('Ups! Hubo un error al eliminar la Institución', '', 'error')
+            },
+            complete: () => {
+              Swal.fire('Institución Eliminada', '', 'success')
+              this.institucionService.getInstitutions()
+                .subscribe(estudiantes => this.institucionList = estudiantes.institutions)
+            }
+          })
+      }
+    })
+  }
+
   showMenu() {
     const listMenu = document.querySelector('.list-group-plus')
     listMenu?.classList.toggle('show')

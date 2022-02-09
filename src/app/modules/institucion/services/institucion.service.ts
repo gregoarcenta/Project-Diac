@@ -53,4 +53,14 @@ export class InstitucionService {
     return this.http.put<Institution>(`${baseURL}/institution/${id}`, body, { headers })
   }
 
+  eliminarInstitucion(id: number): Observable<Institution>{
+    const token: string = localStorage.getItem('token') || ''
+    const baseURL = environment.baseURL
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('authorization', `bearer ${token}`)
+
+    return this.http.delete<Institution>(`${baseURL}/institution/${id}`, { headers })
+  }
+
 }
