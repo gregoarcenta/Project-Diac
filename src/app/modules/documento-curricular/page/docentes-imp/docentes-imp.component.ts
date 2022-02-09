@@ -28,8 +28,6 @@ export class DocentesImpComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.registerDocumentCurricular.docentesSeleccionados);
-
     this.coursesList['courses'] = this.registerDocumentCurricular.asignaturasSeleccionadas
     this.docenteService.getDocentesByCourse(this.coursesList)
       .subscribe(docentes => this.docentesList = docentes.teachers)
