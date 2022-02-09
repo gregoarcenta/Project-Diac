@@ -2,6 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EstudianteService } from '../../service/estudiante.service';
 import { RegistroStudent, StudentBodyCreate } from '../../interfaces/registro-student.interface';
+///importaciones del pdf --------------------------
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts'
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+//-----
+import jsPDF from 'jspdf';
+
+import html2canvas from 'html2canvas';
+//-----------------------------------------------
 
 import Swal from 'sweetalert2';
 
@@ -173,10 +182,36 @@ export class StudentListComponent implements OnInit {
       })
   }
 
+  eliminarEstudiante(id:number){
+    Swal.fire({
+      title: '¿Realmente quieres eliminar el registro?',
+      text: "El registro sera eliminado permanentemente!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Eliminar registro!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire('Estudiante Eliminado', '', 'success')
+          document.getElementById('closeModal')?.click()
+          
+        this.estudianteService.eliminarEstudiante(id).subscribe(()=>{
+          this.estudianteService.getStudent()
+        }, error => {
+          console.log(error)
+        })
+      }
+    })
+  }
 
   showMenu() {
     const listMenu = document.querySelector('.list-group-plus')
     listMenu?.classList.toggle('show')
   }
+
+
+  
+ 
 
 }
