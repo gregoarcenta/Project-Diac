@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row px-4 flex-column justify-content-center h-100">
+
+    <div class="col-10 mx-auto my-3">
+
+    </div>
+
+    <div class="col-10 mx-auto justify-content-center flex-grow-1">
+      <div class="form-floating mb-8">
+        <textarea [(ngModel)]="valueInfoPsico" class="form-control" placeholder="Leave a comment here"
+          id="floatingTextarea2" style="height: 150px" (input)="fillInfoPedagogico()"></textarea>
+        <label for="floatingTextarea2">Ingrese la información psicopedagógica del estudiante...</label>
+      </div>
+    </div>
+
+    <div class="col-10 text-end my-3 py-3">
+      <button class="btn btn-danger">Cancelar</button>
+      <button class="btn btn-danger ms-3" (click)="nextPage()">siguiente</button>
+    </div>
+
+  </div>
+</div>

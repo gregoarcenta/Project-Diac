@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { RegistroStudent } from 'src/app/modules/estudiante/interfaces/registro-student.interface';
 import { EstudianteService } from 'src/app/modules/estudiante/service/estudiante.service';
 import { NavigationService } from '../../services/navigation.service';

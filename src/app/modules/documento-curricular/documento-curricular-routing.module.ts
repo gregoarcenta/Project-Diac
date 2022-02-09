@@ -8,8 +8,12 @@ import { EstudianteLayoutComponent } from './page/estudiante-layout/estudiante-l
 import { EstudianteComponent } from './page/estudiante/estudiante.component';
 import { FechaElaboracionComponent } from './page/fecha-elaboracion/fecha-elaboracion.component';
 import { HistorialPersonalComponent } from './page/historial-personal/historial-personal.component';
-import { InfContextoComponent } from './page/inf-contexto/inf-contexto.component';
+import { InfoContextoEducativoComponent } from './page/info-contexto-educativo/info-contexto-educativo.component';
+import { InfoContextoFamiliarComponent } from './page/info-contexto-familiar/info-contexto-familiar.component';
+import { InfoContextoSocialComponent } from './page/info-contexto-social/info-contexto-social.component';
+import { InfoPedagogicoComponent } from './page/info-pedagogico/info-pedagogico.component';
 import { InstitucionComponent } from './page/institucion/institucion.component';
+import { MateriasAdapCurricularComponent } from './page/materias-adap-curricular/materias-adap-curricular.component';
 import { MetodologiaComponent } from './page/metodologia/metodologia.component';
 
 const routes: Routes = [
@@ -29,20 +33,33 @@ const routes: Routes = [
         path: 'fecha-elaboracion',
         component: FechaElaboracionComponent
       },
-
+      {
+        path: 'materias-adaptacion-curricular',
+        component: MateriasAdapCurricularComponent
+      },
       {
         path: 'docentes-imp',
         component: DocentesImpComponent
       },
-
+      {
+        path: 'informe-psicopedagogico',
+        component: InfoPedagogicoComponent
+      },
       {
         path: 'historial-personal',
         component: HistorialPersonalComponent
       },
-
       {
-        path: 'inf-contexto',
-        component: InfContextoComponent
+        path: 'informacion-contexto-educativo',
+        component: InfoContextoEducativoComponent
+      },
+      {
+        path: 'informacion-contexto-familiar',
+        component: InfoContextoFamiliarComponent
+      },
+      {
+        path: 'informacion-contexto-social',
+        component: InfoContextoSocialComponent
       },
 
       {

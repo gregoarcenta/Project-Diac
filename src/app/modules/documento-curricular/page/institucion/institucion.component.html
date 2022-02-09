@@ -1,59 +1,108 @@
-<div class="container">
-    <div class="row justify-content-center mt-4">
-  
-      <div class="col-12 text-center">
-        <h1>
-          DOCUMENTO INDIVIDUAL DE ADAPTACIÓN CURRICULAR
-        </h1>
-      </div>
-  
-      <div class="col-10">
-       
-        <form class=" row  rounded bg-light p-2  " >
-          <h3> <b>2. DATOS DE IDENTIFICACIÓN DE LA INSTITUCIÓN EDUCATIVA </b> </h3>
+<div class="container-fluid">
+  <div class="row px-4 flex-column h-100">
 
-          <div class="mb-4 col-6 "> 
-            <label for="exampleInputEmail1" class="form-label center"><b>Nombre:</b></label>
-            <input type="text" class="form-control" id="nombreInst" aria-describedby="textHelp" required>
-          </div>
-          <div class="mb-4 col-6 ">
-            <label for="exampleInputEmail1" class="form-label center"><b>Distrito No.:</b></label>
-            <input type="number" class="form-control" id="distrito" aria-describedby="textHelp" required>
-          </div>
+    <div class="col-10 mt-2">
 
-          <div class="mb-4 col-6 "> 
-            <label for="exampleInputEmail1" class="form-label center"><b>Dirección:</b></label>
-            <input type="text" class="form-control" id="direccion" aria-describedby="textHelp" required>
+      <form class="row align-items-center">
+        <div class="mb-3 col-12 col-md-4 col-lg-5">
+          <label for="nombre" class="form-label">Nombre:</label>
+          <input [(ngModel)]="name" type="text" class="form-control form-control-sm mb-2" id="nombre" name="nombre"
+            placeholder="Ingrese nombre de la institucion">
+        </div>
+        <div class="col-12 col-md-4 col-lg-2">
+          <button class="btn btn-primary btn-sm" type="submit" data-bs-toggle="modal"
+            data-bs-target="#modalStudentSelection" (click)="fillSelectInstitutions()">
+            Buscar
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <hr>
+    <div class="col-10 mx-auto flex-grow-1">
+
+      <div *ngIf="institucionSeleccionada">
+        <div class="row">
+          <h2 class="text-center fw-bold">Datos de la institución Seleccionada</h2>
+          <div class="col-12 col-md-6 col-lg-4">
+            <span class="fw-bold m-0">Nombre:</span>
+            <p class="d-inline-block ps-2">{{institucionSeleccionada?.nameInstitution}}</p>
           </div>
-          <div class="mb-4 col-6 ">
-            <label for="exampleInputEmail1" class="form-label center"><b>Localidad:</b></label>
-            <input type="text" class="form-control" id="localidad" aria-describedby="textHelp" required>
-          </div>  
-          
-          <div class="mb-4 col-6 ">
-            <label for="exampleInputEmail1" class="form-label center"><b>Teléfono:</b></label>
-            <input type="number" class="form-control" id="telefono" aria-describedby="textHelp" >
+          <div class="col-12 col-md-6 col-lg-4">
+            <span class="fw-bold m-0">Dirección:</span>
+            <p class="d-inline-block ps-2">{{institucionSeleccionada?.address}}</p>
           </div>
-          <div class="mb-4 col-6 ">
-            <label for="exampleInputEmail1" class="form-label center"><b>Código Postal: </b></label>
-            <input type="number" class="form-control" id="codigoPostal" aria-describedby="textHelp" required>
+          <div class="col-12 col-md-6 col-lg-4">
+            <span class="fw-bold m-0">Distrito:</span>
+            <p class="d-inline-block ps-2">{{institucionSeleccionada?.district}}</p>
           </div>
-         
-          <div class="mb-4 col-6 "> 
-            <label for="exampleInputEmail1" class="form-label center"><b>Modalidad:</b></label>
-            <input type="text" class="form-control" id="modalidad" aria-describedby="textHelp" required>
+          <div class="col-12 col-md-6 col-lg-4">
+            <span class="fw-bold m-0">Localización:</span>
+            <p class="d-inline-block ps-2">{{institucionSeleccionada?.locationInstitution}}</p>
           </div>
-          <div class="mb-4 col-6 ">
-            <label for="exampleInputEmail1" class="form-label center"><b>Tipo:</b></label>
-            <input type="text" class="form-control" id="tipo" aria-describedby="textHelp" required>
-          </div> 
-        </form>
+          <div class="col-12 col-md-6 col-lg-4">
+            <span class="fw-bold m-0">Teléfono:</span>
+            <p class="d-inline-block ps-2">{{institucionSeleccionada?.phone}}</p>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <span class="fw-bold m-0">Código Postal:</span>
+            <p class="d-inline-block ps-2">{{institucionSeleccionada?.postalCode}}</p>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <span class="fw-bold m-0">Tipo:</span>
+            <p class="d-inline-block ps-2">{{institucionSeleccionada?.type}}</p>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <span class="fw-bold m-0">Modalidad:</span>
+            <p class="d-inline-block ps-2">{{institucionSeleccionada?.modality}}</p>
+          </div>
+        </div>
       </div>
-      <div class="col-10 text-end mt-3 py-3">
-        <a href="/dashboard/estudiante"><button class="btn btn-danger">Anterior</button></a>
-        <a href="/dashboard/estudiante/institucion/fecha-elaboracion"><button class="btn btn-danger ms-3" >siguiente</button></a>
+
+      <div *ngIf="!institucionSeleccionada" class="alert alert-info text-center">
+        No ha seleccionado ninguna institución
       </div>
-  
+
+    </div>
+
+    <div class="col-10 text-end my-3 py-3">
+      <button class="btn btn-danger">Cancelar</button>
+      <button class="btn btn-danger ms-3" (click)="nextPage()">siguiente</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalStudentSelection" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="modalStudentSelection" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title m-0" id="modalStudentSelection">Seleccionar institucion</h3>
+        <button type="button" class="btn-close" id="btnCloseModal" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-0">
+
+        <div class="text-center">
+          <div class="spinner-border mt-3" role="status" id="spinner">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+
+        <ul *ngIf="institucionList.length > 0" class="list-group">
+          <li class="list-group-item list-group-item-action" *ngFor="let institucion of institucionList"
+            (click)="SelectionInstitutionInfo(institucion)">
+            {{institucion.nameInstitution}}
+          </li>
+        </ul>
+
+        <div *ngIf="institucionList.length === 0 && !existsInstitution"
+          class="alert alert-info px-2 mx-4 text-center mt-3">
+          No existen Instituciones con ese nombre
+        </div>
+
+      </div>
     </div>
   </div>
-  
+</div>

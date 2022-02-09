@@ -32,7 +32,7 @@ export class NavigationService {
     {
       id: 4,
       description: 'AREAS/MATERIAS OBJETO DE ADAPTACION CURRICULAR',
-      link: 'fecha-elaboracion',
+      link: 'materias-adaptacion-curricular',
       activated: false
     },
     {
@@ -44,7 +44,7 @@ export class NavigationService {
     {
       id: 6,
       description: 'SINTESIS DE LA INFORMACION CONTENIDA EN EL INFORME PSICOPEDAGOGICO',
-      link: 'docentes-imp',
+      link: 'informe-psicopedagogico',
       activated: false
     },
     {
@@ -56,19 +56,19 @@ export class NavigationService {
     {
       id: 8,
       description: 'DATOS Y ASPECTOS IPORTANTES DEL CONTEXTO EDUCATIVO',
-      link: 'inf-contexto',
+      link: 'informacion-contexto-educativo',
       activated: false
     },
     {
       id: 9,
       description: 'DATOS Y ASPECTOS IPORTANTES DEL CONTEXTO FAMILIAR',
-      link: 'inf-contexto',
+      link: 'informacion-contexto-familiar',
       activated: false
     },
     {
       id: 10,
       description: 'DATOS Y ASPECTOS IPORTANTES DEL CONTEXTO SOCIAL',
-      link: 'inf-contexto',
+      link: 'informacion-contexto-social',
       activated: false
     },
     {
@@ -159,23 +159,25 @@ export class NavigationService {
       case 1:
         return true
       case 2:
-        return this.registerDocumentCurricular.validateStudent()
+        return true/* this.registerDocumentCurricular.validateStudent() */
       case 3:
-        return true
+        return true/* this.registerDocumentCurricular.validateInstitution() */
       case 4:
-        return true
+        return true/* this.registerDocumentCurricular.validateElaborationDate() */
       case 5:
-        return true
+        return true/* this.registerDocumentCurricular.validateCoursesSelect() */
       case 6:
-        return true
+        return true/* this.registerDocumentCurricular.validateDocentesSelect() */
       case 7:
-        return true
+        return true/* this.registerDocumentCurricular.validateInfoPedagogico() */
       case 8:
-        return true
+        return true/* this.registerDocumentCurricular.validateInfoHistoryPersonal() */
       case 9:
-        return true
+        return true/* this.registerDocumentCurricular.validateContextEducation() */
       case 10:
-        return true
+        return true/* this.registerDocumentCurricular.validateContextFamily() */
+      case 11:
+        return true/* this.registerDocumentCurricular.validateContextSocial() */
 
       default:
         return null
@@ -187,7 +189,33 @@ export class NavigationService {
       case 2:
         Swal.fire('Tiene que seleccionar un estudiante para el registro del documento!', '', 'error')
         break;
-
+      case 3:
+        Swal.fire('Tiene que seleccionar una institucion para el registro del documento!', '', 'error')
+        break;
+      case 4:
+        Swal.fire('Tiene que colocar una duración para el registro del documento!', '', 'error')
+        break;
+      case 5:
+        Swal.fire('Tiene que seleccionar al menos 1 asigantura para el registro del documento!', '', 'error')
+        break;
+      case 6:
+        Swal.fire('Tiene que seleccionar al menos 1 docente para el registro del documento!', '', 'error')
+        break;
+      case 7:
+        Swal.fire('La información psicopedagógica no puede quedar vacia!', '', 'error')
+        break;
+      case 8:
+        Swal.fire('Los campos no pueden quedar vacio!', '', 'error')
+        break;
+      case 9:
+        Swal.fire('EL campo no puede quedar vacio!', '', 'error')
+        break;
+      case 10:
+        Swal.fire('El campo no puede quedar vacio!', '', 'error')
+        break;
+      case 11:
+        Swal.fire('El campo no puede quedar vacio!', '', 'error')
+        break;
       default:
         break;
     }
