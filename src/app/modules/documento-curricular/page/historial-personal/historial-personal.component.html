@@ -1,59 +1,65 @@
 <div class="container">
-    <div class="row justify-content-center mt-4">
-  
-      <div class="col-12 text-center">
-        <h1>
-          DOCUMENTO INDIVIDUAL DE ADAPTACIÓN CURRICULAR
-        </h1>
-      </div>
-  
-      <div class="col-10">
-       
-        <form class=" row  rounded bg-light p-2  " >
-        <h3> <b>7. DATOS Y ASPECTOS RELEVANTES DE LA HISTORIA PERSONAL DEL ESTUDIANTE </b> </h3>
-      
-        <div class="mb-4 col-12">
-            <div class="form-floating mb-8  ">
-                <label for="floatingTextarea2"><b>Datos de desarrollo:</b></label>
-                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 90px"></textarea>
-            </div> 
-        </div> 
-        <br>
-        <div class="mb-4 col-12">
-            <div class="form-floating mb-8  ">
-                <label for="floatingTextarea2"><b>Antecedentes familiares:</b></label>
-                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 90px"></textarea>
-            </div> 
-        </div>
-        <br>
-        <div class="mb-4 col-12">
-            <div class="form-floating mb-8 ">
-                <label for="floatingTextarea2"><b>Historia escolar:</b></label>
-                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 80px"></textarea>
-            </div> 
-        </div>
-        <br>
-        <div class="mb-4 col-6">
-            <div class="form-floating mb-8  ">
-                <label for="floatingTextarea2"><b>Estilos de aprendizaje: Visual. auditivo o kinestésico</b></label>
-                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 80px"></textarea>
-            </div> 
-        </div>
-        <br>
-        <div class="mb-4 col-6">
-            <div class="form-floating mb-8 ">
-                <label for="floatingTextarea2"><b>Tipos de inteligencia:</b></label>
-                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 80px"></textarea>
-            </div> 
-        </div>
+  <div class="row px-4 flex-column justify-content-center h-100">
 
-        </form>
-      </div>
-      <div class="col-10 text-end mt-3 py-3">
-        <a href="/dashboard/estudiante/institucion/fecha-elaboracion/docentes-imp/historial-personal"><button class="btn btn-danger">Anterior</button></a>
-        <a href="/dashboard/estudiante/institucion/fecha-elaboracion/docentes-imp/historial-personal/inf-contexto"><button class="btn btn-danger ms-3" >siguiente</button></a>
-      </div>
-  
+    <div class="col-10 mx-auto my-3">
+
     </div>
+
+    <div class="col-10 mx-auto justify-content-center flex-grow-1">
+
+      <div class="row">
+        <div class="mb-4 col-12">
+          <div class="form-floating">
+            <textarea [(ngModel)]="datoDesarrollo" class="form-control" placeholder="Leave a comment here"
+              id="floatingTextarea2" style="height: 90px" (input)="fillInfoHistoriaPersonal()">
+          </textarea>
+            <label for="floatingTextarea2">Datos de desarrollo:</label>
+          </div>
+        </div>
+        <br>
+        <div class="mb-4 col-12">
+          <div class="form-floating">
+            <textarea [(ngModel)]="antecedentes" class="form-control" placeholder="Leave a comment here"
+              id="floatingTextarea2" style="height: 90px" (input)="fillInfoHistoriaPersonal()">
+          </textarea>
+            <label for="floatingTextarea2">Antecedentes familiares:</label>
+          </div>
+        </div>
+        <br>
+        <div class="mb-4 col-12">
+          <div class="form-floating">
+            <textarea [(ngModel)]="historia" class="form-control" placeholder="Leave a comment here"
+              id="floatingTextarea2" style="height: 80px" (input)="fillInfoHistoriaPersonal()">
+          </textarea>
+            <label for="floatingTextarea2">Historia escolar:</label>
+          </div>
+        </div>
+        <br>
+        <div class="mb-4 col-6">
+          <div class="form-floating">
+            <textarea [(ngModel)]="estilos" class="form-control" placeholder="Leave a comment here"
+              id="floatingTextarea2" style="height: 80px" (input)="fillInfoHistoriaPersonal()">
+          </textarea>
+            <label for="floatingTextarea2">Estilos de aprendizaje: Visual. auditivo o kinestésico:</label>
+          </div>
+        </div>
+        <br>
+        <div class="mb-4 col-6">
+          <div class="form-floating">
+            <textarea [(ngModel)]="inteligencia" class="form-control" placeholder="Leave a comment here"
+              id="floatingTextarea2" style="height: 80px" (input)="fillInfoHistoriaPersonal()">
+          </textarea>
+            <label for="floatingTextarea2">Tipos de inteligencia:</label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-12 text-end my-3 py-3">
+      <button class="btn btn-danger">Cancelar</button>
+      <button class="btn btn-danger ms-3" (click)="nextPage()">siguiente</button>
+    </div>
+
   </div>
-  
+</div>

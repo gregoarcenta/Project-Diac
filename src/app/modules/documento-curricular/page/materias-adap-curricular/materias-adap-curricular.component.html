@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row px-4 flex-column h-100">
+
+    <div class="col-10 mx-auto mt-4">
+      <div class="row">
+        <div class="col-12 col-md-6 col-lg-4" *ngFor="let asignatura of asignaturas">
+          <div class="form-check">
+            <input class="form-check-input" [id]="asignatura.id" type="checkbox" value=""
+              [checked]="marcarCheckbox(asignatura.id)" [id]="asignatura.id"
+              (input)="fillArrayCourses($event, asignatura)">
+            <label class="form-check-label" [for]="asignatura.id">
+              {{asignatura.nameCourse}}
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-10 mx-auto flex-grow-1"></div>
+
+    <div class="col-12 text-end my-3 py-3">
+      <button class="btn btn-danger">Cancelar</button>
+      <button class="btn btn-danger ms-3" (click)="nextPage()">siguiente</button>
+    </div>
+
+  </div>
+</div>

@@ -1,95 +1,72 @@
 <div class="container">
-    <div class="row justify-content-center mt-4">
-  
-      <div class="col-12 text-center">
-        <h1>
-          DOCUMENTO INDIVIDUAL DE ADAPTACIÓN CURRICULAR
-        </h1>
+  <div class="row px-4 flex-column h-100">
+
+    <div class="col-10 mx-auto my-3">
+      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDocenteSelection">
+        + Añadir Profesores Implicados
+      </button>
+    </div>
+
+    <div class="col-10 mx-auto flex-grow-1">
+      <table class="table center">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Asignación </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let docente of docenteListSelected">
+            <td>Lic. {{docente.nameTeacher}} {{docente.lastNameTeacher}}</td>
+            <td>Docente de {{docente.Course.nameCourse}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-12 text-end my-3 py-3">
+      <button class="btn btn-danger">Cancelar</button>
+      <button class="btn btn-danger ms-3" (click)="nextPage()">siguiente</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalDocenteSelection" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="modalDocenteSelection" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title m-0" id="modalDocenteSelection">Seleccionar docente</h3>
+        <button type="button" class="btn-close" id="btnCloseModal" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-  
-      <div class="col-10">
-       
-        <form class=" row  rounded bg-light p-2  " >
-          <h3> <b>5. PROFESIONALES IMPLICADOS EN LA REALIZACIÓN DEL DOCUMENTO DE ADAPTACIÓN CURRICULAR </b> </h3>
+      <div class="modal-body p-0">
 
-           <!-- Button trigger modal -->
-          <div class="mb-4 col-6 "> 
-          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">+ Añadir Profesores Implicados</button>
-            
-          </div>
-            
-  
-            <!-- Modal -->
-            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h3 class="modal-title" id="staticBackdropLabel">Profesores:</h3>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                    
-                        <div class="mb-4 col-10 "> 
-                            <label for="exampleInputEmail1" class="form-label center"><b>Nombre:</b></label>
-                            <input type="text" class="form-control" id="exampleInputNombre" aria-describedby="textHelp" required>
-                        </div>
-                        <div class="mb-4 col-10">
-                            <label for="exampleInputEmail1" class="form-label center"><b>Función:</b></label>
-                              <select type="text" class="form-control" id="ciudad" aria-describedby="textHelp" required>
-                                <option selected>Docente de Lengua y Literatura</option>
-                                <option value="1">Docente de Inglés</option>
-                                <option value="2">Docente de Ciencias Naturales</option>
-                                <option value="3">Docente de Educación Física</option>
-                                <option value="4">Docente de Matemáticas y Proyecto Educativo</option>
-                                <option value="5">Docente de Estudios Sociales</option>
-                              </select>                       
-                          </div>
-
-
-                    </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-danger">Añadir</button>
-                    </div>
-                </div>
-                </div>
+        <ul *ngIf="docentesList.length > 0" class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center"
+            *ngFor="let docente of docentesList">
+            <div class="ms-2 me-auto form-check">
+              <input class="form-check-input" [id]="docente.id" type="checkbox"
+                (input)="fillArrayDocentes($event,docente)" [checked]="marcarCheckbox(docente.id)">
+              <label class="form-check-label" [for]="docente.id">
+                {{docente.nameTeacher | titlecase }} {{docente.lastNameTeacher | titlecase}}
+              </label>
             </div>
-
-            <div class="mb-4 col-8 center">
-              <table class="table center">
-                <thead>
-                  <tr>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Asignación </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Lic. Celia Williams Carranza</td>
-                    <td>Docente de Inglés</td>
-                  </tr>
-                  <tr>
-                    <td>Lic. Virginia Menéndez Rivadeneira</td>
-                    <td>Docente de Lengua y Literatura</td>
-                  </tr>
-                </tbody>
-              </table>
+            <div class="badge bg-primary p-2 rounded-pill">
+              <h5 class="m-0">Docente de {{docente.Course.nameCourse}}</h5>
             </div>
+          </li>
+        </ul>
 
-        <h3> <b>6. SÍNTESIS DE LA INFORMACIÓN CONTENIDA EN EL INFORME PSICOPEDAGÓGICO </b> </h3>
-          
-        <div class="form-floating mb-8 col-10 "> 
-            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 150px"></textarea>
-            <label for="floatingTextarea2">Ingrese la información psicopedagógica del estudiante...</label>
+        <div *ngIf="docentesList.length === 0" class="alert alert-info px-2 mx-4 text-center mt-3">
+          No existen docentes en las asignaturas seleccionadas
         </div>
 
-        </form>
       </div>
-      <div class="col-10 text-end mt-3 py-3">
-        <a href="/dashboard/estudiante/institucion/fecha-elaboracion/docentes-imp"><button class="btn btn-danger">Anterior</button></a>
-        <a href="/dashboard/estudiante/institucion/fecha-elaboracion/docentes-imp/historial-personal"><button class="btn btn-danger ms-3" >siguiente</button></a>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
       </div>
-  
     </div>
   </div>
-  
+</div>

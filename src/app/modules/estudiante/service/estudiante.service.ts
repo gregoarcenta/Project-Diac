@@ -21,6 +21,16 @@ export class EstudianteService {
     return this.http.get<EstudianteList>(`${baseURL}/student`, { headers })
   }
 
+  getStudentByNameOrLastName(name: string, lastName: string): Observable<EstudianteList> {
+    const token: string = localStorage.getItem('token') || ''
+    const baseURL = environment.baseURL
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('authorization', `bearer ${token}`)
+
+    return this.http.get<EstudianteList>(`${baseURL}/student/filter?nombre=${name}&apellido=${lastName}`, { headers })
+  }
+
   addEstudiante(estudiante: StudentBodyCreate): Observable<StudentBodyCreate> {
     const token: string = localStorage.getItem('token') || ''
     const baseURL = environment.baseURL

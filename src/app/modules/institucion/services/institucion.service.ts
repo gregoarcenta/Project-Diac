@@ -21,6 +21,16 @@ export class InstitucionService {
     return this.http.get<InstitutionList>(`${baseURL}/institution`, { headers })
   }
 
+  getInstitutionsByName(name: string): Observable<InstitutionList> {
+    const token: string = localStorage.getItem('token') || ''
+    const baseURL = environment.baseURL
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('authorization', `bearer ${token}`)
+
+    return this.http.get<InstitutionList>(`${baseURL}/institution/filter?nombre=${name}`, { headers })
+  }
+
   addInstitution(institucion: InstitutionBodyCreate): Observable<Institution> {
     const token: string = localStorage.getItem('token') || ''
     const baseURL = environment.baseURL

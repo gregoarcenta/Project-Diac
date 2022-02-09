@@ -23,6 +23,17 @@ export class DocenteService {
     return this.http.get<DocenteList>(`${baseURL}/teacher`, { headers })
   }
 
+  getDocentesByCourse(arrayCourses: CoursesList): Observable<DocenteList> {
+    const token: string = localStorage.getItem('token') || ''
+    const baseURL = environment.baseURL
+    const body = arrayCourses
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('authorization', `bearer ${token}`)
+
+    return this.http.post<DocenteList>(`${baseURL}/teacher/filter/courses`, body, { headers })
+  }
+
   addDocente(docente: TeacherBodyCreate): Observable<TeacherResponseAfterCreate> {
     const token: string = localStorage.getItem('token') || ''
     const baseURL = environment.baseURL
@@ -57,3 +68,8 @@ export class DocenteService {
   }
 
 }
+
+export interface CoursesList {
+  courses: number[];
+}
+

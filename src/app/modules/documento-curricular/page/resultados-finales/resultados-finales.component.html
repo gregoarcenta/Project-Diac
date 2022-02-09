@@ -7,15 +7,15 @@
 
     <div class="col-10 mx-auto justify-content-center flex-grow-1">
       <div class="form-floating mb-8">
-        <textarea [(ngModel)]="metodologia" class="form-control" placeholder="Leave a comment here"
-          id="floatingTextarea2" style="height: 150px" (input)="fillMetodologia()"></textarea>
-        <label for="floatingTextarea2">Ingrese la Metodología...</label>
+        <textarea [(ngModel)]="resultadosFinales" class="form-control" placeholder="Leave a comment here"
+          id="floatingTextarea2" style="height: 150px" (input)="fillResources()"></textarea>
+        <label for="floatingTextarea2">Ingrese los resultados finales...</label>
       </div>
     </div>
 
     <div class="col-12 text-end my-3 py-3">
       <button class="btn btn-danger">Cancelar</button>
-      <button class="btn btn-danger ms-3" (click)="nextPage()">siguiente</button>
+      <button class="btn btn-danger ms-3" (click)="saveDocumentCurricular()">siguiente</button>
     </div>
 
   </div>
