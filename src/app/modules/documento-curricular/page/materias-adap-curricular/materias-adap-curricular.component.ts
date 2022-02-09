@@ -27,19 +27,21 @@ export class MateriasAdapCurricularComponent implements OnInit {
       .subscribe({
         next: ({ courses }) => {
           this.asignaturas = courses
-          this.asignaturasSeleccionadas = this.registerDocumentCurricular.asignaturasSeleccionadas
         },
         error: (error) => {
           Swal.fire('Hubo un error al cargar las asignaturas', '', 'error')
         }
       })
+    this.asignaturasSeleccionadas = this.registerDocumentCurricular.asignaturasSeleccionadas
   }
 
-  fillArrayCourses(e: any) {
+  fillArrayCourses(e: any, asignatura: Course) {
     if (e.target.checked) {
       this.asignaturasSeleccionadas.push(e.target.id)
+      this.registerDocumentCurricular.asignaturaListSelected.push(asignatura)
     } else {
       this.asignaturasSeleccionadas = this.asignaturasSeleccionadas.filter(id => id !== e.target.id)
+      this.registerDocumentCurricular.asignaturaListSelected = this.registerDocumentCurricular.asignaturaListSelected.filter(asignatur => asignatur.id !== asignatura.id)
     }
     const asiganturasArr = new Set(this.asignaturasSeleccionadas);
     let result = [...asiganturasArr];

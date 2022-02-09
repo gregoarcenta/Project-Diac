@@ -6,7 +6,8 @@
         <div class="col-12 col-md-6 col-lg-4" *ngFor="let asignatura of asignaturas">
           <div class="form-check">
             <input class="form-check-input" [id]="asignatura.id" type="checkbox" value=""
-              [checked]="marcarCheckbox(asignatura.id)" [id]="asignatura.id" (input)="fillArrayCourses($event)">
+              [checked]="marcarCheckbox(asignatura.id)" [id]="asignatura.id"
+              (input)="fillArrayCourses($event, asignatura)">
             <label class="form-check-label" [for]="asignatura.id">
               {{asignatura.nameCourse}}
             </label>

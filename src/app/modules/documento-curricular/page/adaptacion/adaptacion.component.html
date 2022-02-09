@@ -1,150 +1,175 @@
 <div class="container">
-  <div class="row justify-content-center mt-4">
+  <div class="row px-4 flex-column h-100">
 
-    <div class="col-10">
+    <div class="col-10 mt-2 mx-auto">
 
-      <form class=" row  rounded bg-light p-2  ">
-        <h3> <b>14. ADAPTACIÓN CURRICULAR</b> </h3>
-
-        <div class="mb-4 col-4 "><b>Grado:</b>
-          <input type="text" class="form-control" id="paralelo" aria-describedby="textHelp" required>
-        </div>
-        <div class="mb-4 col-4 "><b>Ente:</b>
-          <input type="text" class="form-control" id="paralelo" aria-describedby="textHelp" required>
-        </div>
-        <div class="mb-4 col-4 "><b>Tiempo: </b>
-          <input type="text" class="form-control" id="paralelo" aria-describedby="textHelp" required>
+      <form class="row justify-content-center align-items-center">
+        <div class="mb-3 col-12 col-md-4 col-lg-4">
+          <label for="grado" class="form-label fw-bold">Grado:</label>
+          <input [(ngModel)]="grado" type="text" class="form-control form-control-sm mb-2" id="grado" name="grado"
+            placeholder="Ingrese grado">
         </div>
 
-        <!-- Añadir materias  -->
-        <div class="mb-4 col-6 ">
-          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">+ Añadir
-            materia</button>
-        </div>
-        <!-- Modal -->
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-          aria-labelledby="staticBackdropLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h3 class="modal-title" id="staticBackdropLabel">Seleccione qqq Materia</h3>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-
-                <div class="mb-4 col-10">
-                  <label for="exampleInputEmail1" class="form-label center"><b>Función:</b></label>
-                  <select type="text" class="form-control" id="ciudad" aria-describedby="textHelp" required>
-                    <option selected>Lengua y Literatura</option>
-                    <option value="1">Inglés</option>
-                    <option value="2">Ciencias Naturales</option>
-                    <option value="3">Educación Física</option>
-                    <option value="4">Matemáticas </option>
-                    <option value="5">Proyecto Educativo</option>
-                    <option value="6">Estudios Sociales</option>
-                  </select>
-                </div>
-
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-danger">Añadir</button>
-              </div>
-            </div>
-          </div>
+        <div class="mb-3 col-12 col-md-4 col-lg-4">
+          <label for="ente" class="form-label fw-bold">Ente:</label>
+          <input [(ngModel)]="ente" type="text" class="form-control form-control-sm mb-2" id="ente" name="ente"
+            placeholder="Ingrese ente">
         </div>
 
-
-        <h3><b>Competencia curricular </b></h3>
-
-        <div class="mb-4 col-6">
-          <div class="form-floating mb-8  ">
-            <label for="floatingTextarea2"><b>¿Qué puede hacer?</b></label>
-            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-              style="height: 80px"></textarea>
-          </div>
-        </div>
-        <div class="mb-4 col-6">
-          <div class="form-floating mb-8 ">
-            <label for="floatingTextarea2"><b>¿Cómo lo hace? </b></label>
-            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-              style="height: 80px"></textarea>
-          </div>
-        </div>
-
-
-        <h3><b>Propuesta curricular adaptada </b></h3>
-        <p>
-          <a class="btn btn-secondary mb-4 col-12" data-bs-toggle="collapse" href="#collapseExample" role="button"
-            aria-expanded="false" aria-controls="collapseExample">
-            Ciencias Naturales
-          </a>
-        </p>
-
-        <div class="collapse " id="collapseExample">
-          <div class="card card-body  ">
-            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"
-              data-bs-whatever="@mdo">+ Añadir Objetivo</button><br>
-            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"
-              data-bs-whatever="@fat">+ Añadir Destreza</button>
-
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-              aria-hidden="true">
-              <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Objetivos</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-
-                  <div class="mb-4 col-12 ">
-
-                    <p><input type="checkbox" name="transporte" value="1">
-                      CN.2.1.2. Observar e identificar los cambios en el ciclo vital
-                      de diferentes animales (insectos, peces, anfibios, reptiles, aves y mamíferos) y
-                      compararlos con los cambios en el ciclo vital del ser humano.</p><br>
-
-                    <p><input type="checkbox" name="transporte" value="1">
-                      CN.2.1.2. Observar e identificar los cambios en el ciclo vital
-                      de diferentes animales (insectos, peces, anfibios, reptiles, aves y mamíferos) y
-                      compararlos con los cambios en el ciclo vital del ser humano.</p><br>
-
-                    <p><input type="checkbox" name="transporte" value="1">
-                      CN.2.1.2. Observar e identificar los cambios en el ciclo vital
-                      de diferentes animales (insectos, peces, anfibios, reptiles, aves y mamíferos) y
-                      compararlos con los cambios en el ciclo vital del ser humano.</p><br>
-
-                    <p><input type="checkbox" name="transporte" value="1">
-                      CN.2.1.2. Observar e identificar los cambios en el ciclo vital
-                      de diferentes animales (insectos, peces, anfibios, reptiles, aves y mamíferos) y
-                      compararlos con los cambios en el ciclo vital del ser humano.</p><br>
-
-                  </div>
-
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary">Añadir</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-            <br>O.CN.2.1. Explorar y comprender los ciclos de vida y las características esenciales de las plantas y los
-            animales,
-            para establecer semejanzas y diferencias; clasificarlos en angiospermas o gimnospermas, vertebrados o
-            invertebrados,
-            respectivamente, y relacionarlos con su hábitat.
-          </div>
+        <div class="mb-3 col-12 col-md-4 col-lg-4">
+          <label for="tiempo" class="form-label fw-bold">Tiempo:</label>
+          <input [(ngModel)]="tiempo" disabled type="text" class="form-control form-control-sm mb-2" id="tiempo"
+            name="tiempo" placeholder="Ingrese tiempo">
         </div>
       </form>
     </div>
-    <div class="col-10 text-end mt-3 py-3">
-      <a href="/dashboard/estudiante/institucion/fecha-elaboracion/docentes-imp/historial-personal"><button
-          class="btn btn-danger">Anterior</button></a>
-      <a href="/dashboard/estudiante/institucion/fecha-elaboracion/docentes-imp/historial-personal/inf-contexto"><button
-          class="btn btn-danger ms-3">siguiente</button></a>
+
+    <hr>
+
+    <div class="col-10 mx-auto flex-grow-1">
+
+      <div class="row">
+        <h2 class="fw-bold">Asignaturas seleccionadas</h2>
+        <div class="col-12">
+          <div class="badge bg-primary p-2 me-2 mb-2 rounded-pill"
+            *ngFor="let asignatura of registerDocumentCurricular.asignaturaListSelected">
+            <h5 class="m-0">{{asignatura.nameCourse}}</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <h2 class="fw-bold">Competencia curricular</h2>
+        <div class="mb-4 col-6">
+          <div class="form-floating">
+            <textarea [(ngModel)]="toDo" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+              style="height: 120px">
+          </textarea>
+            <label for="floatingTextarea2">¿Qué puede hacer?</label>
+          </div>
+        </div>
+        <div class="mb-4 col-6">
+          <div class="form-floating">
+            <textarea [(ngModel)]="howToDo" class="form-control" placeholder="Leave a comment here"
+              id="floatingTextarea2" style="height: 120px">
+          </textarea>
+            <label for="floatingTextarea2">¿Cómo lo hace?</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <h2 class="fw-bold">Propuesta curricular adaptada</h2>
+        <div class="col-12" *ngFor="let asignatura of registerDocumentCurricular.asignaturaListSelected">
+          <p>
+            <a class="btn btn-secondary mb-4 col-12" data-bs-toggle="collapse"
+              [href]="renameForId(asignatura.nameCourse)" role="button" aria-expanded="false" aria-controls="collapse">
+              {{asignatura.nameCourse}}
+            </a>
+          </p>
+          <!--Collapse-->
+          <div class="collapse " [id]="renameForIdCollapse(asignatura.nameCourse)">
+            <div class="card card-body">
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalObjectives"
+                data-bs-whatever="@mdo" (click)="openObjectives(asignatura)">
+                + Añadir Objetivo
+              </button>
+              <br>
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDestrezas"
+                data-bs-whatever="@fat" (click)="openDestrezas(asignatura)">
+                + Añadir Destreza
+              </button>
+            </div>
+
+            <br>
+
+            <p>
+              O.CN.2.1. Explorar y comprender los ciclos de vida y las características esenciales de las plantas y los
+              animales,
+              para establecer semejanzas y diferencias; clasificarlos en angiospermas o gimnospermas, vertebrados o
+              invertebrados,
+              respectivamente, y relacionarlos con su hábitat.
+            </p>
+
+          </div>
+          <!--end collapse-->
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-12 text-end my-3 py-3">
+      <button class="btn btn-danger">Cancelar</button>
+      <button class="btn btn-danger ms-3" (click)="nextPage()">siguiente</button>
     </div>
 
   </div>
 </div>
+
+
+<!--Modal de objetivos-->
+<div class="modal fade" id="modalObjectives" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">Objetivos</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body p-0">
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center"
+            *ngFor="let objetivo of ObjetivosActuales">
+            <div class="ms-2 me-auto form-check">
+              <input class="form-check-input" [id]="objetivo.id" type="checkbox"
+                (input)="fillArrayObjetivos($event,objetivo)" [checked]="marcarCheckboxObjetivos(objetivo.id)">
+              <label class="form-check-label" [for]="objetivo.id">
+                {{objetivo.nameObjective}}
+              </label>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Añadir</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end modal-->
+
+
+<!--Modal de destrezas-->
+<div class="modal fade" id="modalDestrezas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Destrezas</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body p-0">
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center"
+            *ngFor="let destreza of destrezasActuales">
+            <div class="ms-2 me-auto form-check">
+              <input class="form-check-input" [id]="destreza.id" type="checkbox"
+                (input)="fillArrayDestrezas($event,destreza)" [checked]="marcarCheckboxDestrezas(destreza.id)">
+              <label class="form-check-label" [for]="destreza.id">
+                {{destreza.nameDestreza}}
+              </label>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Añadir</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end modal-->

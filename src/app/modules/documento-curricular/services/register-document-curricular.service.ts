@@ -20,6 +20,7 @@ export class RegisterDocumentCurricularService {
   profesionalesSeleccionados: string[] = []
 
   docenteListSelected: Teacher[] = []
+  asignaturaListSelected: Course[] = []
 
   docCurricularForm: FormGroup = this.fb.group({
     idStudent: [''],
@@ -35,10 +36,17 @@ export class RegisterDocumentCurricularService {
     contextFamily: ['', Validators.required],
     contextSocial: ['', Validators.required],
     educationalNeed: ['', Validators.required],
-    //punto 14: ['', Validators.required],
+    //punto 14
+    grade: ['', Validators.required],
+    ente: ['', Validators.required],
+    toDo: ['', Validators.required],
+    howToDo: ['', Validators.required],
+    //punto 15
     metodology: ['', Validators.required],
+    //punto16
     resources: ['', Validators.required],
-    //punto 17: ['', Validators.required],
+    //falta el punto 17
+    //punto 18
     resultFinal: ['', Validators.required]
   })
 
