@@ -2,6 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EstudianteService } from '../../service/estudiante.service';
 import { RegistroStudent, StudentBodyCreate } from '../../interfaces/registro-student.interface';
+///importaciones del pdf --------------------------
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts'
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+//-----
+import jsPDF from 'jspdf';
+
+import html2canvas from 'html2canvas';
+//-----------------------------------------------
 
 import Swal from 'sweetalert2';
 
@@ -173,10 +182,41 @@ export class StudentListComponent implements OnInit {
       })
   }
 
+  eliminarEstudiante(id: number) {
+    Swal.fire({
+      title: '¿Estas seguro de eliminar el estudiante?',
+      text: "El estudiante será eliminado permanentemente!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Eliminar estudiante!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        this.estudianteService.eliminarEstudiante(id)
+          .subscribe({
+            next: () => { },
+            error: () => {
+              Swal.fire('Ups! Hubo un error al eliminar el estudiante', '', 'error')
+            },
+            complete: () => {
+              Swal.fire('Estudiante Eliminado', '', 'success')
+              this.estudianteService.getStudent()
+                .subscribe(estudiantes => this.estudianteList = estudiantes.students)
+            }
+          })
+      }
+    })
+  }
 
   showMenu() {
     const listMenu = document.querySelector('.list-group-plus')
     listMenu?.classList.toggle('show')
   }
+
+
+
+
 
 }

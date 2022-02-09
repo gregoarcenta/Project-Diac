@@ -12,7 +12,7 @@
       </div>
     </section>
 
-    <div class="col-12 mt-4">
+<!--cambio-->    <div class="col-12 mt-4"  id="myData" #myData>
       <table class="table table-striped table-hover">
         <thead>
           <tr>
@@ -42,9 +42,11 @@
                 (click)="openModalUpdate(estudiante)">
                 <i class="bi bi-pencil-square"></i>
               </button>
-              <button class="btn btn-danger" style="margin-left: 10px;">
-                <i class="bi bi-eye-fill"></i>
+              <button class="btn btn-danger" style="margin-left: 10px;" (click)="eliminarEstudiante(estudiante.id)">
+                <i class="bi bi-trash-fill"></i>
               </button>
+              
+              
             </td>
 
           </tr>
@@ -67,7 +69,7 @@
         <h3 class="modal-title" id="modalUpdate">Actualización del estudiante</h3>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body"  >
         <form class="p-1" [formGroup]="estudianteForm" autocomplete="off">
           <div class="row">
             <div class="mb-3 col-12 col-md-6">
@@ -227,9 +229,12 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeModal">Close</button>
         <button type="button" class="btn btn-primary" (click)="updateEstudianteConfirm()">Guardar Cambios</button>
+      
+
       </div>
     </div>
   </div>
+  
 </div>
 
 <!-- Button circle-->
