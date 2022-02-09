@@ -45,4 +45,15 @@ export class EstudianteService {
 
   }
 
+  eliminarEstudiante(id: number): Observable<RegistroStudent>{
+    const token: string = localStorage.getItem('token') || ''
+    const baseURL = environment.baseURL
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('authorization', `bearer ${token}`)
+
+    return this.http.delete<RegistroStudent>(`${baseURL}/student/${id}`, { headers })
+  }
+
+
 }

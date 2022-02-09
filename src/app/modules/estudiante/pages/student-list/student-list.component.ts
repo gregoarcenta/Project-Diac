@@ -2,6 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EstudianteService } from '../../service/estudiante.service';
 import { RegistroStudent, StudentBodyCreate } from '../../interfaces/registro-student.interface';
+///importaciones del pdf --------------------------
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts'
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+//-----
+import jsPDF from 'jspdf';
+
+import html2canvas from 'html2canvas';
+//-----------------------------------------------
 
 import Swal from 'sweetalert2';
 
@@ -173,10 +182,71 @@ export class StudentListComponent implements OnInit {
       })
   }
 
+  eliminarEstudiante(id:number){
+    Swal.fire({
+      title: '¿Realmente quieres eliminar el registro?',
+      text: "El registro sera eliminado permanentemente!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Eliminar registro!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire('Estudiante Eliminado', '', 'success')
+          document.getElementById('closeModal')?.click()
+          
+        this.estudianteService.eliminarEstudiante(id).subscribe(()=>{
+          this.estudianteService.getStudent()
+        }, error => {
+          console.log(error)
+        })
+      }
+    })
+  }
 
   showMenu() {
     const listMenu = document.querySelector('.list-group-plus')
     listMenu?.classList.toggle('show')
   }
+
+
+  ///cracion del pdf-------------- 
+   createPdf(){
+    const DATA = document.getElementById('myData');
+    const doc = new jsPDF('p', 'pt', 'a4');
+    const options = {
+      background: 'white',
+      scale: 3
+    };
+    html2canvas(DATA, options).then((canvas) => {
+
+      const img = canvas.toDataURL('image/PNG');
+
+      // Add image Canvas to PDF
+      const bufferX = 15;
+      const bufferY = 15;
+      const imgProps = (doc as any).getImageProperties(img);
+      const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
+      return doc;
+    }).then((docResult) => {
+      docResult.save(`${new Date().toISOString()}_tutorial.pdf`);
+    });
+  
+
+
+    //const pdfDefinition: any = {
+      //contenet:[
+        //{
+          //text: ''
+        //}
+      //]
+    //}
+    //const pdf = pdfMake.createPdf(pdfDefinition);
+    //pdf.open();
+  } 
+ 
 
 }
