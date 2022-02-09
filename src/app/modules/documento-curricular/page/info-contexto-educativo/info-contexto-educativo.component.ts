@@ -20,7 +20,7 @@ export class InfoContextoEducativoComponent implements OnInit {
     this.valueContextoEducativo = this.registerDocumentCurricular.docCurricularForm.value.contextEducation
   }
 
-  fillInfoPedagogico() {
+  fillInfoContextoEducativo() {
     this.registerDocumentCurricular.docCurricularForm.controls['contextEducation'].setValue(this.valueContextoEducativo)
   }
 

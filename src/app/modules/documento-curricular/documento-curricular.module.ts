@@ -14,8 +14,14 @@ import { HistorialPersonalComponent } from './page/historial-personal/historial-
 import { InfoContextoEducativoComponent } from './page/info-contexto-educativo/info-contexto-educativo.component';
 import { InfoContextoFamiliarComponent } from './page/info-contexto-familiar/info-contexto-familiar.component';
 import { InfoContextoSocialComponent } from './page/info-contexto-social/info-contexto-social.component';
-
-
+import { NecesidadesEducativasComponent } from './page/necesidades-educativas/necesidades-educativas.component';
+import { RecursosTecnicosComponent } from './page/recursos-tecnicos/recursos-tecnicos.component';
+import { ProfesionalesEspecializadosComponent } from './page/profesionales-especializados/profesionales-especializados.component';
+import { MetodologiaComponent } from './page/metodologia/metodologia.component';
+import { RecursosComponent } from './page/recursos/recursos.component';
+import { ResultadosFinalesComponent } from './page/resultados-finales/resultados-finales.component';
+import { CriteriosEvaluacionComponent } from './page/criterios-evaluacion/criterios-evaluacion.component';
+import { AdaptacionComponent } from './page/adaptacion/adaptacion.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +35,15 @@ import { InfoContextoSocialComponent } from './page/info-contexto-social/info-co
     HistorialPersonalComponent,
     InfoContextoEducativoComponent,
     InfoContextoFamiliarComponent,
-    InfoContextoSocialComponent
+    InfoContextoSocialComponent,
+    NecesidadesEducativasComponent,
+    RecursosTecnicosComponent,
+    ProfesionalesEspecializadosComponent,
+    AdaptacionComponent,
+    MetodologiaComponent,
+    RecursosComponent,
+    CriteriosEvaluacionComponent,
+    ResultadosFinalesComponent,
   ],
   imports: [
     CommonModule,

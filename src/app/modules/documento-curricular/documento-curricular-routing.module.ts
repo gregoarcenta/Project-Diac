@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdapCurriculoComponent } from './page/adap-curriculo/adap-curriculo.component';
 import { AdaptacionComponent } from './page/adaptacion/adaptacion.component';
+import { CriteriosEvaluacionComponent } from './page/criterios-evaluacion/criterios-evaluacion.component';
 import { DocentesImpComponent } from './page/docentes-imp/docentes-imp.component';
 import { EstudianteLayoutComponent } from './page/estudiante-layout/estudiante-layout.component';
 
@@ -15,6 +15,11 @@ import { InfoPedagogicoComponent } from './page/info-pedagogico/info-pedagogico.
 import { InstitucionComponent } from './page/institucion/institucion.component';
 import { MateriasAdapCurricularComponent } from './page/materias-adap-curricular/materias-adap-curricular.component';
 import { MetodologiaComponent } from './page/metodologia/metodologia.component';
+import { NecesidadesEducativasComponent } from './page/necesidades-educativas/necesidades-educativas.component';
+import { ProfesionalesEspecializadosComponent } from './page/profesionales-especializados/profesionales-especializados.component';
+import { RecursosTecnicosComponent } from './page/recursos-tecnicos/recursos-tecnicos.component';
+import { RecursosComponent } from './page/recursos/recursos.component';
+import { ResultadosFinalesComponent } from './page/resultados-finales/resultados-finales.component';
 
 const routes: Routes = [
   {
@@ -61,20 +66,39 @@ const routes: Routes = [
         path: 'informacion-contexto-social',
         component: InfoContextoSocialComponent
       },
-
       {
-        path: 'adap-curriculo',
-        component: AdapCurriculoComponent
+        path: 'necesidades-educativas',
+        component: NecesidadesEducativasComponent
+      },
+      {
+        path: 'recursos-tecnicos',
+        component: RecursosTecnicosComponent
+      },
+      {
+        path: 'profesionales-especializados',
+        component: ProfesionalesEspecializadosComponent
       },
 
       {
-        path: 'adaptacion',
+        path: 'adaptacion-curricular',
         component: AdaptacionComponent
       },
 
       {
         path: 'metodologia',
         component: MetodologiaComponent
+      },
+      {
+        path: 'recursos',
+        component: RecursosComponent
+      },
+      {
+        path: 'criterios-evaluacion',
+        component: CriteriosEvaluacionComponent
+      },
+      {
+        path: 'resultados-finales',
+        component: ResultadosFinalesComponent
       }
 
     ]

@@ -2,11 +2,11 @@
   <div class="row px-4 flex-column h-100">
 
     <div class="col-10 mt-2">
-      <div *ngFor="let asignatura of asignaturas" class="form-check">
-        <input class="form-check-input" [id]="asignatura.id" type="checkbox" value=""
-          [checked]="marcarCheckbox(asignatura.id)" [id]="asignatura.id" (input)="fillArrayCourses($event)">
-        <label class="form-check-label" [for]="asignatura.id">
-          {{asignatura.nameCourse}}
+      <div class="form-check" *ngFor="let profesional of profesionales">
+        <input class="form-check-input" [id]="profesional" type="checkbox" value=""
+          [checked]="marcarCheckbox(profesional)" (input)="fillArrayResources($event, profesional)">
+        <label class="form-check-label" [for]="profesional">
+          {{profesional}}
         </label>
       </div>
     </div>

@@ -20,7 +20,7 @@ export class InfoContextoFamiliarComponent implements OnInit {
     this.valueContextoFamiliar = this.registerDocumentCurricular.docCurricularForm.value.contextFamily
   }
 
-  fillInfoPedagogico() {
+  fillInfoContextoFamiliar() {
     this.registerDocumentCurricular.docCurricularForm.controls['contextFamily'].setValue(this.valueContextoFamiliar)
   }
 

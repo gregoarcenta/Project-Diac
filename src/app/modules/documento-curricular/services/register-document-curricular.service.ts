@@ -12,8 +12,12 @@ export class RegisterDocumentCurricularService {
 
   estudianteSeleccionado?: RegistroStudent
   institucionSeleccionada?: Institution
+
+  //Variables para cuerpo de la peticion POST al documento curricular
   asignaturasSeleccionadas: number[] = []
   docentesSeleccionados: number[] = []
+  recursosSeleccionados: string[] = []
+  profesionalesSeleccionados: string[] = []
 
   docenteListSelected: Teacher[] = []
 
@@ -30,6 +34,12 @@ export class RegisterDocumentCurricularService {
     contextEducation: ['', Validators.required],
     contextFamily: ['', Validators.required],
     contextSocial: ['', Validators.required],
+    educationalNeed: ['', Validators.required],
+    //punto 14: ['', Validators.required],
+    metodology: ['', Validators.required],
+    resources: ['', Validators.required],
+    //punto 17: ['', Validators.required],
+    resultFinal: ['', Validators.required]
   })
 
   constructor(private fb: FormBuilder) { }
@@ -72,6 +82,38 @@ export class RegisterDocumentCurricularService {
 
   validateContextSocial() {
     return this.docCurricularForm.value.contextSocial !== ''
+  }
+
+  validateNecesidadEducativa() {
+    return this.docCurricularForm.value.educationalNeed !== ''
+  }
+
+  validateResourcesTegnologies() {
+    return this.recursosSeleccionados.length > 0
+  }
+
+  validateProfessional() {
+    return this.profesionalesSeleccionados.length > 0
+  }
+
+  validatePunto14() {
+    return this.profesionalesSeleccionados.length > 0
+  }
+
+  validateMetodology() {
+    return this.docCurricularForm.value.metodology !== ''
+  }
+
+  validateResource() {
+    return this.docCurricularForm.value.resources !== ''
+  }
+
+  validatePunto17() {
+    return this.profesionalesSeleccionados.length > 0
+  }
+
+  validateResultFinal() {
+    return this.docCurricularForm.value.resultFinal !== ''
   }
 
 }

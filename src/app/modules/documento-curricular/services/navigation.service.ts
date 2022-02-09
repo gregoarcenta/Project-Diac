@@ -74,25 +74,25 @@ export class NavigationService {
     {
       id: 11,
       description: 'IDENTIFICACION DE LAS NECESIDADES EDUCATIVAS QUE MOTIVEN LA REALIZACION DE LA ADAPTACION CURRICULAR',
-      link: 'adap-curriculo',
+      link: 'necesidades-educativas',
       activated: false
     },
     {
       id: 12,
       description: 'ADAPTACIONES DE ACCESO AL CURRICULUM',
-      link: 'adap-curriculo',
+      link: 'recursos-tecnicos',
       activated: false
     },
     {
       id: 13,
       description: 'INTERVENCION DE PROFESIONALES ESPECIALIZADOS SEAN INTERNOS O EXTERNOS',
-      link: 'adap-curriculo',
+      link: 'profesionales-especializados',
       activated: false
     },
     {
       id: 14,
       description: 'ADAPTACION CURRICULAR',
-      link: 'adaptacion',
+      link: 'adaptacion-curricular',
       activated: false
     },
     {
@@ -104,25 +104,19 @@ export class NavigationService {
     {
       id: 16,
       description: 'RECURSOS',
-      link: 'metodologia',
+      link: 'recursos',
       activated: false
     },
     {
       id: 17,
       description: 'CRITERIOS DE EVALUACION',
-      link: 'metodologia',
+      link: 'criterios-evaluacion',
       activated: false
     },
     {
       id: 18,
       description: 'RESULTADOS FINALES',
-      link: 'metodologia',
-      activated: false
-    },
-    {
-      id: 19,
-      description: 'FIRMAS DE REPONSABILIDAD',
-      link: 'metodologia',
+      link: 'resultados-finales',
       activated: false
     }
   ]
@@ -178,7 +172,20 @@ export class NavigationService {
         return true/* this.registerDocumentCurricular.validateContextFamily() */
       case 11:
         return true/* this.registerDocumentCurricular.validateContextSocial() */
-
+      case 12:
+        return true/* this.registerDocumentCurricular.validateNecesidadEducativa() */
+      case 13:
+        return true/* this.registerDocumentCurricular.validateResourcesTegnologies() */
+      case 14:
+        return true/* this.registerDocumentCurricular.validateProfessional() */
+      case 15:
+        return true/* this.registerDocumentCurricular.punto 14 */
+      case 16:
+        return true/* this.registerDocumentCurricular.validateMetodology() */
+      case 17:
+        return true/* this.registerDocumentCurricular.validateResource() */
+      case 18:
+        return true/* this.registerDocumentCurricular.punto 17() */
       default:
         return null
     }
@@ -215,6 +222,27 @@ export class NavigationService {
         break;
       case 11:
         Swal.fire('El campo no puede quedar vacio!', '', 'error')
+        break;
+      case 12:
+        Swal.fire('El campo no puede quedar vacio!', '', 'error')
+        break;
+      case 13:
+        Swal.fire('Tiene que seleccionar al menos 1 recurso para el registro del documento!', '', 'error')
+        break;
+      case 14:
+        Swal.fire('Tiene que seleccionar al menos 1 profesional para el registro del documento!', '', 'error')
+        break;
+      case 15:
+        Swal.fire('punto 14', '', 'error')
+        break;
+      case 16:
+        Swal.fire('El campo de metodología no puede quedar vacio!', '', 'error')
+        break;
+      case 17:
+        Swal.fire('El campo de recursos no puede quedar vacio!', '', 'error')
+        break;
+      case 18:
+        Swal.fire('punto 17', '', 'error')
         break;
       default:
         break;
