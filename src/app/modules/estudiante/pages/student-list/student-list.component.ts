@@ -182,25 +182,30 @@ export class StudentListComponent implements OnInit {
       })
   }
 
-  eliminarEstudiante(id:number){
+  eliminarEstudiante(id: number) {
     Swal.fire({
-      title: '¿Realmente quieres eliminar el registro?',
-      text: "El registro sera eliminado permanentemente!",
+      title: '¿Estas seguro de eliminar el estudiante?',
+      text: "El estudiante será eliminado permanentemente!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Eliminar registro!'
+      confirmButtonText: 'Eliminar estudiante!'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire('Estudiante Eliminado', '', 'success')
-          document.getElementById('closeModal')?.click()
-          
-        this.estudianteService.eliminarEstudiante(id).subscribe(()=>{
-          this.estudianteService.getStudent()
-        }, error => {
-          console.log(error)
-        })
+
+        this.estudianteService.eliminarEstudiante(id)
+          .subscribe({
+            next: () => { },
+            error: () => {
+              Swal.fire('Ups! Hubo un error al eliminar el estudiante', '', 'error')
+            },
+            complete: () => {
+              Swal.fire('Estudiante Eliminado', '', 'success')
+              this.estudianteService.getStudent()
+                .subscribe(estudiantes => this.estudianteList = estudiantes.students)
+            }
+          })
       }
     })
   }
@@ -211,7 +216,7 @@ export class StudentListComponent implements OnInit {
   }
 
 
-  
- 
+
+
 
 }
