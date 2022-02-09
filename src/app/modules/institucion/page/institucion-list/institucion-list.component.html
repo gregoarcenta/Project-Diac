@@ -46,8 +46,8 @@
                 (click)="openModalUpdate(institucion)">
                 <i class="bi bi-pencil-square"></i>
               </button>
-              <button class="btn btn-danger" style="margin-left: 10px;">
-                <i class="bi bi-eye-fill"></i>
+              <button class="btn btn-danger" style="margin-left: 10px;" (click)="eliminarInstitucion(institucion.id)">
+                <i class="bi bi-trash-fill"></i>
               </button>
             </td>
 

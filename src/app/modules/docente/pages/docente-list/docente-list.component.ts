@@ -136,6 +136,34 @@ export class DocenteListComponent implements OnInit {
       })
   }
 
+  eliminarDocente(id: number) {
+    Swal.fire({
+      title: '¿Estas seguro de eliminar el estudiante?',
+      text: "El estudiante será eliminado permanentemente!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Eliminar estudiante!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        this.docenteService.eliminarDocente(id)
+          .subscribe({
+            next: () => { },
+            error: () => {
+              Swal.fire('Ups! Hubo un error al eliminar el estudiante', '', 'error')
+            },
+            complete: () => {
+              Swal.fire('Estudiante Eliminado', '', 'success')
+              this.docenteService.getDocentes()
+                .subscribe(institucion => this.docenteList = institucion.teachers)
+            }
+          })
+      }
+    })
+  }
+
   showMenu() {
     const listMenu = document.querySelector('.list-group-plus')
     listMenu?.classList.toggle('show')

@@ -21,7 +21,8 @@
               <th>Apellidos<i class="fas fa-sort"></i></th>
               <th>Institucion<i class="fas fa-sort"></i></th>
               <th>Tutor legal<i class="fas fa-sort"></i></th>
-              <th>Antecedentes familia<i class="fas fa-sort"></i></th>
+              <th>Curso<i class="fas fa-sort"></i></th>
+              <th>Telefono<i class="fas fa-sort"></i></th>
               <th>Opciones<i class="fas fa-sort"></i></th>
             </tr>
           </thead>
@@ -34,8 +35,8 @@
                 <td>{{documento.Student.lastNameStudent}}</td>
                 <td>{{documento.Institution.nameInstitution}}</td>
                 <td>{{documento.Student.tutor}}</td>
-                <td>{{documento.familyBack}}</td>
-  
+                <td>{{documento.Student.course}}</td>
+                <td>{{documento.Student.phone}}</td>
                 <td>
         
                   <button type="button" class="btn btn-danger" (click)="createPdf()" style="margin-left: 10px;" data-toggle="modal" data-target="#exampleModal" >

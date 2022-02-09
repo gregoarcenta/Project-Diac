@@ -56,4 +56,14 @@ export class DocenteService {
     return this.http.put<TeacherResponseAfterCreate>(`${baseURL}/teacher/${id}`, body, { headers })
   }
 
+  eliminarDocente(id: number): Observable<DocenteList>{
+    const token: string = localStorage.getItem('token') || ''
+    const baseURL = environment.baseURL
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('authorization', `bearer ${token}`)
+
+    return this.http.delete<DocenteList>(`${baseURL}/teacher/${id}`, { headers })
+  }
+
 }
