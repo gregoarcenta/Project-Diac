@@ -17,28 +17,31 @@
           <thead>
             <tr>
               <th>No.<i class="fas fa-sort"></i> </th>
-              <th>Nombres<i class="fas fa-sort"></i></th>
+              <th>Nombre<i class="fas fa-sort"></i></th>
               <th>Apellidos<i class="fas fa-sort"></i></th>
-              <th>Tutor<i class="fas fa-sort"></i></th>
-              <th>Correo<i class="fas fa-sort"></i></th>
+              <th>Institucion<i class="fas fa-sort"></i></th>
+              <th>Tutor legal<i class="fas fa-sort"></i></th>
+              <th>Antecedentes familia<i class="fas fa-sort"></i></th>
               <th>Opciones<i class="fas fa-sort"></i></th>
             </tr>
           </thead>
           <tbody>
           
         
-              <tr *ngFor="let item of items | filter:filterItems |  paginate: {itemsPerPage: 4, currentPage:pageActual} ">
-                <td>{{item.id}}</td>
-                <td>{{item.nombre}}</td>
-                <td>{{item.apellidos}}</td>
-                <td>{{item.tutor}}</td>
-                <td>{{item.curso}}</td>
+              <tr *ngFor="let documento of documentoList | filter:filterItems |  paginate: {itemsPerPage: 4, currentPage:pageActual} ">
+                <td>{{documento.id}}</td>
+                <td>{{documento.Student.nameStudent}}</td>
+                <td>{{documento.Student.lastNameStudent}}</td>
+                <td>{{documento.Institution.nameInstitution}}</td>
+                <td>{{documento.Student.tutor}}</td>
+                <td>{{documento.familyBack}}</td>
   
                 <td>
         
-                  <button class="btn btn-danger" style="margin-left: 10px;">
+                  <button class="btn btn-danger" style="margin-left: 10px;" (click)="createPdf()" >
                     <i class="bi bi-eye-fill"></i>   Visualizar
                   </button>
+                 
                 </td>
               </tr>
           </tbody>
