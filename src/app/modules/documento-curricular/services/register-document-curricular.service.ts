@@ -1,9 +1,13 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Course } from '../../destreza/interfaces/asignatura.interface';
 import { Teacher } from '../../docente/interfaces/docente.interface';
 import { RegistroStudent } from '../../estudiante/interfaces/registro-student.interface';
 import { Institution } from '../../institucion/interfaces/institution.interface';
+import { DocumentBodyCreate } from '../interfaces/Items-estudiante.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -50,7 +54,20 @@ export class RegisterDocumentCurricularService {
     resultFinal: ['', Validators.required]
   })
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private http: HttpClient) { }
+
+  addDocumento(doc: DocumentBodyCreate): Observable<DocumentBodyCreate> {
+    const token: string = localStorage.getItem('token') || ''
+    const baseURL = environment.baseURL
+    const body = doc
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('authorization', `bearer ${token}`)
+
+    return this.http.post<DocumentBodyCreate>(`${baseURL}/doc-curricular`, body, { headers })
+
+  }
+
 
   validateStudent() {
     return this.docCurricularForm.value.idStudent !== ''
@@ -105,7 +122,7 @@ export class RegisterDocumentCurricularService {
   }
 
   validatePunto14() {
-    return this.profesionalesSeleccionados.length > 0
+    return true
   }
 
   validateMetodology() {
@@ -117,7 +134,7 @@ export class RegisterDocumentCurricularService {
   }
 
   validatePunto17() {
-    return this.profesionalesSeleccionados.length > 0
+    return true
   }
 
   validateResultFinal() {

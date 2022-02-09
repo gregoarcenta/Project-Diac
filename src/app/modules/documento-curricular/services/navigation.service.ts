@@ -153,37 +153,37 @@ export class NavigationService {
       case 1:
         return true
       case 2:
-        return true/* this.registerDocumentCurricular.validateStudent() */
+        return this.registerDocumentCurricular.validateStudent()
       case 3:
-        return true/* this.registerDocumentCurricular.validateInstitution() */
+        return this.registerDocumentCurricular.validateInstitution()
       case 4:
-        return true/* this.registerDocumentCurricular.validateElaborationDate() */
+        return this.registerDocumentCurricular.validateElaborationDate()
       case 5:
-        return true/* this.registerDocumentCurricular.validateCoursesSelect() */
+        return this.registerDocumentCurricular.validateCoursesSelect()
       case 6:
-        return true/* this.registerDocumentCurricular.validateDocentesSelect() */
+        return this.registerDocumentCurricular.validateDocentesSelect()
       case 7:
-        return true/* this.registerDocumentCurricular.validateInfoPedagogico() */
+        return this.registerDocumentCurricular.validateInfoPedagogico()
       case 8:
-        return true/* this.registerDocumentCurricular.validateInfoHistoryPersonal() */
+        return this.registerDocumentCurricular.validateInfoHistoryPersonal()
       case 9:
-        return true/* this.registerDocumentCurricular.validateContextEducation() */
+        return this.registerDocumentCurricular.validateContextEducation()
       case 10:
-        return true/* this.registerDocumentCurricular.validateContextFamily() */
+        return this.registerDocumentCurricular.validateContextFamily()
       case 11:
-        return true/* this.registerDocumentCurricular.validateContextSocial() */
+        return this.registerDocumentCurricular.validateContextSocial()
       case 12:
-        return true/* this.registerDocumentCurricular.validateNecesidadEducativa() */
+        return this.registerDocumentCurricular.validateNecesidadEducativa()
       case 13:
-        return true/* this.registerDocumentCurricular.validateResourcesTegnologies() */
+        return this.registerDocumentCurricular.validateResourcesTegnologies()
       case 14:
-        return true/* this.registerDocumentCurricular.validateProfessional() */
+        return this.registerDocumentCurricular.validateProfessional()
       case 15:
         return true/* this.registerDocumentCurricular.punto 14 */
       case 16:
-        return true/* this.registerDocumentCurricular.validateMetodology() */
+        return this.registerDocumentCurricular.validateMetodology()
       case 17:
-        return true/* this.registerDocumentCurricular.validateResource() */
+        return this.registerDocumentCurricular.validateResource()
       case 18:
         return true/* this.registerDocumentCurricular.punto 17() */
       default:
