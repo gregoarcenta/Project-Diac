@@ -1,10 +1,10 @@
-<div class="container-fluid">
+<div class="container">
   <div class="row px-4 flex-column h-100">
 
-    <div class="col-10 mt-2">
+    <div class="col-10 mx-auto mt-3">
 
-      <form class="row align-items-center">
-        <div class="mb-3 col-12 col-md-4 col-lg-5">
+      <form class="row justify-content-center align-items-center">
+        <div class="mb-3 col-12 col-md-8 col-lg-5">
           <label for="nombre" class="form-label">Duración Prevista:</label>
           <input [(ngModel)]="duracion" type="text" class="form-control form-control-sm mb-2" id="nombre" name="nombre"
             placeholder="Ingrese duración prevista" (input)="fillDurationDate()">
@@ -14,7 +14,7 @@
 
     <div class="col-10 mx-auto flex-grow-1"></div>
 
-    <div class="col-10 text-end my-3 py-3">
+    <div class="col-12 text-end my-3 py-3">
       <button class="btn btn-danger">Cancelar</button>
       <button class="btn btn-danger ms-3" (click)="nextPage()">siguiente</button>
     </div>
