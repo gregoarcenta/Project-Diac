@@ -36,12 +36,12 @@ const routes: Routes = [
       {
         path: 'adaptacion-curricular',
         loadChildren: () => import('../documento-curricular/documento-curricular.module').then(m => m.DocumentoCurricularModule)
+      },
+      {
+        path: '**',
+        redirectTo: '/dashboard/estudiante'
       }
     ],
-  },
-  {
-    path: '**',
-    redirectTo: '/dashboard/estudiante'
   }
 ];
 

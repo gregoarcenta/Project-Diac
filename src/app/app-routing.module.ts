@@ -8,11 +8,11 @@ import { LoginComponent } from './modules/login/page/login/login.component';
 
 const routes: Routes = [
 
-  {
-    path: 'dashboard',
-    redirectTo: '/dashboard/estudiante',
-    pathMatch: 'full',
-  },
+  /*   {
+      path: 'dashboard',
+      redirectTo: '/dashboard/estudiante',
+      pathMatch: 'full',
+    }, */
   {
     path: 'login',
     component: LoginComponent,
