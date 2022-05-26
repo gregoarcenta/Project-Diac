@@ -37,15 +37,14 @@ export class MateriasAdapCurricularComponent implements OnInit {
 
   fillArrayCourses(e: any, asignatura: Course) {
     if (e.target.checked) {
-      this.asignaturasSeleccionadas.push(e.target.id)
+      this.asignaturasSeleccionadas.push(asignatura.id)
       this.registerDocumentCurricular.asignaturaListSelected.push(asignatura)
     } else {
-      this.asignaturasSeleccionadas = this.asignaturasSeleccionadas.filter(id => id !== e.target.id)
+      this.asignaturasSeleccionadas = this.asignaturasSeleccionadas.filter(id => id !== asignatura.id)
       this.registerDocumentCurricular.asignaturaListSelected = this.registerDocumentCurricular.asignaturaListSelected.filter(asignatur => asignatur.id !== asignatura.id)
     }
-    const asiganturasArr = new Set(this.asignaturasSeleccionadas);
-    let result = [...asiganturasArr];
-    this.registerDocumentCurricular.asignaturasSeleccionadas = result
+
+    this.registerDocumentCurricular.asignaturasSeleccionadas = this.asignaturasSeleccionadas
   }
 
   marcarCheckbox(idd: number) {

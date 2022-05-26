@@ -3,6 +3,7 @@ export interface ItemPage {
   description: string,
   link: string,
   activated: boolean
+  passed: boolean
 }
 
 export interface DocumentBodyCreate {
