@@ -1,4 +1,4 @@
-import { HttpClient, HttpHandler, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -55,7 +55,7 @@ export class EstudianteService {
 
   }
 
-  eliminarEstudiante(id: number): Observable<RegistroStudent>{
+  eliminarEstudiante(id: number): Observable<RegistroStudent> {
     const token: string = localStorage.getItem('token') || ''
     const baseURL = environment.baseURL
     const headers = new HttpHeaders()

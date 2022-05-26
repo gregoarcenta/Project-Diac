@@ -15,109 +15,127 @@ export class NavigationService {
       id: 1,
       description: 'DATOS DE IDENTIFICACIÓN DEL ESTUDIANTE',
       link: 'estudiante',
-      activated: true
+      activated: true,
+      passed: false
     },
     {
       id: 2,
       description: 'DATOS DE IDENTIFICACIÓN DEL LA INTITUCION EDUCATIVA',
       link: 'institucion',
-      activated: false
+      activated: false,
+      passed: false
     },
     {
       id: 3,
       description: 'FECHA DE ELABORACION Y DURACION PREVISTA',
       link: 'fecha-elaboracion',
-      activated: false
+      activated: false,
+      passed: false
     },
     {
       id: 4,
       description: 'AREAS/MATERIAS OBJETO DE ADAPTACION CURRICULAR',
       link: 'materias-adaptacion-curricular',
-      activated: false
+      activated: false,
+      passed: false
     },
     {
       id: 5,
       description: 'PROFESIONALES IMPLICADOS EN LA REALIZACION DEL DOCUMENTO DE ADAPTACION CURRICULAR',
       link: 'docentes-imp',
-      activated: false
+      activated: false,
+      passed: false
     },
     {
       id: 6,
       description: 'SINTESIS DE LA INFORMACION CONTENIDA EN EL INFORME PSICOPEDAGOGICO',
       link: 'informe-psicopedagogico',
-      activated: false
+      activated: false,
+      passed: false
     },
     {
       id: 7,
       description: 'DATOS Y ASPECTOS RELEVANTES DE LA HISTORIA PERSONAL DEL ESTUDIANTE',
       link: 'historial-personal',
-      activated: false
+      activated: false,
+      passed: false
     },
     {
       id: 8,
       description: 'DATOS Y ASPECTOS IPORTANTES DEL CONTEXTO EDUCATIVO',
       link: 'informacion-contexto-educativo',
-      activated: false
+      activated: false,
+      passed: false
     },
     {
       id: 9,
       description: 'DATOS Y ASPECTOS IPORTANTES DEL CONTEXTO FAMILIAR',
       link: 'informacion-contexto-familiar',
-      activated: false
+      activated: false,
+      passed: false
     },
     {
       id: 10,
       description: 'DATOS Y ASPECTOS IPORTANTES DEL CONTEXTO SOCIAL',
       link: 'informacion-contexto-social',
-      activated: false
+      activated: false,
+      passed: false
     },
     {
       id: 11,
       description: 'IDENTIFICACION DE LAS NECESIDADES EDUCATIVAS QUE MOTIVEN LA REALIZACION DE LA ADAPTACION CURRICULAR',
       link: 'necesidades-educativas',
-      activated: false
+      activated: false,
+      passed: false
     },
     {
       id: 12,
       description: 'ADAPTACIONES DE ACCESO AL CURRICULUM',
       link: 'recursos-tecnicos',
-      activated: false
+      activated: false,
+      passed: false
     },
     {
       id: 13,
       description: 'INTERVENCION DE PROFESIONALES ESPECIALIZADOS SEAN INTERNOS O EXTERNOS',
       link: 'profesionales-especializados',
-      activated: false
+      activated: false,
+      passed: false
     },
     {
       id: 14,
       description: 'ADAPTACION CURRICULAR',
       link: 'adaptacion-curricular',
-      activated: false
+      activated: false,
+      passed: false
     },
     {
       id: 15,
       description: 'METODOLOGIA',
       link: 'metodologia',
-      activated: false
+      activated: false,
+      passed: false
     },
     {
       id: 16,
       description: 'RECURSOS',
       link: 'recursos',
-      activated: false
+      activated: false,
+      passed: false
     },
     {
       id: 17,
       description: 'CRITERIOS DE EVALUACION',
       link: 'criterios-evaluacion',
-      activated: false
+      activated: false,
+      passed: false
     },
     {
       id: 18,
       description: 'RESULTADOS FINALES',
       link: 'resultados-finales',
-      activated: false
+      activated: false,
+      passed: false
     }
   ]
 
@@ -134,6 +152,7 @@ export class NavigationService {
       this.items = itemsCopy.map(item => {
         if (item.activated) item.activated = false
         if (item.id === idItem) item.activated = true
+        if (item.id - 1 === idItem) item.passed = true
         return item
       })
       this.nextPage(idItem)

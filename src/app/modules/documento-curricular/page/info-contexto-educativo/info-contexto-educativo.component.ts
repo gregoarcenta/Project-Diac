@@ -21,7 +21,7 @@ export class InfoContextoEducativoComponent implements OnInit {
   }
 
   fillInfoContextoEducativo() {
-    this.registerDocumentCurricular.docCurricularForm.controls['contextEducation'].setValue(this.valueContextoEducativo)
+    this.registerDocumentCurricular.docCurricularForm.controls['contextEducation'].setValue(this.valueContextoEducativo.trim())
   }
 
   nextPage() {
