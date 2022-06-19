@@ -13,20 +13,23 @@ export interface Teacher {
 }
 
 export interface TeacherBodyCreate {
-  nameTeacher: string,
-  lastNameTeacher: string,
-  edad: number,
-  email: string,
-  courseId: number
+  nameTeacher: string;
+  lastNameTeacher: string;
+  edad: number;
+  email: string;
+  courseId: number;
+  username?: string;
+  password?: string;
+  idRole?: number;
 }
 
 export interface TeacherResponseAfterCreate {
-  id: number,
-  nameTeacher: string,
-  lastNameTeacher: string,
-  edad: number,
-  email: string,
-  courseId: number
+  id: number;
+  nameTeacher: string;
+  lastNameTeacher: string;
+  edad: number;
+  email: string;
+  courseId: number;
 }
 
 export interface Course {

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseURL: 'https://project-diac-uleam.herokuapp.com'
+  baseURL: "http://localhost:3000",
 };
 
 /*
