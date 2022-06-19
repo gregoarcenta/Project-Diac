@@ -129,6 +129,7 @@ export class AgregarDocenteComponent implements OnInit {
       next: (resp) => {},
       error: (err) => {
         Swal.fire(err.error.message, "", "error");
+        console.log("prueba con git");
       },
       complete: () => {
         Swal.fire("Docente Guardado", "", "success");
