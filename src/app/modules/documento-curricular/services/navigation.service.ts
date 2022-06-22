@@ -204,7 +204,8 @@ export class NavigationService {
       case 17:
         return this.registerDocumentCurricular.validateResource()
       case 18:
-        return true/* this.registerDocumentCurricular.punto 17() */
+        //validacion del punto 17
+        return this.registerDocumentCurricular.validateCriterios()
       default:
         return null
     }
@@ -261,7 +262,8 @@ export class NavigationService {
         Swal.fire('El campo de recursos no puede quedar vacio!', '', 'error')
         break;
       case 18:
-        Swal.fire('punto 17', '', 'error')
+      //mensaje de  error del punto 17
+        Swal.fire('El campo de criterios no puede quedar vacio!', '', 'error')
         break;
       default:
         break;

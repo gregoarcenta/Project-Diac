@@ -9,16 +9,25 @@ import { RegisterDocumentCurricularService } from '../../services/register-docum
 })
 export class CriteriosEvaluacionComponent implements OnInit {
 
+   primerQuimestre: String = '' 
+   reajustes: String=''
+   segundoQuimestre: String=''
+
   constructor(
     private navigationService: NavigationService,
-    private registerDocumentCurricular: RegisterDocumentCurricularService,
-  ) { }
+    private registerDocumentCurricular: RegisterDocumentCurricularService
+  ) {}
 
   ngOnInit(): void {
+    this.primerQuimestre = this.registerDocumentCurricular.docCurricularForm.value.criterios
+    
+  }
+
+  fillResources() {
+    this.registerDocumentCurricular.docCurricularForm.controls['criterios'].setValue(this.primerQuimestre)
   }
 
   nextPage() {
-    this.navigationService.toggleItemActivated(18)
+    this.navigationService.toggleItemActivated(18);
   }
-
 }

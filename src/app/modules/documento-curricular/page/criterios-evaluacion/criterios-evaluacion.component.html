@@ -1,22 +1,50 @@
 <div class="container">
-  <div class="row px-4 flex-column h-100">
+  <div class="row px-4 flex-column justify-content-center h-100">
+    <div class="col-10 mx-auto my-3"></div>
 
-    <div class="col-10 mt-2 mx-auto">
-
-      <h2>Criterios de evaluación</h2>
-
+    <div class="col-10 mx-auto justify-content-center flex-grow-1">
+      <div class="form-floating">
+        <textarea
+          [(ngModel)]="primerQuimestre"
+          class="form-control"
+          placeholder="Leave a comment here"
+          id="floatingTextarea1"
+          style="height: 100px"
+          (input)="fillResources()"
+        ></textarea>
+        <label for="floatingTextare1">Primer Quimestre...</label>
+      </div>
     </div>
 
-    <hr>
+    <div class="col-10 mx-auto justify-content-center flex-grow-1">
+      <div class="form-floating">
+        <textarea
+          class="form-control"
+          placeholder="Leave a comment here"
+          id="floatingTextarea2"
+          style="height: 100px"
+        ></textarea>
+        <label for="floatingTextarea2">Reajustes...</label>
+      </div>
+    </div>
 
-    <div class="col-10 mx-auto flex-grow-1">
-
+    <div class="col-10 mx-auto justify-content-center flex-grow-1">
+      <div class="form-floating">
+        <textarea
+          class="form-control"
+          placeholder="Leave a comment here"
+          id="floatingTextarea3"
+          style="height: 100px"
+        ></textarea>
+        <label for="floatingTextarea3">Segundo Quimestre...</label>
+      </div>
     </div>
 
     <div class="col-12 text-end my-3 py-3">
       <button class="btn btn-danger">Cancelar</button>
-      <button class="btn btn-danger ms-3" (click)="nextPage()">siguiente</button>
+      <button class="btn btn-danger ms-3" (click)="nextPage()">
+        siguiente
+      </button>
     </div>
-
   </div>
 </div>

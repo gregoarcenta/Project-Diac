@@ -50,6 +50,7 @@ export class RegisterDocumentCurricularService {
     //punto16
     resources: ['', Validators.required],
     //falta el punto 17
+    criterios: ['', Validators.required],
     //punto 18
     resultFinal: ['', Validators.required]
   })
@@ -132,9 +133,10 @@ export class RegisterDocumentCurricularService {
   validateResource() {
     return this.docCurricularForm.value.resources !== ''
   }
-
-  validatePunto17() {
-    return true
+ 
+  //validacion del punto 17
+  validateCriterios() {
+    return this.docCurricularForm.value.criterios !== ''
   }
 
   validateResultFinal() {
