@@ -145,7 +145,7 @@
               >
               <input
                 formControlName="fechaNacimiento"
-                type="text"
+                type="date"
                 class="form-control mb-2"
                 id="fechaNacim"
                 name="fechaNacim"
@@ -226,32 +226,7 @@
                 {{(validCampo('domicilio').messagge)}}
               </span>
             </div>
-            <div class="mb-4 col-3">
-              <label for="estudiante" class="form-label center"
-                ><b>Ciudad:</b></label
-              >
-              <select
-                formControlName="ciudad"
-                type="text"
-                class="form-select"
-                id="ciudad"
-                aria-describedby="textHelp"
-                name="ciudad"
-                required
-              >
-                <option value="0" selected>Seleccionar ciudad</option>
-                <option value="manta">Manta</option>
-                <option value="guayaquil">Guayaquil</option>
-                <option value="quito">Quito</option>
-                <option value="otra">Otra..</option>
-              </select>
-              <span
-                *ngIf="!(validSelect('ciudad').valid)"
-                class="text-danger d-block mt-2"
-              >
-                {{(validSelect('ciudad').messagge)}}
-              </span>
-            </div>
+          
             <div class="mb-4 col-3">
               <label for="estudiante" class="form-label center"
                 ><b>Provincia:</b></label
@@ -269,13 +244,78 @@
                 <option value="manabi">Manabí</option>
                 <option value="guayas">Guayas</option>
                 <option value="los rios">Los Rios</option>
-                <option value="otra">Otra..</option>
+                <option value="santa_elena">Santa Elena</option>
+                <option value="guayas">Guayas</option>
+                <option value="oro">El Oro</option>
+                <option value="santo_domingo">Santo Domingo de los Tsáchilas</option>
+                <option value="carchi">Carchi</option>
+                <option value="imbabura">Imbabura</option>
+                <option value="pichincha">Pichincha</option>
+                <option value="cotopaxi">Cotopaxi</option>
+                <option value="bolivar">Bolívar</option>
+                <option value="chimborazo">Chimborazo</option>
+                <option value="tumguragua">Tungurahua</option>
+                <option value="cañar">Cañar</option>
+                <option value="azuay">Azuay</option>
+                <option value="lojaa">Loja</option>
+                <option value="zamora">Zamora Chinchipe</option>
+                <option value="morona">Morona Santiago</option>
+                <option value="pastaza">Pastaza</option>
+                <option value="orellana">Orellana</option>
+                <option value="sucumbios">Sucumbíos</option>
+                <option value="napoo">Napo</option>
               </select>
               <span
                 *ngIf="!(validSelect('Provincia').valid)"
                 class="text-danger d-block mt-2"
               >
                 {{(validSelect('Provincia').messagge)}}
+              </span>
+            </div>
+            <div class="mb-4 col-3">
+              <label for="estudiante" class="form-label center"
+                ><b>Ciudad:</b></label
+              >
+              <select
+                formControlName="ciudad"
+                type="text"
+                class="form-select"
+                id="ciudad"
+                aria-describedby="textHelp"
+                name="ciudad"
+                required
+              >
+                <option value="0" selected>Seleccionar ciudad</option>
+                <option value="Manta">Manta</option>
+                <option value="Guayaquil">Guayaquil</option>
+                <option value="portoviejo">Quito</option>
+                <option value="jaramijo">Jaramijo</option>
+                <option value="cuenca">Cuenca</option>
+                <option value="ambato">Ambato</option>
+                <option value="machala">Machala</option>
+                <option value="loja">Loja</option>
+                <option value="ibarra">Ibarra</option>
+                <option value="santo Domingo">Santo domigno</option>
+                <option value="quevedo">Quevedo</option>
+                <option value="esmeralda">Esmeralda</option>
+                <option value="salinas">Salinas</option>
+                <option value="milagro">Milagro</option>
+                <option value="chone">Chone</option>
+                <option value="napo">Napo</option>
+                <option value="Bahia_de_caráques">Bahia de Caráraques</option>
+                <option value="pastaza">Pastaza</option>
+                <option value="pedernales">Pedernales</option>
+                <option value="puerto_baquerizo_moreno">Puerto Baquerizo Moreno</option>
+                <option value="puerto_villamil">Puerto Villamil</option>
+                <option value="nobol">Nobol</option>
+                <option value="naranjal">Naranjal</option>
+                <option value="vinces">Vinces</option>
+              </select>
+              <span
+                *ngIf="!(validSelect('ciudad').valid)"
+                class="text-danger d-block mt-2"
+              >
+                {{(validSelect('ciudad').messagge)}}
               </span>
             </div>
             <div class="mb-3 col-12 col-md-2 col-lg-2">

@@ -1,3 +1,5 @@
+import { DatePipe } from "@angular/common";
+
 export interface EstudianteList{
     students: RegistroStudent[];
     
