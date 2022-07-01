@@ -2,19 +2,41 @@
   <div class="row px-4 flex-column justify-content-center h-100">
     <div class="col-10 mx-auto my-3"></div>
 
-    <div class="col-10 mx-auto justify-content-center flex-grow-1">
-      <div class="form-floating">
-        <textarea
-          [(ngModel)]="primerQuimestre"
-          class="form-control"
-          placeholder="Leave a comment here"
-          id="floatingTextarea1"
-          style="height: 100px"
-          (input)="fillResources()"
-        ></textarea>
-        <label for="floatingTextare1">Primer Quimestre...</label>
+    <div class="col-10 mx-auto flex-grow-1">
+   
+      <div class="row">
+        <h2 class="fw-bold">Asignaturas seleccionadas</h2>
+        <div class="col-12">
+          <div class="badge bg-danger p-2 me-2 mb-2 rounded-pill"
+            *ngFor="let asignatura of registerDocumentCurricular.asignaturaListSelected">
+            <h5 class="m-0">{{asignatura.nameCourse}}</h5>
+          </div>
+        </div>
       </div>
-    </div>
+
+      <div class="row">
+        <h2 class="fw-bold">Propuesta curricular adaptada</h2>
+        <div class="col-12" *ngFor="let asignatura of registerDocumentCurricular.asignaturaListSelected">
+          <p>
+            <a class="btn btn-secondary mb-4 col-12" data-bs-toggle="collapse"
+               role="button" aria-expanded="false" aria-controls="collapse" (click)="openObjectives(asignatura)">
+              {{asignatura.nameCourse}}
+            </a>
+          </p>
+          <!--Collapse-->
+      
+            </div>
+
+            <br>
+
+            <p>
+              CE.CN.2.1. Analiza la importancia del ciclo vital de los seres vivos (humanos, animales y plantas) a partir de la observación y/o experimentación de sus cambios y etapas, destacando la importancia de la polinización y dispersión de las semillas.
+            </p>
+
+          </div>
+          <!--end collapse-->
+        </div>
+    
 
     <div class="col-10 mx-auto justify-content-center flex-grow-1">
       <div class="form-floating">
@@ -27,19 +49,7 @@
         <label for="floatingTextarea2">Reajustes...</label>
       </div>
     </div>
-
-    <div class="col-10 mx-auto justify-content-center flex-grow-1">
-      <div class="form-floating">
-        <textarea
-          class="form-control"
-          placeholder="Leave a comment here"
-          id="floatingTextarea3"
-          style="height: 100px"
-        ></textarea>
-        <label for="floatingTextarea3">Segundo Quimestre...</label>
-      </div>
-    </div>
-
+  
     <div class="col-12 text-end my-3 py-3">
       <button class="btn btn-danger">Cancelar</button>
       <button class="btn btn-danger ms-3" (click)="nextPage()">
@@ -48,3 +58,4 @@
     </div>
   </div>
 </div>
+ 
