@@ -8,9 +8,8 @@ import { AuthUser } from "../interfaces/auth.interface";
   providedIn: "root",
 })
 export class AuthService {
-  url: string = environment.baseURL;
-
   authUser: AuthUser | undefined;
+  private url: string = environment.baseURL;
 
   constructor(private http: HttpClient) {}
 
@@ -25,7 +24,9 @@ export class AuthService {
       .set("authorization", `bearer ${token}`);
 
     return this.http
-      .get<AuthUser>(`${this.url}/login/renew`, { headers })
+      .get<AuthUser>(`${this.url}/login/renew`, {
+        headers,
+      })
       .pipe(
         map((resp) => {
           localStorage.setItem("token", resp.jwt);

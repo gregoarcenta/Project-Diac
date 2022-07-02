@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import {
   Asignatura,
+  Criteria,
   DestrezaElement,
   Objective,
 } from "../../interfaces/destreza.interface";
@@ -21,6 +22,7 @@ export class DestrezaComponent implements OnInit {
 
   asignatura!: Asignatura;
   objectives: Objective[] = [];
+  criterios: Criteria[] = [];
   destrezas: DestrezaElement[] = [];
 
   nombreAsignatura: string = "";
@@ -101,6 +103,35 @@ export class DestrezaComponent implements OnInit {
     }
   }
 
+  addCriterio() {
+    let repetido: boolean = false;
+    if (!this.valorActual || this.valorActual.trim().length === 0) {
+      this.messageError = "El criterio no puede quedar vacio";
+      this.typeAlert = "danger";
+      this.showAlert(true);
+      return;
+    }
+    this.criterios.forEach((criterio) => {
+      if (criterio.nameCriteria === this.valorActual.trim().toLowerCase()) {
+        repetido = true;
+        this.messageError = "El criterio ya existe!!";
+        this.typeAlert = "danger";
+        this.showAlert(true);
+      }
+    });
+    if (!repetido) {
+      let criteriosCopy = [...this.criterios];
+      this.criterios = [
+        ...criteriosCopy,
+        { nameCriteria: this.valorActual.trim().toLowerCase() },
+      ];
+      this.valorActual = "";
+      this.messageError = "Criterio agregado!";
+      this.typeAlert = "success";
+      this.showAlert(true);
+    }
+  }
+
   deleteObjective(name: string) {
     this.messageError = "Objetivo eliminado!";
     this.typeAlert = "success";
@@ -119,6 +150,15 @@ export class DestrezaComponent implements OnInit {
     });
   }
 
+  deleteCriterio(name: string) {
+    this.messageError = "Criterio eliminado!!";
+    this.typeAlert = "success";
+    this.showAlert(true);
+    this.criterios = this.criterios.filter((criterio) => {
+      return criterio.nameCriteria !== name.toLowerCase();
+    });
+  }
+
   addAsignatura() {
     if (this.nombreAsignatura.trim().toLowerCase().length === 0) {
       this.messageError = "El nombre de la asignatura no puede quedar vacio";
@@ -130,6 +170,7 @@ export class DestrezaComponent implements OnInit {
       nameCourse: this.nombreAsignatura.toLowerCase(),
       destrezas: this.destrezas,
       objectives: this.objectives,
+      criteria: this.criterios,
     };
     Swal.fire({
       title: "¿Guardar Asignatura?",
@@ -140,15 +181,10 @@ export class DestrezaComponent implements OnInit {
       denyButtonText: `Cancelar`,
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log(this.asignatura);
         this.destrezaService.addAsignatura(this.asignatura).subscribe({
           next: (resp) => {},
           error: ({ error }) => {
-            Swal.fire(
-              "Hubo un error al guardar las destrezas",
-              error.message,
-              "error"
-            );
+            Swal.fire("Hubo un error al guardar la asigantura", "", "error");
           },
           complete: () => {
             Swal.fire(
@@ -161,5 +197,15 @@ export class DestrezaComponent implements OnInit {
         });
       }
     });
+  }
+
+  toggleObjDezCri() {
+    if (this.seleccionado === "destreza") {
+      this.addDestreza();
+    } else if (this.seleccionado === "objetivo") {
+      this.addObjective();
+    } else if (this.seleccionado === "criterio") {
+      this.addCriterio();
+    }
   }
 }

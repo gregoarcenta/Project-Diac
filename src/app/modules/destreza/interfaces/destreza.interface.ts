@@ -2,6 +2,7 @@ export interface Asignatura {
   nameCourse: string;
   destrezas: DestrezaElement[];
   objectives: Objective[];
+  criteria: Criteria[];
 }
 
 export interface DestrezaElement {
@@ -10,4 +11,7 @@ export interface DestrezaElement {
 
 export interface Objective {
   nameObjective: string;
+}
+export interface Criteria {
+  nameCriteria: string;
 }
