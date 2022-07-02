@@ -1,22 +1,27 @@
 <div class="container">
   <div class="row justify-content-center">
-
-    <h1 class="text-center mt-3 mb-2">Lista de estudiantes </h1>
+    <h1 class="text-center mt-3 mb-2">Lista de estudiantes</h1>
 
     <section class="my-3 col-12 col-md-4">
       <div class="">
         <form class="">
-          <input class="form-control me-4 center" type="text" name="filterEstudiante" placeholder="Buscar estudiante..."
-            [(ngModel)]="filterEstudiante">
+          <input
+            class="form-control me-4 center"
+            type="text"
+            name="filterEstudiante"
+            placeholder="Buscar estudiante..."
+            [(ngModel)]="filterEstudiante"
+          />
         </form>
       </div>
     </section>
 
-<!--cambio-->    <div class="col-12 mt-4"  id="myData" #myData>
+    <!--cambio-->
+    <div class="col-12 mt-4" id="myData" #myData>
       <table class="table table-striped table-hover">
         <thead>
           <tr>
-            <th>No.<i class="fas fa-sort"></i> </th>
+            <th>No.<i class="fas fa-sort"></i></th>
             <th>Nombres<i class="fas fa-sort"></i></th>
             <th>Apellidos<i class="fas fa-sort"></i></th>
             <th>tutor<i class="fas fa-sort"></i></th>
@@ -28,7 +33,8 @@
         </thead>
         <tbody>
           <tr
-            *ngFor="let estudiante of estudianteList | filter:filterEstudiante  | paginate: {itemsPerPage: 4, currentPage:pageActual}">
+            *ngFor="let estudiante of estudianteList | filter:filterEstudiante  | paginate: {itemsPerPage: 4, currentPage:pageActual}"
+          >
             <td>{{estudiante.id}}</td>
             <td>{{estudiante.nameStudent}}</td>
             <td>{{estudiante.lastNameStudent}}</td>
@@ -38,177 +44,326 @@
             <td>{{estudiante.nameFather}}</td>
 
             <td>
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalUpdate"
-                (click)="openModalUpdate(estudiante)">
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#modalUpdate"
+                (click)="openModalUpdate(estudiante)"
+              >
                 <i class="bi bi-pencil-square"></i>
               </button>
-              <button class="btn btn-danger" style="margin-left: 10px;" (click)="eliminarEstudiante(estudiante.id)">
+              <button
+                class="btn btn-danger"
+                style="margin-left: 10px;"
+                (click)="eliminarEstudiante(estudiante.id)"
+              >
                 <i class="bi bi-trash-fill"></i>
               </button>
-              
-              
             </td>
-
           </tr>
         </tbody>
       </table>
-      <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
-
+      <pagination-controls
+        (pageChange)="pageActual = $event"
+      ></pagination-controls>
     </div>
   </div>
-
 </div>
 
-
 <!-- Modal Update -->
-<div class="modal fade" id="modalUpdate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-  aria-labelledby="modalUpdate" aria-hidden="true">
+<div
+  class="modal fade"
+  id="modalUpdate"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="modalUpdate"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title" id="modalUpdate">Actualización del estudiante</h3>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h3 class="modal-title" id="modalUpdate">
+          Actualización del estudiante
+        </h3>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
-      <div class="modal-body"  >
+      <div class="modal-body">
         <form class="p-1" [formGroup]="estudianteForm" autocomplete="off">
           <div class="row">
             <div class="mb-3 col-12 col-md-6">
               <label for="name" class="form-label">Nombres:</label>
-              <input formControlName="nombre" type="text" class="form-control mb-2" id="name" name="name"
-                placeholder="Ingresar nombres">
+              <input
+                formControlName="nombre"
+                type="text"
+                class="form-control mb-2"
+                id="name"
+                name="name"
+                placeholder="Ingresar nombres"
+              />
               <span *ngIf="!(validCampo('nombre').valid)" class="text-danger">
                 {{(validCampo('nombre').messagge)}}
               </span>
             </div>
             <div class="mb-3 col-12 col-md-6">
               <label for="lastName" class="form-label">Apellidos:</label>
-              <input formControlName="apellido" type="text" class="form-control mb-2" id="apellidos" name="apellido"
-                placeholder="Ingresar apellidos">
+              <input
+                formControlName="apellido"
+                type="text"
+                class="form-control mb-2"
+                id="apellidos"
+                name="apellido"
+                placeholder="Ingresar apellidos"
+              />
               <span *ngIf="!(validCampo('apellido').valid)" class="text-danger">
                 {{(validCampo('apellido').messagge)}}
               </span>
             </div>
             <div class="mb-3 col-12 col-md-3 col-lg-2">
               <label for="edad" class="form-label">Edad:</label>
-              <input formControlName="edad" type="number" class="form-control mb-2" id="edad" name="edad"
-                placeholder="30">
+              <input
+                formControlName="edad"
+                type="number"
+                class="form-control mb-2"
+                id="edad"
+                name="edad"
+                placeholder="30"
+              />
               <span *ngIf="!(validCampo('edad').valid)" class="text-danger">
                 {{(validCampo('edad').messagge)}}
               </span>
             </div>
             <div class="mb-3 col-12 col-md-4 col-lg-4">
-              <label for="fechaNacim" class="form-label">Fecha de Nacimiento:</label>
-              <input formControlName="fechaNacimiento" type="text" class="form-control mb-2" id="fechaNacim"
-                name="fechaNacim" placeholder="1/05/2021">
-              <span *ngIf="!(validCampo('fechaNacimiento').valid)" class="text-danger">
+              <label for="fechaNacim" class="form-label"
+                >Fecha de Nacimiento:</label
+              >
+              <input
+                formControlName="fechaNacimiento"
+                type="text"
+                class="form-control mb-2"
+                id="fechaNacim"
+                name="fechaNacim"
+                placeholder="1/05/2021"
+              />
+              <span
+                *ngIf="!(validCampo('fechaNacimiento').valid)"
+                class="text-danger"
+              >
                 {{(validCampo('fechaNacimiento').messagge)}}
               </span>
             </div>
 
             <div class="mb-3 col-12 col-md-6">
               <label for="tutor" class="form-label">Tutor:</label>
-              <input formControlName="tutor" type="text" class="form-control mb-2" id="tutor" name="tutor"
-                placeholder="Ingrese el nombre del tutor ">
+              <input
+                formControlName="tutor"
+                type="text"
+                class="form-control mb-2"
+                id="tutor"
+                name="tutor"
+                placeholder="Ingrese el nombre del tutor "
+              />
               <span *ngIf="!(validCampo('tutor').valid)" class="text-danger">
                 {{(validCampo('tutor').messagge)}}
               </span>
             </div>
             <div class="mb-3 col-12 col-md-6">
-              <label for="lastName" class="form-label">Nombre de la madre:</label>
-              <input formControlName="nombreMadre" type="text" class="form-control mb-2" id="NameMother"
-                name="NameMother" placeholder="Ingresar el nombre de la madre ">
-              <span *ngIf="!(validCampo('nombreMadre').valid)" class="text-danger">
+              <label for="lastName" class="form-label"
+                >Nombre de la madre:</label
+              >
+              <input
+                formControlName="nombreMadre"
+                type="text"
+                class="form-control mb-2"
+                id="NameMother"
+                name="NameMother"
+                placeholder="Ingresar el nombre de la madre "
+              />
+              <span
+                *ngIf="!(validCampo('nombreMadre').valid)"
+                class="text-danger"
+              >
                 {{(validCampo('nombreMadre').messagge)}}
               </span>
             </div>
             <div class="mb-3 col-12 col-md-6">
               <label for="lastName" class="form-label">Nombre del padre:</label>
-              <input formControlName="nombrePadre" type="text" class="form-control mb-2" id="Namefather"
-                name="Namefather" placeholder="Ingresar el nombre del padre">
-              <span *ngIf="!(validCampo('nombrePadre').valid)" class="text-danger">
+              <input
+                formControlName="nombrePadre"
+                type="text"
+                class="form-control mb-2"
+                id="Namefather"
+                name="Namefather"
+                placeholder="Ingresar el nombre del padre"
+              />
+              <span
+                *ngIf="!(validCampo('nombrePadre').valid)"
+                class="text-danger"
+              >
                 {{(validCampo('nombrePadre').messagge)}}
               </span>
             </div>
             <div class="mb-3 col-12 col-md-6">
               <label for="lastName" class="form-label">Domicilio:</label>
-              <input formControlName="domicilio" type="text" class="form-control mb-2" id="domicilio" name="domicilio"
-                placeholder="Ingrese el domicilio">
-              <span *ngIf="!(validCampo('domicilio').valid)" class="text-danger">
+              <input
+                formControlName="domicilio"
+                type="text"
+                class="form-control mb-2"
+                id="domicilio"
+                name="domicilio"
+                placeholder="Ingrese el domicilio"
+              />
+              <span
+                *ngIf="!(validCampo('domicilio').valid)"
+                class="text-danger"
+              >
                 {{(validCampo('domicilio').messagge)}}
               </span>
             </div>
             <div class="mb-4 col-3">
-              <label for="estudiante" class="form-label center"><b>Ciudad:</b></label>
-              <select formControlName="ciudad" type="text" class="form-select" id="ciudad" aria-describedby="textHelp"
-                name="ciudad" required>
+              <label for="estudiante" class="form-label center"
+                ><b>Ciudad:</b></label
+              >
+              <select
+                formControlName="ciudad"
+                type="text"
+                class="form-select"
+                id="ciudad"
+                aria-describedby="textHelp"
+                name="ciudad"
+                required
+              >
                 <option value="0" selected>Seleccionar ciudad</option>
                 <option value="manta">Manta</option>
                 <option value="guayaquil">Guayaquil</option>
                 <option value="quito">Quito</option>
                 <option value="otra">Otra..</option>
               </select>
-              <span *ngIf="!(validSelect('ciudad').valid)" class="text-danger d-block mt-2">
+              <span
+                *ngIf="!(validSelect('ciudad').valid)"
+                class="text-danger d-block mt-2"
+              >
                 {{(validSelect('ciudad').messagge)}}
               </span>
             </div>
             <div class="mb-4 col-3">
-              <label for="estudiante" class="form-label center"><b>Provincia:</b></label>
-              <select formControlName="Provincia" type="text" class="form-select" id="provincia"
-                aria-describedby="textHelp" name="provincia" required>
+              <label for="estudiante" class="form-label center"
+                ><b>Provincia:</b></label
+              >
+              <select
+                formControlName="Provincia"
+                type="text"
+                class="form-select"
+                id="provincia"
+                aria-describedby="textHelp"
+                name="provincia"
+                required
+              >
                 <option value="0" selected>Seleccionar provincia</option>
                 <option value="manabi">Manabí</option>
                 <option value="guayas">Guayas</option>
                 <option value="los rios">Los Rios</option>
                 <option value="otra">Otra..</option>
               </select>
-              <span *ngIf="!(validSelect('Provincia').valid)" class="text-danger d-block mt-2">
+              <span
+                *ngIf="!(validSelect('Provincia').valid)"
+                class="text-danger d-block mt-2"
+              >
                 {{(validSelect('Provincia').messagge)}}
               </span>
             </div>
             <div class="mb-3 col-12 col-md-2 col-lg-2">
               <label for="codigo" class="form-label">Codigo Postal :</label>
-              <input formControlName="codigoPostal" type="number" class="form-control mb-2" id="codigo"
-                name="codigo postal " placeholder="12345">
-              <span *ngIf="!(validCampo('codigoPostal').valid)" class="text-danger">
+              <input
+                formControlName="codigoPostal"
+                type="number"
+                class="form-control mb-2"
+                id="codigo"
+                name="codigo postal "
+                placeholder="12345"
+              />
+              <span
+                *ngIf="!(validCampo('codigoPostal').valid)"
+                class="text-danger"
+              >
                 {{(validCampo('codigoPostal').messagge)}}
               </span>
             </div>
             <div class="mb-3 col-12 col-md-2 col-lg-2">
               <label for="age" class="form-label">N. de hermanos:</label>
-              <input formControlName="NHermanos" type="number" class="form-control mb-2" id="age" name="age"
-                placeholder="1">
-              <span *ngIf="!(validCampo('NHermanos').valid)" class="text-danger">
+              <input
+                formControlName="NHermanos"
+                type="number"
+                class="form-control mb-2"
+                id="age"
+                name="age"
+                placeholder="1"
+              />
+              <span
+                *ngIf="!(validCampo('NHermanos').valid)"
+                class="text-danger"
+              >
                 {{(validCampo('NHermanos').messagge)}}
               </span>
             </div>
             <div class="mb-3 col-12 col-md-2 col-lg-2">
               <label for="age" class="form-label">Lugar que ocupa:</label>
-              <input formControlName="LOcupa" type="number" class="form-control mb-2" id="age" name="age"
-                placeholder="4">
+              <input
+                formControlName="LOcupa"
+                type="number"
+                class="form-control mb-2"
+                id="age"
+                name="age"
+                placeholder="4"
+              />
               <span *ngIf="!(validCampo('LOcupa').valid)" class="text-danger">
                 {{(validCampo('LOcupa').messagge)}}
               </span>
             </div>
             <div class="mb-3 col-12 col-md-2 col-lg-3">
               <label for="lastName" class="form-label">Telefono:</label>
-              <input formControlName="telefono" type="text" class="form-control mb-2" id="telefono" name="telefono"
-                placeholder="0988826457">
+              <input
+                formControlName="telefono"
+                type="text"
+                class="form-control mb-2"
+                id="telefono"
+                name="telefono"
+                placeholder="0988826457"
+              />
               <span *ngIf="!(validCampo('telefono').valid)" class="text-danger">
                 {{(validCampo('telefono').messagge)}}
               </span>
             </div>
             <div class="mb-3 col-12 col-md-2 col-lg-3">
               <label for="lastName" class="form-label">Paralelo:</label>
-              <input formControlName="paralelo" type="text" class="form-control mb-2" id="lastName" name="lastName"
-                placeholder="Ingrese el paralelo ">
+              <input
+                formControlName="paralelo"
+                type="text"
+                class="form-control mb-2"
+                id="lastName"
+                name="lastName"
+                placeholder="Ingrese el paralelo "
+              />
               <span *ngIf="!(validCampo('paralelo').valid)" class="text-danger">
                 {{(validCampo('paralelo').messagge)}}
               </span>
             </div>
             <div class="mb-3 col-12 col-md-6">
               <label for="lastName" class="form-label">Curso:</label>
-              <input formControlName="course" type="text" class="form-control mb-2" id="lastName" name="lastName"
-                placeholder="Ingrese el Curso">
+              <input
+                formControlName="course"
+                type="text"
+                class="form-control mb-2"
+                id="lastName"
+                name="lastName"
+                placeholder="Ingrese el Curso"
+              />
               <span *ngIf="!(validCampo('course').valid)" class="text-danger">
                 {{(validCampo('course').messagge)}}
               </span>
@@ -216,31 +371,52 @@
 
             <div class="mb-3 col-12 col-md-6">
               <label for="lastName" class="form-label">Año Lectivo:</label>
-              <input formControlName="añolectivo" type="text" class="form-control mb-2" id="lastName" name="lastName"
-                placeholder="Ingrese el año lectivo">
-              <span *ngIf="!(validCampo('añolectivo').valid)" class="text-danger">
+              <input
+                formControlName="añolectivo"
+                type="text"
+                class="form-control mb-2"
+                id="lastName"
+                name="lastName"
+                placeholder="Ingrese el año lectivo"
+              />
+              <span
+                *ngIf="!(validCampo('añolectivo').valid)"
+                class="text-danger"
+              >
                 {{(validCampo('añolectivo').messagge)}}
               </span>
             </div>
-
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeModal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="updateEstudianteConfirm()">Guardar Cambios</button>
-      
-
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          id="closeModal"
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="updateEstudianteConfirm()"
+        >
+          Guardar Cambios
+        </button>
       </div>
     </div>
   </div>
-  
 </div>
 
 <!-- Button circle-->
 <div class="iconplus d-flex flex-column justify-content-end align-items-end">
   <ul class="list-group list-group-plus">
-    <li class="list-group-item list-group-item-action" routerLink="/dashboard/estudiante/agregar">
+    <li
+      class="list-group-item list-group-item-action"
+      routerLink="/dashboard/estudiante/agregar"
+    >
       Registrar un nuevo estudiante
     </li>
   </ul>
