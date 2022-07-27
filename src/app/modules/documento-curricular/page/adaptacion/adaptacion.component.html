@@ -83,14 +83,50 @@
 
             <br>
 
-            <p>
-              O.CN.2.1. Explorar y comprender los ciclos de vida y las características esenciales de las plantas y los
-              animales,
-              para establecer semejanzas y diferencias; clasificarlos en angiospermas o gimnospermas, vertebrados o
-              invertebrados,
-              respectivamente, y relacionarlos con su hábitat.
+            <p *ngFor="let objetivo of ObjetivosListSelected">
+              <label *ngIf="objetivo.CourseId == asignatura.id">
+                {{objetivo.nameObjective}}
+              </label>
             </p>
 
+            <p *ngFor="let destreza of DestrezasListSelected">
+              <label *ngIf="destreza.CourseId == asignatura.id">
+                {{destreza.nameDestreza}}
+              </label>
+            </p>
+          </div>
+          <!--end collapse-->
+        </div>
+      </div>
+
+      <div class="row">
+        <h2 class="fw-bold">Propuesta curricular adaptada por unidades</h2>
+        <div class="col-12" *ngFor="let asignatura of registerDocumentCurricular.asignaturaListSelected">
+          <p>
+            <a class="btn btn-secondary mb-4 col-12" data-bs-toggle="collapse"
+              [href]="renameForId(asignatura.nameCourse + 1)" role="button" aria-expanded="false" aria-controls="collapse">
+              {{asignatura.nameCourse}}
+            </a>
+          </p>
+          <!--Collapse-->
+          <div class="collapse " [id]="renameForIdCollapse(asignatura.nameCourse + 1)">
+            <div class="card card-body">
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalUnidades"
+                      data-bs-whatever="@mdo">
+                      + Añadir unidades
+              </button>
+              <br>
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalUnidades"
+                      data-bs-whatever="@mdo">
+                      + Editar unidades
+              </button>
+              <br>
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalUnidades"
+                      data-bs-whatever="@mdo">
+                      + Eliminar unidades
+              </button>
+            </div>
+            <br>
           </div>
           <!--end collapse-->
         </div>
@@ -133,7 +169,7 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Añadir</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Añadir</button>
       </div>
     </div>
   </div>
@@ -167,7 +203,7 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Añadir</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Añadir</button>
       </div>
     </div>
   </div>
