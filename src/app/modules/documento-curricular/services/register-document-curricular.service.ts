@@ -22,6 +22,7 @@ export class RegisterDocumentCurricularService {
   docentesSeleccionados: number[] = []
   recursosSeleccionados: string[] = []
   profesionalesSeleccionados: string[] = []
+  objetivosSeleccionados: number[] = []
 
   docenteListSelected: Teacher[] = []
   asignaturaListSelected: Course[] = []

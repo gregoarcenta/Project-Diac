@@ -24,6 +24,14 @@ export class AdaptacionComponent implements OnInit {
   ObjetivosActuales: Objective[] = []
   destrezasActuales: Destreza[] = []
 
+  //Objetivos seleccionados
+  ObjetivosListSelected: Objective[] = []
+  ObjetivosSeleccionados: number[] = []
+
+  //Destrezas seleccionadas
+  DestrezasListSelected: Destreza[] = []
+  DestrezasSeleccionadas: number[] = []
+
   constructor(
     private navigationService: NavigationService,
     public registerDocumentCurricular: RegisterDocumentCurricularService,
@@ -46,29 +54,40 @@ export class AdaptacionComponent implements OnInit {
   }
 
   fillArrayObjetivos(e: any, objetivo: Objective) {
-    /*  if (e.target.checked) {
-       this.docenteListSelected.push(docente)
-       this.docentesSeleccionados.push(docente.id)
-     } else {
-       this.docenteListSelected = this.docenteListSelected.filter(docent => docent.id !== docente.id)
-       this.docentesSeleccionados = this.docentesSeleccionados.filter(id => id !== docente.id)
-     }
-     const docentesArr = new Set(this.docenteListSelected);
-     const idsDocentesArr = new Set(this.docentesSeleccionados);
-     let resultDocentes = [...docentesArr];
-     let resultIdsDocentes = [...idsDocentesArr];
-     this.registerDocumentCurricular.docenteListSelected = resultDocentes
-     this.registerDocumentCurricular.docentesSeleccionados = resultIdsDocentes */
+    if (e.target.checked) {
+      this.ObjetivosListSelected.push(objetivo)
+      this.ObjetivosSeleccionados.push(objetivo.id)
+      console.log(this.ObjetivosSeleccionados);
+    } else {
+      this.ObjetivosListSelected = this.ObjetivosListSelected.filter(obj => obj.id !== objetivo.id)
+      this.ObjetivosSeleccionados = this.ObjetivosSeleccionados.filter(id => id !== objetivo.id)
+    }
+    let resultado = new Set(this.ObjetivosListSelected);
+    this.ObjetivosListSelected = [];
+    resultado.forEach(element => {
+      this.ObjetivosListSelected.push(element)
+    });
   }
 
   fillArrayDestrezas(e: any, destreza: Destreza) {
-
+    if (e.target.checked) {
+      this.DestrezasListSelected.push(destreza)
+      this.DestrezasSeleccionadas.push(destreza.id)
+    } else {
+      this.DestrezasListSelected = this.DestrezasListSelected.filter(des => des.id !== destreza.id)
+      this.DestrezasSeleccionadas = this.DestrezasSeleccionadas.filter(id => id !== destreza.id)
+    }
+    let resultado = new Set(this.DestrezasListSelected);
+    this.DestrezasListSelected = [];
+    resultado.forEach(element => {
+      this.DestrezasListSelected.push(element)
+    });
   }
 
   marcarCheckboxObjetivos(id: number) {
-    /* return this.registerDocumentCurricular.docentesSeleccionados.some(id => {
-      return id.toString() === idd.toString()
-    }); */
+    return this.registerDocumentCurricular.objetivosSeleccionados.some(id => {
+      return id.toString() === id.toString()
+    });
   }
 
   marcarCheckboxDestrezas(id: number) {

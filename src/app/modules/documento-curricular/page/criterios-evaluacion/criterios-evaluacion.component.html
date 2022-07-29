@@ -19,22 +19,25 @@
         <div class="col-12" *ngFor="let asignatura of registerDocumentCurricular.asignaturaListSelected">
           <p>
             <a class="btn btn-secondary mb-4 col-12" data-bs-toggle="collapse"
-               role="button" aria-expanded="false" aria-controls="collapse" (click)="openObjectives(asignatura)">
+              [href]="renameForId(asignatura.nameCourse)" role="button" aria-expanded="false" aria-controls="collapse">
               {{asignatura.nameCourse}}
             </a>
           </p>
           <!--Collapse-->
-      
+          <div class="collapse" [id]="renameForIdCollapse(asignatura.nameCourse)">
+            <div class="card card-body">
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalCriterios"
+                data-bs-whatever="@mdo" (click)="openCriterios(asignatura)">
+                + Añadir Criterios
+              </button>
             </div>
-
             <br>
-
-            <p>
-              CE.CN.2.1. Analiza la importancia del ciclo vital de los seres vivos (humanos, animales y plantas) a partir de la observación y/o experimentación de sus cambios y etapas, destacando la importancia de la polinización y dispersión de las semillas.
+            <p *ngFor="let criterio of CriteriosListSelected">
+              <label *ngIf="criterio.CourseId == asignatura.id">
+                {{criterio.nameCriteria}}
+              </label>
             </p>
-
           </div>
-          <!--end collapse-->
         </div>
     
 
@@ -49,6 +52,18 @@
         <label for="floatingTextarea2">Reajustes...</label>
       </div>
     </div>
+    
+    <div class="col-10 mx-auto justify-content-center flex-grow-1 pt-4">
+      <div class="form-floating">
+        <textarea
+          class="form-control"
+          placeholder="Leave a comment here"
+          id="floatingTextarea3"
+          style="height: 100px"
+        ></textarea>
+        <label for="floatingTextarea2">Criterios adaptados...</label>
+      </div>
+    </div>
   
     <div class="col-12 text-end my-3 py-3">
       <button class="btn btn-danger">Cancelar</button>
@@ -59,3 +74,35 @@
   </div>
 </div>
  
+<!--Modal de criterios-->
+<div class="modal fade" id="modalCriterios" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">Criterios</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body p-0">
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center"
+            *ngFor="let criterio of criteriosActualues">
+            <div class="ms-2 me-auto form-check">
+              <input class="form-check-input" [id]="criterio.id" type="checkbox"
+                (input)="fillResources($event,criterio)">
+              <label class="form-check-label" [for]="criterio.id">
+                {{criterio.nameCriteria}}
+              </label>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Añadir</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end modal-->

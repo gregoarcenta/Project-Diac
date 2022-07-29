@@ -7,6 +7,7 @@ export interface Course {
   nameCourse: string;
   Destrezas: Destreza[];
   Objectives: Objective[];
+  criterios: Criterios[];
 }
 
 export interface Destreza {
@@ -18,5 +19,11 @@ export interface Destreza {
 export interface Objective {
   id: number;
   nameObjective: string;
+  CourseId: number;
+}
+
+export interface Criterios {
+  id: number;
+  nameCriteria: string;
   CourseId: number;
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationService } from '../../services/navigation.service';
 import { RegisterDocumentCurricularService } from '../../services/register-document-curricular.service';
-import { Course, Objective, Destreza } from 'src/app/modules/destreza/interfaces/asignatura.interface';
+import { Course, Destreza, Criterios } from 'src/app/modules/destreza/interfaces/asignatura.interface';
 
 
 @Component({
@@ -11,20 +11,16 @@ import { Course, Objective, Destreza } from 'src/app/modules/destreza/interfaces
 })
 export class CriteriosEvaluacionComponent implements OnInit {
 
-   primerQuimestre: String = '' 
-   reajustes: String=''
-   segundoQuimestre: String=''
+  primerQuimestre: String = '' 
+  reajustes: String=''
+  segundoQuimestre: String=''
 
- 
- 
-   //Variables para los texts areas
+  CriteriosListSelected: Criterios[] = []
+  CriteriosSeleccionados: number[] = []
 
-
-     //Variables para los texts areas
-   ObjetivosActuales: Objective[] = []
-   destrezasActuales: Destreza[] = []
-
-
+  //Variables para los texts areas
+  destrezasActuales: Destreza[] = []
+  criteriosActualues: Criterios[] = []
 
   constructor(
     private navigationService: NavigationService,
@@ -35,16 +31,27 @@ export class CriteriosEvaluacionComponent implements OnInit {
 
   ngOnInit(): void {
     this.primerQuimestre = this.registerDocumentCurricular.docCurricularForm.value.criterios
-    
   }
 
-  openObjectives(asignatura: Course) {
-    this.ObjetivosActuales = asignatura.Objectives
+  openCriterios(asignatura: Course) {
+    this.criteriosActualues = asignatura.criterios
   }
 
 
-  fillResources() {
-    this.registerDocumentCurricular.docCurricularForm.controls['criterios'].setValue(this.primerQuimestre)
+  fillResources(e: any, criterio: Criterios) {
+    if (e.target.checked) {
+      this.CriteriosListSelected.push(criterio)
+      this.CriteriosSeleccionados.push(criterio.id)
+      console.log(this.CriteriosSeleccionados);
+    } else {
+      this.CriteriosListSelected = this.CriteriosListSelected.filter(obj => obj.id !== criterio.id)
+      this.CriteriosSeleccionados = this.CriteriosSeleccionados.filter(id => id !== criterio.id)
+    }
+    let resultado = new Set(this.CriteriosListSelected);
+    this.CriteriosListSelected = [];
+    resultado.forEach(element => {
+      this.CriteriosListSelected.push(element)
+    });
   }
 
   
